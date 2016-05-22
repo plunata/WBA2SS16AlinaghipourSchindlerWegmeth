@@ -1,0 +1,28 @@
+{
+  "name": "express_uebung",
+  "version": "1.0.0",
+  "description": "Eine Uebung zu Express.js, Routen und JSON.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plunata/WBA2SS16AlinaghipourSchindlerWegmeth.git"
+  },
+  "keywords": [
+    "wba2"
+  ],
+  "author": "Natalie Tork Alinaghipour, Jan Wegmeth, Krystian Schindler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plunata/WBA2SS16AlinaghipourSchindlerWegmeth/issues"
+  },
+  "homepage": "https://github.com/plunata/WBA2SS16AlinaghipourSchindlerWegmeth#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "fs": "0.0.2",
+    "http": "0.0.0"
+  }
+}
