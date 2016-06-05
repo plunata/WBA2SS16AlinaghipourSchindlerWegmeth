@@ -1,0 +1,22 @@
+{
+  "name": "projekt",
+  "version": "1.0.0",
+  "description": "WBA2-Projekt",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plunata/WBA2SS16AlinaghipourSchindlerWegmeth.git"
+  },
+  "keywords": [
+    "wba2"
+  ]
+  "author": "Natalie Tork Alinaghipour, Jan Wegmeth, Krystian Schindler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plunata/WBA2SS16AlinaghipourSchindlerWegmeth/issues"
+  },
+  "homepage": "https://github.com/plunata/WBA2SS16AlinaghipourSchindlerWegmeth#readme"
+}
