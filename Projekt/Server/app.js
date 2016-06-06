@@ -1,46 +1,52 @@
 var express = require('express');
-var app = express();
-var router = express.Router();
-
-var redis = require('redis');
-var client = redis.createClient();
-
+var path = require('path');
 var bodyParser = require('body-parser');
-var jsonParser = bodyParser.json();
+var redis = require('redis');
 
 var course = require('./Routes/course');
-var fakultaet = require('./Routes/fakultaet');
-var group = require('./Routes/group');
-var subject = require('./Routes/subject');
-var newsfeed = require('./Routes/newsfeed');
-var personal_task = require('./Routes/personal_task');
-var pinboard = require('./Routes/pinboard');
-var task = require('./Routes/task');
-var user = require('./Routes/user');
+var users = require('./Routes/user');
 
-router.use(bodyParser.json());
+var app = express();
 
-router.use('/course', course);
-router.use('/fakultaet', fakultaet);
-/*router.use('/group', group);
-router.use('/subject', subject);
-router.use('/newsfeed', newsfeed);
-router.use('/personal_task', personal_task);
-router.use('/pinboard', pinboard);
-router.use('/task', task);*/
-router.use('/user', user);
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
 
-router.use(function(req, res, next) {
-  var err = new Error('404 Not Found');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use('/', course);
+app.use('/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
-var server = app.listen(3000, function() {
-  var host = server.address().address;
-  var port = server.address().port;
+// error handlers
 
-  console.log("Server listening at http://%s:%s", host, port);
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
-module.exports = router;
+
+module.exports = app;

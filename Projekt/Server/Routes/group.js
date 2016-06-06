@@ -112,6 +112,3 @@ app.delete('/groups/:id', function(req, res) {
       }
   });
 });
-
-
-app.listen(3000);

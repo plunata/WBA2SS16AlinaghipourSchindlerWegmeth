@@ -1,6 +1,10 @@
 var express = require('express');
+var router = express.Router();
+
 var bodyParser = require('body-parser');
 var redis = require('redis');
+
+
 
 var client = redis.createClient();
 var app = express();
@@ -113,5 +117,4 @@ app.delete('/courses/:id', function(req, res) {
   });
 });
 
-
-app.listen(3000);
+module.exports = router;

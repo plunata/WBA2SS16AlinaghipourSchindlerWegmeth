@@ -112,6 +112,3 @@ app.delete('/fakultaeten/:id', function(req, res) {
       }
   });
 });
-
-
-app.listen(3000);

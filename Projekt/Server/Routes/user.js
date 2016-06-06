@@ -1,4 +1,6 @@
 var express = require('express');
+var router = express.Router();
+
 
 var bodyParser = require('body-parser');
 
@@ -116,5 +118,4 @@ app.delete('/users/:id', function(req, res) {
   });
 });
 
-
-app.listen(3000);
+module.exports = router;
