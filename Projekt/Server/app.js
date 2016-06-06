@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var router = express.Router();
 
 var redis = require('redis');
 var client = redis.createClient();
@@ -17,19 +18,19 @@ var pinboard = require('./Routes/pinboard');
 var task = require('./Routes/task');
 var user = require('./Routes/user');
 
-app.use(bodyParser.json());
+router.use(bodyParser.json());
 
-app.use('/course', course);
-app.use('/fakultaet', fakultaet);
-/*app.use('/group', group);
-app.use('/subject', subject);
-app.use('/newsfeed', newsfeed);
-app.use('/personal_task', personal_task);
-app.use('/pinboard', pinboard);
-app.use('/task', task);*/
-app.use('/user', user);
+router.use('/course', course);
+router.use('/fakultaet', fakultaet);
+/*router.use('/group', group);
+router.use('/subject', subject);
+router.use('/newsfeed', newsfeed);
+router.use('/personal_task', personal_task);
+router.use('/pinboard', pinboard);
+router.use('/task', task);*/
+router.use('/user', user);
 
-app.use(function(req, res, next) {
+router.use(function(req, res, next) {
   var err = new Error('404 Not Found');
   err.status = 404;
   next(err);
@@ -42,4 +43,4 @@ var server = app.listen(3000, function() {
   console.log("Server listening at http://%s:%s", host, port);
 });
 
-module.exports = app;
+module.exports = router;

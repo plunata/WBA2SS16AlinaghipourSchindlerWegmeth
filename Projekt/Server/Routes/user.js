@@ -1,10 +1,13 @@
 var express = require('express');
+
 var bodyParser = require('body-parser');
+
 var redis = require('redis');
 
 var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
+
 
 app.post('/users', function(req,res) {
 
