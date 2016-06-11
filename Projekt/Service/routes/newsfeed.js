@@ -1,3 +1,5 @@
+//todo: ist der newsfeed wirklich eine Recourse? ist das für eilmeldungen gedacht oder so?
+
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');

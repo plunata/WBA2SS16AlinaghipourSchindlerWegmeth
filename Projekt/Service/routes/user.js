@@ -6,40 +6,26 @@ var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-
-router.post('/', function(req,res) {
-
-  console.log("Gib einen existierenden User aus...");
-
+router.post('/', function(req,res, next) {
   var newUser = req.body; //Der Body enthält das bereits geparste JSON-Objekt
-
   console.log("Lege einen neuen User an...");
-
   client.incr('id:users', function(err,rep){ //ID-Counter für User um eins erhoehen
-
     newUser.id = rep; //Die ID des neuen Users auf den Wert des Counters setzen
-
     client.set('user:' + newUser.id, JSON.stringify(newUser), function(err, rep){ //User in Daten ...
       res.json(newUser);
     });
-
   });
-
 });
 
 router.get('/', function(req, res, next) {
   console.log("Gib alle existierenden User aus...");
   client.keys('user:*', function(err, rep) { //Alle Keys holen, die mit "user:" beginnen
-
     var users = []; //Leeres Array, um die User zwischenzuspeichern
-
     if (rep.length == 0) {
       res.json(users);
       return;
     }
-
     client.mget(rep, function(err, rep) { //Hole die Liste aller User auf einmal
-
       //Iteriere über das Antwortarray und füge die User dem Array hinzu
       rep.forEach(function(val) {
         users.push(JSON.parse(val));
@@ -49,11 +35,8 @@ router.get('/', function(req, res, next) {
       users = users.map(function(user) {
         return {id: user.id, name: user.name};
       });
-
       res.json(users);
-
     });
-
   });
 });
 
@@ -62,7 +45,6 @@ router.get('/', function(req, res, next) {
 router.get('/:id', function(req, res){
   console.log("find user with id");
   client.get('user:' + req.params.id, function(err,rep) { //Hole den User mit der bestimmten ID
-
     if (rep) {
       res.type('json').send(rep); //Ist ja schon ein String
     }
@@ -77,9 +59,7 @@ router.get('/:id', function(req, res){
 });
 
 router.put('/:id', function(req,res) {
-
   console.log("Aktualisiere einen existierenden User...");
-
   client.exists('user:' + req.params.id, function(err, rep) {
     if (rep == 1) {
       var updatedUser = req.body;
@@ -97,9 +77,7 @@ router.put('/:id', function(req,res) {
 });
 
 router.delete('/:id', function(req, res) {
-
   console.log("Lösche einen existierenden User...");
-
   client.del('user:' +req.params.id, function(err, rep) {
       if (rep == 1) {
         res.status(200).type('text').send('OK');

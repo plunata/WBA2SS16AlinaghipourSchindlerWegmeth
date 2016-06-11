@@ -7,63 +7,40 @@ var app = express();
 app.use(bodyParser.json());
 
 router.post('/', function(req,res) {
-
-  console.log("Gib eine existierende Gruppe aus...");
-
-  var newGroup = req.body; //Der Body enthält das bereits geparste JSON-Objekt
-
-  console.log("Lege eine neue Gruppe an...");
-
-  client.incr('id:groups', function(err,rep){ //ID-Counter für group um eins erhoehen
-
+    var newGroup = req.body; //Der Body enthält das bereits geparste JSON-Objekt
+    console.log("Lege eine neue Gruppe an...");
+    client.incr('id:groups', function(err,rep){ //ID-Counter für group um eins erhoehen
     newGroup.id = rep; //Die ID des neuen groups auf den Wert des Counters setzen
-
     client.set('group:' + newGroup.id, JSON.stringify(newGroup), function(err, rep){ //group in Daten ...
       res.json(newGroup);
     });
-
   });
-
 });
 
 router.get('/', function(req, res) {
-
   console.log("Gib alle existierenden Gruppen aus...");
-
   client.keys('group:*', function(err, rep) { //Alle Keys holen, die mit "group:" beginnen
-
     var groups = []; //Leeres Array, um die group zwischenzuspeichern
-
     if (rep.length == 0) {
       res.json(groups);
       return;
     }
-
     client.mget(rep, function(err, rep) { //Hole die Liste aller group auf einmal
-
       //Iteriere über das Antwortarray und füge die group dem Array hinzu
       rep.forEach(function(val) {
         groups.push(JSON.parse(val));
       });
-
       //Die Eigenschaften rausfiltern, die uns interessieren
       groups = groups.map(function(group) {
         return {id: group.id, name: group.name};
       });
-
       res.json(groups);
-
     });
-
   });
 });
 
-
-
 router.get('/:id', function(req, res){
-
   client.get('group:' + req.params.id, function(err,rep) { //Hole den group mit der bestimmten ID
-
     if (rep) {
       res.type('json').send(rep); //Ist ja schon ein String
     }
@@ -72,15 +49,11 @@ router.get('/:id', function(req, res){
       req.params.id +
       ' wurde nicht gefunden');
     };
-
   });
-
 });
 
 router.put('/:id', function(req,res) {
-
   console.log("Aktualisiere eine existierende Gruppe...");
-
   client.exists('group:' + req.params.id, function(err, rep) {
     if (rep == 1) {
       var updatedgroup = req.body;
@@ -98,9 +71,7 @@ router.put('/:id', function(req,res) {
 });
 
 router.delete('/:id', function(req, res) {
-
   console.log("Lösche eine existierende Gruppe...");
-
   client.del('group:' +req.params.id, function(err, rep) {
       if (rep == 1) {
         res.status(200).type('text').send('OK');
