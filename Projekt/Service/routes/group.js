@@ -1,12 +1,12 @@
 var express = require('express');
+var router = express.Router();
 var bodyParser = require('body-parser');
 var redis = require('redis');
-
 var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-app.post('/groups', function(req,res) {
+router.post('/groups', function(req,res) {
 
   console.log("Gib eine existierende Gruppe aus...");
 
@@ -26,7 +26,7 @@ app.post('/groups', function(req,res) {
 
 });
 
-app.get('/groups', function(req, res) {
+router.get('/groups', function(req, res) {
 
   console.log("Gib alle existierenden Gruppen aus...");
 
@@ -60,7 +60,7 @@ app.get('/groups', function(req, res) {
 
 
 
-app.get('/groups/:id', function(req, res){
+router.get('/groups/:id', function(req, res){
 
   client.get('group:' + req.params.id, function(err,rep) { //Hole den group mit der bestimmten ID
 
@@ -77,7 +77,7 @@ app.get('/groups/:id', function(req, res){
 
 });
 
-app.put('/groups/:id', function(req,res) {
+router.put('/groups/:id', function(req,res) {
 
   console.log("Aktualisiere eine existierende Gruppe...");
 
@@ -97,7 +97,7 @@ app.put('/groups/:id', function(req,res) {
   });
 });
 
-app.delete('/groups/:id', function(req, res) {
+router.delete('/groups/:id', function(req, res) {
 
   console.log("Lösche eine existierende Gruppe...");
 
@@ -112,3 +112,4 @@ app.delete('/groups/:id', function(req, res) {
       }
   });
 });
+module.exports = router;

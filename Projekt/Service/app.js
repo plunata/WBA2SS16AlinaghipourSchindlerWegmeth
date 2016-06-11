@@ -3,8 +3,8 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var redis = require('redis');
 
-var course = require('./Routes/course');
-var users = require('./Routes/user');
+var course = require('./routes/course');
+var user = require('./routes/user');
 
 var app = express();
 
@@ -14,8 +14,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', course);
-app.use('/users', users);
+app.use('/course', course);
+app.use('/user', user);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -31,10 +31,6 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
   });
 }
 
@@ -42,11 +38,8 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
 });
 
-
 module.exports = app;
+
+app.listen(3000);

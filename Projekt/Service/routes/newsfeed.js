@@ -1,12 +1,12 @@
 var express = require('express');
+var router = express.Router();
 var bodyParser = require('body-parser');
 var redis = require('redis');
-
 var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-app.post('/users', function(req,res) {
+router.post('/users', function(req,res) {
 
   console.log("Gib einen existierenden User aus...");
 
@@ -26,7 +26,7 @@ app.post('/users', function(req,res) {
 
 });
 
-app.get('/users', function(req, res) {
+router.get('/users', function(req, res) {
 
   console.log("Gib alle existierenden User aus...");
 
@@ -60,7 +60,7 @@ app.get('/users', function(req, res) {
 
 
 
-app.get('/users/:id', function(req, res){
+router.get('/users/:id', function(req, res){
 
   client.get('user:' + req.params.id, function(err,rep) { //Hole den User mit der bestimmten ID
 
@@ -77,7 +77,7 @@ app.get('/users/:id', function(req, res){
 
 });
 
-app.put('/users/:id', function(req,res) {
+router.put('/users/:id', function(req,res) {
 
   console.log("Aktualisiere einen existierenden User...");
 
@@ -97,7 +97,7 @@ app.put('/users/:id', function(req,res) {
   });
 });
 
-app.delete('/users/:id', function(req, res) {
+router.delete('/users/:id', function(req, res) {
 
   console.log("Lösche einen existierenden User...");
 
@@ -112,3 +112,4 @@ app.delete('/users/:id', function(req, res) {
       }
   });
 });
+module.exports = router;

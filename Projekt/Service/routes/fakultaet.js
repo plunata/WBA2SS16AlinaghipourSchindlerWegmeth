@@ -1,12 +1,12 @@
 var express = require('express');
+var router = express.Router();
 var bodyParser = require('body-parser');
 var redis = require('redis');
-
 var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-app.post('/fakultaeten', function(req,res) {
+router.post('/fakultaeten', function(req,res) {
 
   console.log("Gib eine existierende Fakultaet aus...");
 
@@ -26,7 +26,7 @@ app.post('/fakultaeten', function(req,res) {
 
 });
 
-app.get('/fakultaeten', function(req, res) {
+router.get('/fakultaeten', function(req, res) {
 
   console.log("Gib alle existierenden Fakultaeten aus...");
 
@@ -60,7 +60,7 @@ app.get('/fakultaeten', function(req, res) {
 
 
 
-app.get('/fakultaeten/:id', function(req, res){
+router.get('/fakultaeten/:id', function(req, res){
 
   client.get('fakultaet:' + req.params.id, function(err,rep) { //Hole den fakultaet mit der bestimmten ID
 
@@ -77,7 +77,7 @@ app.get('/fakultaeten/:id', function(req, res){
 
 });
 
-app.put('/fakultaeten/:id', function(req,res) {
+router.put('/fakultaeten/:id', function(req,res) {
 
   console.log("Aktualisiere eine existierende Fakultaet...");
 
@@ -97,7 +97,7 @@ app.put('/fakultaeten/:id', function(req,res) {
   });
 });
 
-app.delete('/fakultaeten/:id', function(req, res) {
+router.delete('/fakultaeten/:id', function(req, res) {
 
   console.log("Lösche eine existierende Fakultaet...");
 
@@ -112,3 +112,4 @@ app.delete('/fakultaeten/:id', function(req, res) {
       }
   });
 });
+module.exports = router;

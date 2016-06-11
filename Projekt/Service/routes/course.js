@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
-
 var bodyParser = require('body-parser');
 var redis = require('redis');
+var client = redis.createClient();
+var app = express();
+app.use(bodyParser.json());
 
 
 
@@ -10,7 +12,7 @@ var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-app.post('/courses', function(req,res) {
+router.post('/courses', function(req,res) {
 
   console.log("Gib einen existierenden Studiengang aus...");
 
@@ -30,7 +32,7 @@ app.post('/courses', function(req,res) {
 
 });
 
-app.get('/courses', function(req, res) {
+router.get('/courses', function(req, res) {
 
   console.log("Gib alle existierenden Studiengänge aus...");
 
@@ -64,7 +66,7 @@ app.get('/courses', function(req, res) {
 
 
 
-app.get('/courses/:id', function(req, res){
+router.get('/courses/:id', function(req, res){
 
   client.get('course:' + req.params.id, function(err,rep) { //Hole den course mit der bestimmten ID
 
@@ -81,7 +83,7 @@ app.get('/courses/:id', function(req, res){
 
 });
 
-app.put('/courses/:id', function(req,res) {
+router.put('/courses/:id', function(req,res) {
 
   console.log("Aktualisiere einen existierenden Studiengang...");
 
@@ -101,7 +103,7 @@ app.put('/courses/:id', function(req,res) {
   });
 });
 
-app.delete('/courses/:id', function(req, res) {
+router.delete('/courses/:id', function(req, res) {
 
   console.log("Lösche einen existierenden Studiengang...");
 
