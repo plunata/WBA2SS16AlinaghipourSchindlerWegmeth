@@ -30,7 +30,6 @@ router.get('/', function(req, res, next) {
       rep.forEach(function(val) {
         users.push(JSON.parse(val));
       });
-
       //Die Eigenschaften rausfiltern, die uns interessieren
       users = users.map(function(user) {
         return {id: user.id, name: user.name};
@@ -53,9 +52,7 @@ router.get('/:id', function(req, res){
       req.params.id +
       ' wurde nicht gefunden');
     };
-
   });
-
 });
 
 router.put('/:id', function(req,res) {
