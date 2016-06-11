@@ -6,7 +6,7 @@ var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-router.post('/users', function(req,res) {
+router.post('/', function(req,res) {
 
   console.log("Gib einen existierenden User aus...");
 
@@ -26,7 +26,7 @@ router.post('/users', function(req,res) {
 
 });
 
-router.get('/users', function(req, res) {
+router.get('/', function(req, res) {
 
   console.log("Gib alle existierenden User aus...");
 
@@ -60,7 +60,7 @@ router.get('/users', function(req, res) {
 
 
 
-router.get('/users/:id', function(req, res){
+router.get('/:id', function(req, res){
 
   client.get('user:' + req.params.id, function(err,rep) { //Hole den User mit der bestimmten ID
 
@@ -77,7 +77,7 @@ router.get('/users/:id', function(req, res){
 
 });
 
-router.put('/users/:id', function(req,res) {
+router.put('/:id', function(req,res) {
 
   console.log("Aktualisiere einen existierenden User...");
 
@@ -97,7 +97,7 @@ router.put('/users/:id', function(req,res) {
   });
 });
 
-router.delete('/users/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
 
   console.log("Lösche einen existierenden User...");
 

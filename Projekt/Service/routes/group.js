@@ -6,7 +6,7 @@ var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-router.post('/groups', function(req,res) {
+router.post('/', function(req,res) {
 
   console.log("Gib eine existierende Gruppe aus...");
 
@@ -26,7 +26,7 @@ router.post('/groups', function(req,res) {
 
 });
 
-router.get('/groups', function(req, res) {
+router.get('/', function(req, res) {
 
   console.log("Gib alle existierenden Gruppen aus...");
 
@@ -60,7 +60,7 @@ router.get('/groups', function(req, res) {
 
 
 
-router.get('/groups/:id', function(req, res){
+router.get('/:id', function(req, res){
 
   client.get('group:' + req.params.id, function(err,rep) { //Hole den group mit der bestimmten ID
 
@@ -77,7 +77,7 @@ router.get('/groups/:id', function(req, res){
 
 });
 
-router.put('/groups/:id', function(req,res) {
+router.put('/:id', function(req,res) {
 
   console.log("Aktualisiere eine existierende Gruppe...");
 
@@ -97,7 +97,7 @@ router.put('/groups/:id', function(req,res) {
   });
 });
 
-router.delete('/groups/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
 
   console.log("Lösche eine existierende Gruppe...");
 

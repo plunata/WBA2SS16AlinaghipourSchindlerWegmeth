@@ -6,7 +6,7 @@ var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-router.post('/fakultaeten', function(req,res) {
+router.post('/', function(req,res) {
 
   console.log("Gib eine existierende Fakultaet aus...");
 
@@ -26,7 +26,7 @@ router.post('/fakultaeten', function(req,res) {
 
 });
 
-router.get('/fakultaeten', function(req, res) {
+router.get('/', function(req, res) {
 
   console.log("Gib alle existierenden Fakultaeten aus...");
 
@@ -60,7 +60,7 @@ router.get('/fakultaeten', function(req, res) {
 
 
 
-router.get('/fakultaeten/:id', function(req, res){
+router.get('/:id', function(req, res){
 
   client.get('fakultaet:' + req.params.id, function(err,rep) { //Hole den fakultaet mit der bestimmten ID
 
@@ -77,7 +77,7 @@ router.get('/fakultaeten/:id', function(req, res){
 
 });
 
-router.put('/fakultaeten/:id', function(req,res) {
+router.put('/:id', function(req,res) {
 
   console.log("Aktualisiere eine existierende Fakultaet...");
 
@@ -97,7 +97,7 @@ router.put('/fakultaeten/:id', function(req,res) {
   });
 });
 
-router.delete('/fakultaeten/:id', function(req, res) {
+router.delete('/:id', function(req, res) {
 
   console.log("Lösche eine existierende Fakultaet...");
 
