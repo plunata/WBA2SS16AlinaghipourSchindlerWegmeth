@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/course', course);
-app.use('/fakultaet', fakultaet);
+app.use('/faculty', fakultaet);
 app.use('/group', group);
 app.use('/newsfeed', newsfeed);
 app.use('/subject', subject);

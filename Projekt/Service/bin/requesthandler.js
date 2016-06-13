@@ -3,6 +3,7 @@ var client = redis.createClient();
 
 module.exports = {
     postCallback: function (req, res, key, parentkey) {
+        var host = req.headers.host;
         var newObject = req.body;
         if (!newObject.hasOwnProperty(parentkey)) {
             res.status("406").type("text").send("need prop " + parentkey);
@@ -19,10 +20,10 @@ module.exports = {
                     client.get(parentkey + ':' + newObject[parentkey], function (err, rep) {
                         var parent = JSON.parse(rep);
                         if (parent.hasOwnProperty(key)){
-                            parent[key].push(newObject.id);
+                            parent[key].push(host+"/"+key+"/"+(newObject.id));
                         }else{
                             var f = new Array(1);
-                            f.push(newObject.id);
+                            f[0]=host+"/"+key+"/"+(newObject.id);
                             parent[key] = f;
                         }
                         client.set(parentkey +':'+ parent.id, JSON.stringify(parent), function(err, rep) {

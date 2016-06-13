@@ -7,7 +7,7 @@ var app = express();
 app.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
-    var host = req.headers.host;
+    
     client.keys('university:*', function(err, rep) {
         var uni = [];
         if (rep.length == 0) {
