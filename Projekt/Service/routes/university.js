@@ -7,26 +7,20 @@ var app = express();
 app.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
-    client.keys('uni:*', function(err, rep) {
+    client.keys('university:*', function(err, rep) {
         var uni = [];
         if (rep.length == 0) {
             res.json(uni);
             return;
         }
         client.mget(rep, function(err, rep) {
-            rep.forEach(function(val) {
-                uni.push(JSON.parse(val));
-            });
-            uni = uni.map(function(uni) {
-                return {id: uni.id, name: uni.name};
-            });
-            res.json(uni);
+            res.json(rep);
         });
     });
 });
 
 router.get('/:id', function(req, res, next) {
-    client.get('uni:' + req.params.id, function(err,rep) {
+    client.get('university:' + req.params.id, function(err,rep) {
         if (rep) {
             res.type('json').send(rep);
         }
@@ -40,9 +34,9 @@ router.get('/:id', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     var newUni = req.body;
-    client.incr('id:uni', function(err,rep){
+    client.incr('id:university', function(err,rep){
         newUni.id = rep;
-        client.set('uni:' + newUni.id, JSON.stringify(newUni), function(err, rep){
+        client.set('university:' + newUni.id, JSON.stringify(newUni), function(err, rep){
             res.status(200).type('text').send("created: :" +  newUni.id);
         });
     });
@@ -67,7 +61,7 @@ router.put('/:id', function(req, res, next) {
 });
 
 router.delete('/:id', function(req, res, next) {
-    client.del('uni:' +req.params.id, function(err, rep) {
+    client.del('university:' +req.params.id, function(err, rep) {
         if (rep == 1) {
             res.status(200).type('text').send('OK');
         }
