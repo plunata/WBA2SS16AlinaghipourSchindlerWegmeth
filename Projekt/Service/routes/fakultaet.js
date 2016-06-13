@@ -1,15 +1,16 @@
-var postHandler = require('../bin/posthandler');
+var requesthandler = require('../bin/requesthandler');
 
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+
 var redis = require('redis');
 var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-router.post('/', function(req,res) {
-  postHandler.postCallback(reg, res, 'faculty', 'university');
+router.post('/', function(req, res) {
+  requesthandler.postCallback(req, res, 'faculty', 'university');
 });
 
 router.get('/', function(req, res) {

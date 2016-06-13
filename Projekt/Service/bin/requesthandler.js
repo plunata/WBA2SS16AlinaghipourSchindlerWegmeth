@@ -1,3 +1,6 @@
+var redis = require('redis');
+var client = redis.createClient();
+
 module.exports = {
     postCallback: function (req, res, key, parentkey) {
         console.log("create fak");
