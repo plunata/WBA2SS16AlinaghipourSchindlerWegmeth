@@ -7,14 +7,15 @@ var app = express();
 app.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
+    var host = req.headers.host;
     client.keys('university:*', function(err, rep) {
         var uni = [];
         if (rep.length == 0) {
             res.json(uni);
             return;
         }
-        client.mget(rep, function(err, rep) {
-            res.json(rep);
+        client.mget(rep, function(err, uniarr) {
+            res.json((JSON.parse(uniarr)));
         });
     });
 });
