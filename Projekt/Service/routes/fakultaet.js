@@ -7,32 +7,51 @@ var app = express();
 app.use(bodyParser.json());
 
 router.post('/', function(req,res) {
-  var newFakultaet = req.body; //Der Body enthält das bereits geparste JSON-Objekt
-  console.log("Lege eine neue Fakultaet an...");
-  client.incr('id:fakultaeten', function(err,rep){ //ID-Counter für fakultaet um eins erhoehen
-    newFakultaet.id = rep; //Die ID des neuen fakultaeten auf den Wert des Counters setzen
-    client.set('fakultaet:' + newFakultaet.id, JSON.stringify(newFakultaet), function(err, rep){ //fakultaet in Daten ...
-      res.json(newFakultaet);
+  var newFakultaet = req.body;
+  if (!newFakultaet.hasOwnProperty('university')) {
+    res.status("406").type("text").send("need prop university");
+    return;
+  }
+
+  client.incr('id:fakultaeten', function(err,rep){
+    newFakultaet.id = rep;
+    client.set('fakultaet:' + newFakultaet.id, JSON.stringify(newFakultaet), function(err, rep){
+      res.status("201").type("text").send(JSON.stringify(newFakultaet.id));
+      return;
+    });
+
+    client.get('uni:' + newFakultaet.university, function(err,rep) {
+      if (rep) {
+        client.hmset('uni:' + rep.id,'faculty',newFakultaet.id,function(){
+          client.hmget('uni:' + rep.id,'faculty',function(err,rep){
+            console.log(rep);
+          });
+        });
+      }
+      else {
+        res.status(404).type('text').send('Die Uni mit der ID ' +
+            req.params.id +
+            ' wurde nicht gefunden');
+        return;
+      };
     });
   });
+
+
+
 });
 
 router.get('/', function(req, res) {
   console.log("Gib alle existierenden Fakultaeten aus...");
-  client.keys('fakultaet:*', function(err, rep) { //Alle Keys holen, die mit "fakultaet:" beginnen
-    var fakultaeten = []; //Leeres Array, um die fakultaet zwischenzuspeichern
+  client.keys('fakultaet:*', function(err, rep) {
+    var fakultaeten = [];
     if (rep.length == 0) {
       res.json(fakultaeten);
       return;
     }
-    client.mget(rep, function(err, rep) { //Hole die Liste aller fakultaet auf einmal
-      //Iteriere über das Antwortarray und füge die fakultaet dem Array hinzu
+    client.mget(rep, function(err, rep) {
       rep.forEach(function(val) {
         fakultaeten.push(JSON.parse(val));
-      });
-      //Die Eigenschaften rausfiltern, die uns interessieren
-      fakultaeten = fakultaeten.map(function(fakultaet) {
-        return {id: fakultaet.id, name: fakultaet.name};
       });
       res.json(fakultaeten);
     });

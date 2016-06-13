@@ -2,19 +2,19 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var redis = require('redis');
+var logger = require('morgan');
 
 var course = require('./routes/course');
 var fakultaet = require('./routes/fakultaet');
 var group = require('./routes/group');
 var newsfeed = require('./routes/newsfeed');
-var personal_task = require('./routes/personal_task');
 var subject = require('./routes/subject');
 var task = require('./routes/task');
 var user = require('./routes/user');
-
-
+var university = require('./routes/university');
 
 var app = express();
+app.use(logger('dev'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,10 +26,10 @@ app.use('/course', course);
 app.use('/fakultaet', fakultaet);
 app.use('/group', group);
 app.use('/newsfeed', newsfeed);
-app.use('/personal_task', personal_task);
 app.use('/subject', subject);
 app.use('/task', task);
 app.use('/user', user);
+app.use('/university', university);
 
 
 
@@ -57,5 +57,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-app.listen(3000);

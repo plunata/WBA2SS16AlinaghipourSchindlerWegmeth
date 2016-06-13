@@ -29,10 +29,6 @@ router.get('/', function(req, res) {
       rep.forEach(function(val) {
         courses.push(JSON.parse(val));
       });
-      //Die Eigenschaften rausfiltern, die uns interessieren
-      courses = courses.map(function(course) {
-        return {id: course.id, name: course.name};
-      });
       res.json(courses);
     });
   });
