@@ -1,3 +1,4 @@
+var requesthandler = require('../bin/requesthandler');
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -7,17 +8,7 @@ var app = express();
 app.use(bodyParser.json());
 
 router.get('/', function(req, res, next) {
-    
-    client.keys('university:*', function(err, rep) {
-        var uni = [];
-        if (rep.length == 0) {
-            res.json(uni);
-            return;
-        }
-        client.mget(rep, function(err, uniarr) {
-            res.json((JSON.parse(uniarr)));
-        });
-    });
+    requesthandler.findAll(req, res, 'university', 'faculty');
 });
 
 router.get('/:id', function(req, res, next) {
@@ -34,13 +25,7 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-    var newUni = req.body;
-    client.incr('id:university', function(err,rep){
-        newUni.id = rep;
-        client.set('university:' + newUni.id, JSON.stringify(newUni), function(err, rep){
-            res.status(200).type('text').send("created: :" +  newUni.id);
-        });
-    });
+    requesthandler.postCallback(req, res, 'university');
 });
 
 router.put('/:id', function(req, res, next) {

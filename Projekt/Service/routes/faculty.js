@@ -10,7 +10,7 @@ var app = express();
 app.use(bodyParser.json());
 
 router.post('/', function(req, res) {
-  requesthandler.postCallback(req, res, 'faculty', 'university');
+  requesthandler.postParentCallback(req, res, 'faculty', 'university');
 });
 
 router.get('/', function(req, res) {

@@ -5,7 +5,7 @@ var redis = require('redis');
 var logger = require('morgan');
 
 var course = require('./routes/course');
-var fakultaet = require('./routes/fakultaet');
+var faculty = require('./routes/faculty');
 var group = require('./routes/group');
 var newsfeed = require('./routes/newsfeed');
 var subject = require('./routes/subject');
@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/course', course);
-app.use('/faculty', fakultaet);
+app.use('/faculty', faculty);
 app.use('/group', group);
 app.use('/newsfeed', newsfeed);
 app.use('/subject', subject);
