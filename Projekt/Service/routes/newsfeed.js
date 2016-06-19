@@ -1,4 +1,5 @@
 //todo: ist der newsfeed wirklich eine Recourse? ist das für eilmeldungen gedacht oder so?
+// Der Newsfeed gibt Neuigkeiten über "abbonierte" Module an. Es ist also eine Eigenständige Komponente
 
 var express = require('express');
 var router = express.Router();
