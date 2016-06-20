@@ -1,28 +1,35 @@
+var requesthandler = require('../bin/requesthandler');
+
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+
 var redis = require('redis');
 var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
-router.post('/', function(req,res) {
- //todo: task anlegen
+
+var key = 'task';
+var parentKey = 'group';
+
+router.post('/', function(req, res) {
+    requesthandler.postParentCallback(req, res, key, parentKey);
 });
 
 router.get('/', function(req, res) {
-  //todo: alle task ausgeben
+    requesthandler.findAll(req, res, key, '#');
 });
 
 router.get('/:id', function(req, res){
-  //todo: bestimmten task anzeigen
+    requesthandler.findById(req,res,key,'');
 });
 
 router.put('/:id', function(req,res) {
-  //todo: vorhandenen Task ändern
+    requesthandler.update(req,res,key,'');
 });
 
 router.delete('/:id', function(req, res) {
-  //todo: task löschen
+
 });
 module.exports = router;

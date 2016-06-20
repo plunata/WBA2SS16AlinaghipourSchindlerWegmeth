@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var redis = require('redis');
 var logger = require('morgan');
 
+var index = require('./routes/index');
 var course = require('./routes/course');
 var faculty = require('./routes/faculty');
 var group = require('./routes/group');
@@ -22,6 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/', index);
 app.use('/course', course);
 app.use('/faculty', faculty);
 app.use('/group', group);

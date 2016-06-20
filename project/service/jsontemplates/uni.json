@@ -1,4 +1,4 @@
-[
-  {"name":"Technische Hochschule Köln", "Adresse":"Köln bla bla"},
-  {"name":"Technische Hochschule Berlin", "Adresse":"Berlin bla bla"}
+[{"name":"Technische Hochschule Köln", "address":"TH Köln, Claudiusstr. 1, 50678 Köln"},
+  {"name":"Technische Universität Berlin", "address":"TU Berlin, Straße 1"},
+  {"name":"Fachhochschule Bielefeld", "address":"FH Bielefeld, Straße. 1, 50678 Bielefeld"},
 ]

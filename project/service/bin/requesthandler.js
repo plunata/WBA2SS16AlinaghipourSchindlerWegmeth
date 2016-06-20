@@ -38,10 +38,18 @@ module.exports = {
     },
     //Finde einen Eintragn anhand einer ID
     findById: function(req, res, key, child) {
-        //todo: Childs aufwertebn - aus einer ID muss ein Link erstellt werden. Schön wäre es, dafür eine MEthode zu haben. In diese Mehtode könnte ich ein Array von IDs rein stecken und bekomme ein Array von Links wider !!!!
+        var host = req.headers.host;
         client.get(key + ':' + req.params.id, function(err,rep) {
             if (rep) {
-                res.type('json').send(rep);
+                var object = JSON.parse(rep);
+                if(object.hasOwnProperty(child)){
+                    var children = [];
+                    object[child].forEach(function (val) {
+                        children.push(host + '/' + child + '/' + val);
+                    });
+                    object[child] = children;
+                }
+                res.type('json').send(JSON.stringify(object));
             }
             else {
                 res.status(404).type('text').send('Die Uni mit der ID ' +
@@ -94,11 +102,35 @@ module.exports = {
     //Wenn ich keinen Parent habe, dann ist alles viel einfacher! 
     postCallback: function (req, res, key) {
         var object = req.body;
+        if(!object.hasOwnProperty('name')){
+            res.status("406").type("text").send("need prop name");
+            return;
+        }
         client.incr('id:'+key, function(err,rep){
             object.id = rep;
             client.set(key+':' + object.id, JSON.stringify(object), function(err, rep){
                 res.status(200).type('text').send("created: :" +  object.id);
             });
+        });
+    },
+
+    update: function (req, res, key, children) {
+        console.log("update " + key +" id:" + req.params.id);
+        client.get(key + ':' + req.params.id, function(err, dbObj) {
+            if (dbObj) {
+                var newObject = req.body;
+                var objectOld = JSON.parse(dbObj);
+
+                newObject.id = objectOld.id;
+                if (objectOld.hasOwnProperty(children)) {
+                    newObject[children] = objectOld[children];
+                }
+                client.set(key + ':' + req.params.id, JSON.stringify(newObject), function(err, rep) {
+                    res.status(200).type('text').send(req.params.id + ' updated');
+                });
+            }else {
+                res.status(204).type('text').send(key + ' mit der ID ' + req.params.id + ' existiert nicht.');
+            }
         });
     }
 }
