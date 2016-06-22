@@ -102,10 +102,7 @@ module.exports = {
     //Wenn ich keinen Parent habe, dann ist alles viel einfacher! 
     postCallback: function (req, res, key) {
         var object = req.body;
-        if(!object.hasOwnProperty('name')){
-            res.status("406").type("text").send("need prop name");
-            return;
-        }
+
         client.incr('id:'+key, function(err,rep){
             object.id = rep;
             client.set(key+':' + object.id, JSON.stringify(object), function(err, rep){

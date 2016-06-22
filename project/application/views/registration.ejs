@@ -1,6 +1,6 @@
 <% include header %>
 
-<form enctype="application/json" action="http://localhost:3000/user" method="post">
+<form id="userform" enctype="application/json" action="http://localhost:3000/user" method="post">
 
   <label>Geschlecht</label> <br>
   <select name="geschlecht">
@@ -38,4 +38,7 @@
 
 </form>
 
+<div id="message">
+
+</div>
 <% include footer %>
