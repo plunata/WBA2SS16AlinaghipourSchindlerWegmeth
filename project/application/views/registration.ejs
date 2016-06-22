@@ -1,78 +1,41 @@
 <% include header %>
 
-<table border="0" cellspacing="2" cellpadding="2">
-  <tbody>
-      <td align="right">Anrede:</td>
-      <td>
-        <select name="geschl">
-          <option value="0">Bitte wählen</option>
-          <option value="m">Herr</option>
-          <option value="f">Frau</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td align="right">Vorname:</td>
-      <td>
-        <input maxlength="50" name="Vorname" size="45" type="text" />
-      </td>
-    </tr>
-    <tr>
-      <td align="right">Nachname:</td>
-      <td>
-        <input maxlength="50" name="Nachname" size="45" type="text" />
-      </td>
-    </tr>
-    <tr>
-    <td align="right">Passwort:</td>
-    <td>
-      <input maxlength="20" type = "password" name="Password" size="7" type="text" />
-    </td>
-    </tr>
-    <tr>
-      <td align="right">Ort:</td>
-      <td>
-        <input maxlength="50" name="Ort" size="45" type="text" />
-      </td>
-    </tr>
-    <tr>
-      <td align="right">E-Mail:</td>
-      <td>
-        <input name="Email" type="email" size="45" type="text"/>
-      </td>
-    </tr>
-    <tr>
-      <td align="right">GitHub Repository:</td>
-      <td>
-        <input name="Repository" size="45" type="text" value="http://" />
-      </td>
-    </tr>
-    <tr>
-      <td align="right">Email:</td>
-      <td>
-        <input maxlength="30" name="Email" size="45" type="text" />
-      </td>
-    </tr>
-    <tr>
-      <td align="right">Bitte ihr Expertisegebiet angeben:</td>
-      <td>
-        <select name="geschl">
-          <option value="0">Bitte wählen</option>
-          <option value="1">Programmierer</option>
-          <option value="2">Dokumentierer</option>
-	  <option value="3">Leiter</option>
-	  <option value="4">Designer</option>
-        </select>
-      </td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>
-        <input type="submit" value="Registrieren" />
-      </td>
-    </tr>
-  </tbody>
-</table>
+<form enctype="application/json" action="http://localhost:3000/user" method="post">
+
+  <label>Geschlecht</label> <br>
+  <select name="geschlecht">
+    <option value="0">Bitte wählen</option>
+    <option value="m">Herr</option>
+    <option value="f">Frau</option>
+  </select><br>
+
+  <label>Vorname</label> <br>
+  <input maxlength="50" name="firstname" size="45" type="text" /><br>
+
+  <label>Nachname</label> <br>
+  <input maxlength="50" name="lastname" size="45" type="text" /><br>
+
+  <label>br</label> <br>
+  <input maxlength="50" name="city" size="45" type="text" /><br>
+
+  <label>E-mail</label> <br>
+  <input name="Email" type="email" size="45" type="text"/><br>
+
+  <label>Repository</label> <br>
+  <input name="repository" size="45" type="text" value="http://github.com/" /><br>
+
+  <label>Rolle</label> <br>
+  <select name="rule">
+    <option value="0">Bitte wählen</option>
+    <option value="1">Programmierer</option>
+    <option value="2">Dokumentierer</option>
+    <option value="3">Leiter</option>
+    <option value="4">Designer</option>
+  </select><br>
+
+
+  <input type="submit" value="Registrieren" />
+
 </form>
 
 <% include footer %>
