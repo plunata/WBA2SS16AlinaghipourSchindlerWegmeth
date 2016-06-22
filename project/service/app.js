@@ -2,11 +2,20 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 var redis = require('redis');
+var logger = require('morgan');
 
+var index = require('./routes/index');
 var course = require('./routes/course');
+var faculty = require('./routes/faculty');
+var group = require('./routes/group');
+var newsfeed = require('./routes/newsfeed');
+var subject = require('./routes/subject');
+var task = require('./routes/task');
 var user = require('./routes/user');
+var university = require('./routes/university');
 
 var app = express();
+app.use(logger('dev'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -14,8 +23,17 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+app.use('/', index);
 app.use('/course', course);
+app.use('/faculty', faculty);
+app.use('/group', group);
+app.use('/newsfeed', newsfeed);
+app.use('/subject', subject);
+app.use('/task', task);
 app.use('/user', user);
+app.use('/university', university);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -41,5 +59,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
-app.listen(3000);

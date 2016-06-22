@@ -1,15 +1,32 @@
+<<<<<<< HEAD:project/service/routes/task.js
+var requesthandler = require('../bin/requesthandler');
+=======
 // brauchen wir einen personal_task??? ist das nicht ein ganz normaler task der einem User zugeordnet ist?
 // Ja aber es gibt auch Gruppentasks die einer Gruppe zugeordnet sind. Im Prinzip könnte man auch nur die Referenz ändern
 
+>>>>>>> master:Projekt/Service/routes/personal_task.js
 
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+
 var redis = require('redis');
 var client = redis.createClient();
 var app = express();
 app.use(bodyParser.json());
 
+<<<<<<< HEAD:project/service/routes/task.js
+
+var key = 'task';
+var parentKey = 'group';
+
+router.post('/', function(req, res) {
+    requesthandler.postParentCallback(req, res, key, parentKey);
+});
+
+router.get('/', function(req, res) {
+    requesthandler.findAll(req, res, key, '#');
+=======
 router.post('/', function(req,res) {
     var newPersonalTask = req.body; //Der Body enthält das bereits geparste JSON-Objekt
     console.log("Lege ein neues Personal Task an...");
@@ -41,11 +58,21 @@ router.get('/', function(req, res) {
       res.json(personalTasks);
     });
   });
+>>>>>>> master:Projekt/Service/routes/personal_task.js
 });
 
-
-
 router.get('/:id', function(req, res){
+<<<<<<< HEAD:project/service/routes/task.js
+    requesthandler.findById(req,res,key,'');
+});
+
+router.put('/:id', function(req,res) {
+    requesthandler.update(req,res,key,'');
+});
+
+router.delete('/:id', function(req, res) {
+
+=======
     client.get('personalTask:' + req.params.id, function(err,rep) { //Hole den personalTask mit der bestimmten ID
     if (rep) {
       res.type('json').send(rep); //Ist ja schon ein String
@@ -88,5 +115,6 @@ router.delete('/:id', function(req, res) {
         ' existiert nicht.');
       }
   });
+>>>>>>> master:Projekt/Service/routes/personal_task.js
 });
 module.exports = router;

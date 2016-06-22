@@ -1,9 +1,13 @@
+var requesthandler = require('../bin/requesthandler');
+
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
+
 var redis = require('redis');
 var client = redis.createClient();
 var app = express();
+app.use(bodyParser.json());
 app.use(bodyParser.json());
 
 router.post('/', function(req,res, next) {
@@ -30,7 +34,6 @@ router.get('/', function(req, res, next) {
       rep.forEach(function(val) {
         users.push(JSON.parse(val));
       });
-
       //Die Eigenschaften rausfiltern, die uns interessieren
       users = users.map(function(user) {
         return {id: user.id, name: user.name};
@@ -53,9 +56,7 @@ router.get('/:id', function(req, res){
       req.params.id +
       ' wurde nicht gefunden');
     };
-
   });
-
 });
 
 router.put('/:id', function(req,res) {
