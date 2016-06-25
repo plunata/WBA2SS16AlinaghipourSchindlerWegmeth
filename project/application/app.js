@@ -7,7 +7,12 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 var users = require('./routes/registration');
-
+var universities = require('./routes/university');
+/* var faculties = require('./routes/faculties');
+var courses = require('./routes/courses');
+var subjects = require('./routes/subjects');
+var groups = require('./routes/groups');
+*/
 var app = express();
 
 // view engine setup
@@ -25,6 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/registration', users);
+app.use('/university', universities);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -55,6 +61,32 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+// Kann gelöscht werden, wenn alternative Lösung gefunden wurde
+app.post("/postuni", function(req, res) {
+    var data = JSON.stringify(req.body);
+    console.log(req.body);
+    console.log(data);
+    var options = {
+        host: "localhost",
+        port: 8888,
+        path: "/user",
+        method: "POST",
+        headers: {
+            accept: "application/json",
+            "Content-Type": "application/json",
+            "Content-Length": Buffer.byteLength(data)
+        }
+    };
+    
+    var externalRequest = http.request(options, function(res) {
+        externalRequest.on("data", function(chunk) {
+            console.log("body: " + chunk);
+        });
+    });
+    externalRequest.write(data);
+    externalRequest.end();
 });
 
 

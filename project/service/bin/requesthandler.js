@@ -36,6 +36,7 @@ module.exports = {
             });
         });
     },
+    
     //Finde einen Eintragn anhand einer ID
     findById: function(req, res, key, child) {
         var host = req.headers.host;
