@@ -9,14 +9,16 @@
     <option value="f">Frau</option>
   </select><br>
 
+<form id="form1">
+    
   <label>Vorname</label> <br>
   <input maxlength="50" name="firstname" size="45" type="text" /><br>
 
   <label>Nachname</label> <br>
   <input maxlength="50" name="lastname" size="45" type="text" /><br>
 
-  <label>br</label> <br>
-  <input maxlength="50" name="city" size="45" type="text" /><br>
+  <label>Passwort</label> <br>
+  <input maxlength="50" name="password" size="45" type="text" /><br>
 
   <label>E-mail</label> <br>
   <input name="Email" type="email" size="45" type="text"/><br>
@@ -32,9 +34,11 @@
     <option value="3">Leiter</option>
     <option value="4">Designer</option>
   </select><br>
-
+    
+</form>
 
   <input type="submit" value="Registrieren" />
+  <input type="reset" form="form1" value="Eingaben löschen" onClick="clear();">
 
 </form>
 
