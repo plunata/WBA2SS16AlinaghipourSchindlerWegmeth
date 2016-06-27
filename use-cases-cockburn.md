@@ -52,7 +52,7 @@
 | Preconditions | <ul><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li></ul>|
 | Success End Condition | Ein neuer User wird in der Datenbank angelegt |
 | Failed End Condition | User konnte sich nicht registrieren |
-| Primary Actor | Client |
+| Primary Actor | Student |
 
 | Description  | Step | Action | 
 | ------------- | ------------- | ------------- |
@@ -89,4 +89,4 @@
 | Extensions  | Step | Branching Action | 
 | ------------- | ------------- | ------------- |
 |  | 2a | User lässt das Eingabefeld frei. |
-|  | 2a.1 | User wird benachrichtigt das er das Eingabefeld befüllen soll. |
+|  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
