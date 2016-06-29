@@ -10,7 +10,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
     callback = function (data) {
-        res.send(data);
+        res.send("User erfolgreich anleglegt");
     }
 
     service.sendPost('/user', JSON.stringify(req.body), callback);

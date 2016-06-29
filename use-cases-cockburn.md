@@ -90,3 +90,28 @@
 | ------------- | ------------- | ------------- |
 |  | 2a | User lässt das Eingabefeld frei. |
 |  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
+
+<br>
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 5** | Auswahl einer Gruppe | 
+| Goal in Context | Ein User ist erfolgreich einer Gruppe beigetreten|  
+| Scope & Level | User Goal Gruppenbeitritt |
+| Preconditions | <ul><li>Es wurden bereits Tasks vom Benutzer angelegt</li><li>Optional für asynchrone Oparationen wurde einem Task eine Deadline beigefügt </li></ul>|
+| Success End Condition | Benutzer hat einen Übersicht über seine Tasks. |
+| Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer erstellt einen Task. | 
+|  | 1a | Benutzer fügt dem Task eine Deadline bei und wird benachrichtigt, sobald sich diese nähert (Asynchrone Operation). | 
+|  | 2 | Benutzer speichert seinen Task ab. | 
+|  | 3 | Benutzer wird auf der weitergeleiteten Seite über seine erstellten Tasks benachrichtigt. |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User lässt das Eingabefeld frei. |
+|  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |

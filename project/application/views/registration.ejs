@@ -50,13 +50,13 @@
             $.ajax({
                 url: 'http://localhost:3001/registration', // url where to submit the request
                 type: "POST", // type of action POST || GET
-                dataType: 'json', // data type
-                data: $("#userform").serialize(), // post data || get data
+                data: $("#userform").serialize(),
                 success: function (result) {
-                    console.log(result);
+                    $('#message').html(result);
                 },
                 error: function (xhr, resp, text) {
-                    console.log(xhr, resp, text);
+                    $('#message').html(text);
+                    console.log(text);
                 }
             })
         });
