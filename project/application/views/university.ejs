@@ -4,7 +4,7 @@
 
     <div><label>Name der Hochschule:</label>
         <br>
-        <input maxlength="50" name="uniName" size="45" type="text" />
+        <input maxlength="50" name="name" size="45" type="text" />
     </div>
     <br>
 
@@ -12,14 +12,14 @@
     <div>
         <label>Motto:</label>
         <br>
-        <input maxlength="50" name="uniSlog" size="45" type="text" />
+        <input maxlength="50" name="slogan" size="45" type="text" />
     </div>
     <br>
 
     <div>
         <label>Gründungsjahr:</label>
         <br>
-        <select name="uniEst">
+        <select name="established">
             <script>
                 var myDate = new Date();
                 var year = myDate.getFullYear();
@@ -34,14 +34,14 @@
     <div>
         <label>Hauptsitz:</label>
         <br>
-        <input maxlength="50" name="uniHO" size="45" type="text" />
+        <input maxlength="50" name="headOfOffice" size="45" type="text" />
     </div>
     <br>
 
     <div>
         <label>Land:</label>
         <br>
-        <select name="uniState">
+        <select name="state">
             <option value="0">Bitte wählen:</option>
             <option value="1">Deutschland</option>
             <option value="2">Schweiz</option>
@@ -53,7 +53,7 @@
     <div>
         <label>Bundesland:</label>
         <br>
-        <select name="uniFedState">
+        <select name="federalState">
             <option value="0">Bitte wählen</option>
             <option value="1">Baden-Württemberg</option>
             <option value="2">Bayern</option>
@@ -78,7 +78,7 @@
     <div>
         <label>Stadt:</label>
         <br>
-        <select name="uniCity">
+        <select name="city">
             <option value="0">Bitte wählen:</option>
             <option value="1">Köln</option>
             <option value="2">Gummersbach</option>
@@ -91,7 +91,7 @@
     <div>
         <label>Website:</label>
         <br>
-        <input maxlength="50" name="uniWeb" size="45" type="url" />
+        <input maxlength="50" name="website" size="45" type="url" />
     </div>
     <br>
 
@@ -104,14 +104,14 @@
     $(function() {
         var frm = $('#uniReg');
         frm.on('submit', function(ev) {
-            var uniName = $(this).find('#uniName'.val());
-            var uniSlog = $(this).find('#uniSlog'.val());
-            var uniEst = $(this).find('#uniEst'.val());
-            var uniHO = $(this).find('#uniHO'.val());
-            var uniState = $(this).find('#uniState'.val());
-            var uniFedState = $(this).find('#uniFedState'.val());
-            var uniCity = $(this).find('#uniCity'.val());
-            var uniWeb = $(this).find('#uniWeb'.val());
+            var name = $(this).find('#name'.val());
+            var slogan = $(this).find('#slogan'.val());
+            var established = $(this).find('#established'.val());
+            var headOfOffice = $(this).find('#headOfOffice'.val());
+            var state = $(this).find('#state'.val());
+            var federalState = $(this).find('#federalState'.val());
+            var city = $(this).find('#city'.val());
+            var website = $(this).find('#website'.val());
 
             $.ajax({
                 type: 'POST',
