@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d42c063c-7af0-4c43-af1b-acf502fa43ef" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/dump.rdb" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/project/application/views/dump.rdb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/application/app.js" afterPath="$PROJECT_DIR$/project/application/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/application/routes/university.js" afterPath="$PROJECT_DIR$/project/application/routes/university.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/application/views/university.ejs" afterPath="$PROJECT_DIR$/project/application/views/university.ejs" />
     </list>
     <ignored path="WBA2SS16AlinaghipourSchindlerWegmeth.iws" />
@@ -44,11 +40,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="university.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="university.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/application/routes/university.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="540">
-              <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
+            <state relative-caret-position="285">
+              <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="university.ejs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/project/application/views/university.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="788">
+              <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration.ejs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/project/application/views/registration.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="788">
+              <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -80,6 +96,7 @@
         <option value="$PROJECT_DIR$/use-cases-cockburn.md" />
         <option value="$PROJECT_DIR$/project/application/app.js" />
         <option value="$PROJECT_DIR$/project/application/routes/university.js" />
+        <option value="$PROJECT_DIR$/project/application/views/university.ejs" />
       </list>
     </option>
   </component>
@@ -168,6 +185,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WBA2SS16AlinaghipourSchindlerWegmeth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="WBA2SS16AlinaghipourSchindlerWegmeth" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -320,12 +359,12 @@
       <workItem from="1466456939005" duration="8384000" />
       <workItem from="1467182245209" duration="21000" />
       <workItem from="1467201443160" duration="24000" />
-      <workItem from="1467201480760" duration="681000" />
+      <workItem from="1467201480760" duration="895000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9110000" />
+    <option name="totallyTimeSpent" value="9324000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1600" y="24" width="1920" height="1056" extended-state="6" />
@@ -667,8 +706,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/application/routes/university.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="52" selection-start-line="36" selection-start-column="52" selection-end-line="36" selection-end-column="52" />
+        <state relative-caret-position="285">
+          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/application/views/registration.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="788">
+          <caret line="67" column="0" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/application/views/university.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="788">
+          <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
           <folding />
         </state>
       </provider>
