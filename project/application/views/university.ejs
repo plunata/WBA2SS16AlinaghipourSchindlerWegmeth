@@ -4,40 +4,6 @@
         <title><%= title %></title>
         <link rel='stylesheet' href='/stylesheets/style.css' />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                var frm = $('#uniReg');
-                frm.on('submit', function(ev) {
-                    var uniName = $(this).find('#uniName'.val());
-                    var uniSlog = $(this).find('#uniSlog'.val());
-                    var uniEst = $(this).find('#uniEst'.val());
-                    var uniHO = $(this).find('#uniHO'.val());
-                    var uniState = $(this).find('#uniState'.val());
-                    var uniFedState = $(this).find('#uniFedState'.val());
-                    var uniCity = $(this).find('#uniCity'.val());
-                    var uniWeb = $(this).find('#uniWeb'.val());
-                
-                    $.ajax({
-                        type: 'POST',
-                        url: '/unireg'+pathname,
-                        data: frm,
-                        success: function(frm) {
-                            
-                        },
-                        error: function(xhr, options, e) {
-                            console.log(e);
-                        }
-                    }).done(function() {
-                        alert(data.name+ 'wurde hinzugefügt.');
-                    }).fail(function(e) {
-                        alert(data.name+' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
-                    });
-                    location.reload();
-                    ev.preventDefault();
-                });
-                ev.preventDefault();            
-            });
-        </script>
     </head>
     <body>
         <form id="uniReg" enctype="application/json" action="http://localhost:3001/university" method="post">
@@ -140,7 +106,39 @@
 
         </form>
 
-    </body>
-</html>
-
+ <script type="text/javascript">
+            $(function() {
+                var frm = $('#uniReg');
+                frm.on('submit', function(ev) {
+                    var uniName = $(this).find('#uniName'.val());
+                    var uniSlog = $(this).find('#uniSlog'.val());
+                    var uniEst = $(this).find('#uniEst'.val());
+                    var uniHO = $(this).find('#uniHO'.val());
+                    var uniState = $(this).find('#uniState'.val());
+                    var uniFedState = $(this).find('#uniFedState'.val());
+                    var uniCity = $(this).find('#uniCity'.val());
+                    var uniWeb = $(this).find('#uniWeb'.val());
+                
+                    $.ajax({
+                        type: 'POST',
+                        url: '/unireg'+pathname,
+                        data: frm,
+                        success: function(frm) {
+                            
+                        },
+                        error: function(xhr, options, e) {
+                            console.log(e);
+                        }
+                    }).done(function() {
+                        alert(data.name+ 'wurde hinzugefügt.');
+                    }).fail(function(e) {
+                        alert(data.name+' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
+                    });
+                    /*location.reload();*/
+                    ev.preventDefault();
+                });
+                ev.preventDefault();            
+            });
+    </script>
+        
 <% include footer %>
