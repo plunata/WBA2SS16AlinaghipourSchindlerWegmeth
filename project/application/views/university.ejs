@@ -1,25 +1,26 @@
 <% include standards/header %>
 
-<form id="uniregistration" enctype="application/json" action="http://localhost:3001/university" method="post">
+<form id="uniReg" enctype="application/json">
 
-    <div><label>Name der Hochschule:</label>
+    <div class = "input-group">
+        <label for = "name">Name der Hochschule:</label>
         <br>
-        <input maxlength="50" name="name" size="45" type="text" />
+        <input class="form-control" maxlength="50" name="uniName" size="45" type="text" />
     </div>
     <br>
 
 
-    <div>
-        <label>Motto:</label>
+   <div class = "input-group">
+        <label for = "motto">Motto:</label>
         <br>
-        <input maxlength="50" name="slogan" size="45" type="text" />
+        <input class = "form-control" maxlength="50" name="uniSlog" size="45" type="text" />
     </div>
     <br>
 
-    <div>
-        <label>Gründungsjahr:</label>
+     <div class = "input-group">
+        <label for = "year">Gründungsjahr:</label>
         <br>
-        <select name="established">
+        <select name="uniEst" class = "form-control">
             <script>
                 var myDate = new Date();
                 var year = myDate.getFullYear();
@@ -31,17 +32,17 @@
     </div>
     <br>
 
-    <div>
-        <label>Hauptsitz:</label>
+    <div class = "input-group">
+        <label for = "hq">Hauptsitz:</label>
         <br>
-        <input maxlength="50" name="headOfOffice" size="45" type="text" />
+        <input class = "form-control" maxlength="50" name="uniHO" size="45" type="text" />
     </div>
     <br>
 
-    <div>
-        <label>Land:</label>
+    <div class = "input-group">
+        <label for = "country">Land:</label>
         <br>
-        <select name="state">
+        <select class = "form-control" name="uniState">
             <option value="0">Bitte wählen:</option>
             <option value="1">Deutschland</option>
             <option value="2">Schweiz</option>
@@ -50,10 +51,10 @@
     </div>
     <br>
 
-    <div>
-        <label>Bundesland:</label>
+    <div class = "input-group">
+        <label for = "state">Bundesland:</label>
         <br>
-        <select name="federalState">
+        <select class = "form-control" name="uniFedState">
             <option value="0">Bitte wählen</option>
             <option value="1">Baden-Württemberg</option>
             <option value="2">Bayern</option>
@@ -75,10 +76,10 @@
     </div>
     <br>
 
-    <div>
-        <label>Stadt:</label>
+    <div class = "input-group">
+        <label for = "town">Stadt:</label>
         <br>
-        <select name="city">
+        <select class = "form-control" name="uniCity">
             <option value="0">Bitte wählen:</option>
             <option value="1">Köln</option>
             <option value="2">Gummersbach</option>
@@ -88,36 +89,41 @@
     <!--<label>Campus:</label> <br>
     <input maxlength="50" name="uni_campus" size="45" type="text" /><br>-->
 
-    <div>
-        <label>Website:</label>
+    <div class = "input-group">
+        <label for = "site">Website:</label>
         <br>
-        <input maxlength="50" name="website" size="45" type="url" />
+        <input class = "form-control" maxlength="50" name="uniWeb" size="45" type="url" />
     </div>
-    <br>
-
-    <input type="submit" value="Speichern" />
-    <input type="reset" value="Eingaben zurücksetzen" />
+    
+    <div class="input-group ctrbtn">
+        <input class="form-control" type="button" id="submitbtn" value="Registrieren"/>
+        <input class="form-control" type="reset" form="userform" value="Eingaben löschen" onClick="clear();">
+    </div>
 
 </form>
 
-<script type="text/javascript">
-     $(document).ready(function () {
-        // click on button submit
+<div id="message"></div>
+
+<script>
+    $(document).ready(function () {
         $("#submitbtn").on('click', function () {
-            var name = $(this).find('#name'.val());
-            var slogan = $(this).find('#slogan'.val());
-            var established = $(this).find('#established'.val());
-            var headOfOffice = $(this).find('#headOfOffice'.val());
-            var state = $(this).find('#state'.val());
-            var federalState = $(this).find('#federalState'.val());
-            var city = $(this).find('#city'.val());
-            var website = $(this).find('#website'.val());
-            
-            // send ajax
+            $("label").css("color", "black");
+            var failed = 0;
+            $('input, select').filter('[required]:visible').each(function () {
+                if ($(this).val() == '') {
+                    var label = $(this).attr('name');
+                    $("label[for='" + label + "']").css("color", "red");
+                    failed = 1;
+                }
+            });
+            if (failed) {
+                $('#message').html("<span class='error'>Bitte Pflichfelder ausfüllen!");
+                return;
+            }
             $.ajax({
                 url: 'http://localhost:3001/university', // url where to submit the request
                 type: "POST", // type of action POST || GET
-                data: $("#uniregistration").serialize(),
+                data: $("#userform").serialize(),
                 success: function (result) {
                     $('#message').html(result);
                 },
@@ -128,39 +134,6 @@
             })
         });
     });
-
-    /*$(function() {
-        var frm = $('#registration');
-        frm.on('submit', function(ev) {
-            var name = $(this).find('#name'.val());
-            var slogan = $(this).find('#slogan'.val());
-            var established = $(this).find('#established'.val());
-            var headOfOffice = $(this).find('#headOfOffice'.val());
-            var state = $(this).find('#state'.val());
-            var federalState = $(this).find('#federalState'.val());
-            var city = $(this).find('#city'.val());
-            var website = $(this).find('#website'.val());
-
-            $.ajax({
-                type: 'POST',
-                url: '/unireg'+pathname,
-                data: frm,
-                success: function(frm) {
-
-                },
-                error: function(xhr, options, e) {
-                    console.log(e);
-                }
-            }).done(function() {
-                alert(data.name+ 'wurde hinzugefügt.');
-            }).fail(function(e) {
-                alert(data.name+' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
-            });
-            //location.reload();
-            ev.preventDefault();
-        });
-        ev.preventDefault();
-    });*/
 </script>
 
 <% include standards/footer %>
