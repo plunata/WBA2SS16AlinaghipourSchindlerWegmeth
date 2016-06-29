@@ -1,146 +1,146 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><%= title %></title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-        <script type="text/javascript">
-            $(function() {
-                var frm = $('#uniReg');
-                frm.on('submit', function(ev) {
-                    var uniName = $(this).find('#uniName'.val());
-                    var uniSlog = $(this).find('#uniSlog'.val());
-                    var uniEst = $(this).find('#uniEst'.val());
-                    var uniHO = $(this).find('#uniHO'.val());
-                    var uniState = $(this).find('#uniState'.val());
-                    var uniFedState = $(this).find('#uniFedState'.val());
-                    var uniCity = $(this).find('#uniCity'.val());
-                    var uniWeb = $(this).find('#uniWeb'.val());
-                
-                    $.ajax({
-                        type: 'POST',
-                        url: '/unireg'+pathname,
-                        data: frm,
-                        success: function(frm) {
-                            
-                        },
-                        error: function(xhr, options, e) {
-                            console.log(e);
-                        }
-                    }).done(function() {
-                        alert(data.name+ 'wurde hinzugefügt.');
-                    }).fail(function(e) {
-                        alert(data.name+' konnte nicht hinzugefügt werden. ('+JSON.stringify(e)+')');
-                    });
-                    location.reload();
-                    ev.preventDefault();
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var frm = $('#uniReg');
+            frm.on('submit', function (ev) {
+                var uniName = $(this).find('#uniName'.val());
+                var uniSlog = $(this).find('#uniSlog'.val());
+                var uniEst = $(this).find('#uniEst'.val());
+                var uniHO = $(this).find('#uniHO'.val());
+                var uniState = $(this).find('#uniState'.val());
+                var uniFedState = $(this).find('#uniFedState'.val());
+                var uniCity = $(this).find('#uniCity'.val());
+                var uniWeb = $(this).find('#uniWeb'.val());
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/unireg' + pathname,
+                    data: frm,
+                    success: function (frm) {
+
+                    },
+                    error: function (xhr, options, e) {
+                        console.log(e);
+                    }
+                }).done(function () {
+                    alert(data.name + 'wurde hinzugefügt.');
+                }).fail(function (e) {
+                    alert(data.name + ' konnte nicht hinzugefügt werden. (' + JSON.stringify(e) + ')');
                 });
-                ev.preventDefault();            
+                location.reload();
+                ev.preventDefault();
             });
-        </script>
-    </head>
-    <body>
-        <form id="uniReg" enctype="application/json" action="http://localhost:3001/university" method="post">
+            ev.preventDefault();
+        });
+    </script>
+</head>
+<body>
+<form id="uniReg" enctype="application/json" action="http://localhost:3001/university" method="post">
 
-            <div><label>Name der Hochschule:</label> 
-                <br>
-                <input maxlength="50" name="uniName" size="45" type="text" />
-            </div>
-            <br>
+    <div><label>Name der Hochschule:</label>
+        <br>
+        <input maxlength="50" name="uniName" size="45" type="text"/>
+    </div>
+    <br>
 
 
-            <div>
-                <label>Motto:</label> 
-                <br>
-                <input maxlength="50" name="uniSlog" size="45" type="text" />
-            </div>
-            <br>
+    <div>
+        <label>Motto:</label>
+        <br>
+        <input maxlength="50" name="uniSlog" size="45" type="text"/>
+    </div>
+    <br>
 
-            <div>
-            <label>Gründungsjahr:</label> 
-            <br>
-                <select name="uniEst">
-                    <script>
-                        var myDate = new Date();
-                        var year = myDate.getFullYear();
-                        for(var i = 1900; i < year + 1; i++){
-                            document.write('<option value="'+i+'">'+i+'</option>');
-                        }
-                    </script>
-                </select>
-            </div>
-            <br>
+    <div>
+        <label>Gründungsjahr:</label>
+        <br>
+        <select name="uniEst">
+            <script>
+                var myDate = new Date();
+                var year = myDate.getFullYear();
+                for (var i = 1900; i < year + 1; i++) {
+                    document.write('<option value="' + i + '">' + i + '</option>');
+                }
+            </script>
+        </select>
+    </div>
+    <br>
 
-            <div>
-                <label>Hauptsitz:</label> 
-                <br>
-                <input maxlength="50" name="uniHO" size="45" type="text" />
-            </div>
-            <br>
-            
-            <div>
-                <label>Land:</label> 
-                <br>
-                <select name="uniState">
-                    <option value="0">Bitte wählen:</option>
-                    <option value="1">Deutschland</option>
-                    <option value="2">Schweiz</option>
-                    <option value="3">Österreich</option>
-                </select>
-            </div>
-            <br>
-            
-            <div>
-                <label>Bundesland:</label> 
-                <br>
-                <select name="uniFedState">
-                    <option value="0">Bitte wählen</option>
-                    <option value="1">Baden-Württemberg</option>
-                    <option value="2">Bayern</option>
-                    <option value="3">Berlin</option>
-                    <option value="4">Brandenburg</option>
-                    <option value="5">Bremen</option>
-                    <option value="6">Hamburg</option>
-                    <option value="7">Hessen</option>
-                    <option value="8">Mecklenburg-Vorpommern</option>
-                    <option value="9">Niedersachsen</option>
-                    <option value="10">Nordrhein-Westfalen</option>
-                    <option value="11">Rheinland-Pfalz</option>
-                    <option value="12">Saarland</option>
-                    <option value="13">Sachsen</option>
-                    <option value="14">Sachsen-Anhalt</option>
-                    <option value="15">Schleswig-Holstein</option>        
-                    <option value="16">Thüringen</option>
-                </select>
-            </div>
-            <br>
+    <div>
+        <label>Hauptsitz:</label>
+        <br>
+        <input maxlength="50" name="uniHO" size="45" type="text"/>
+    </div>
+    <br>
 
-            <div>
-                <label>Stadt:</label> 
-                <br>
-                <select name="uniCity">
-                    <option value="0">Bitte wählen:</option>
-                    <option value="1">Köln</option>
-                    <option value="2">Gummersbach</option>
-                </select>
-            </div>
-            <br>
-            <!--<label>Campus:</label> <br>
-            <input maxlength="50" name="uni_campus" size="45" type="text" /><br>-->
+    <div>
+        <label>Land:</label>
+        <br>
+        <select name="uniState">
+            <option value="0">Bitte wählen:</option>
+            <option value="1">Deutschland</option>
+            <option value="2">Schweiz</option>
+            <option value="3">Österreich</option>
+        </select>
+    </div>
+    <br>
 
-            <div>
-                <label>Website:</label> 
-                <br>
-                <input maxlength="50" name="uniWeb" size="45" type="url" />
-            </div>
-            <br>
+    <div>
+        <label>Bundesland:</label>
+        <br>
+        <select name="uniFedState">
+            <option value="0">Bitte wählen</option>
+            <option value="1">Baden-Württemberg</option>
+            <option value="2">Bayern</option>
+            <option value="3">Berlin</option>
+            <option value="4">Brandenburg</option>
+            <option value="5">Bremen</option>
+            <option value="6">Hamburg</option>
+            <option value="7">Hessen</option>
+            <option value="8">Mecklenburg-Vorpommern</option>
+            <option value="9">Niedersachsen</option>
+            <option value="10">Nordrhein-Westfalen</option>
+            <option value="11">Rheinland-Pfalz</option>
+            <option value="12">Saarland</option>
+            <option value="13">Sachsen</option>
+            <option value="14">Sachsen-Anhalt</option>
+            <option value="15">Schleswig-Holstein</option>
+            <option value="16">Thüringen</option>
+        </select>
+    </div>
+    <br>
 
-            <input type="submit" value="Speichern" />
-            <input type="reset" value="Eingaben zurücksetzen" />
+    <div>
+        <label>Stadt:</label>
+        <br>
+        <select name="uniCity">
+            <option value="0">Bitte wählen:</option>
+            <option value="1">Köln</option>
+            <option value="2">Gummersbach</option>
+        </select>
+    </div>
+    <br>
+    <!--<label>Campus:</label> <br>
+    <input maxlength="50" name="uni_campus" size="45" type="text" /><br>-->
 
-        </form>
+    <div>
+        <label>Website:</label>
+        <br>
+        <input maxlength="50" name="uniWeb" size="45" type="url"/>
+    </div>
+    <br>
 
-    </body>
+    <input type="submit" value="Speichern"/>
+    <input type="reset" value="Eingaben zurücksetzen"/>
+
+</form>
+
+</body>
 </html>
 
-<% include footer %>
+<% include standards/footer %>

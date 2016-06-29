@@ -46,10 +46,11 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.render('standards/error', {
       message: err.message,
       error: err
     });
+    
   });
 }
 
@@ -64,30 +65,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Kann gelöscht werden, wenn alternative Lösung gefunden wurde
-app.post("/postuni", function(req, res) {
-    var data = JSON.stringify(req.body);
-    console.log(req.body);
-    console.log(data);
-    var options = {
-        host: "localhost",
-        port: 8888,
-        path: "/user",
-        method: "POST",
-        headers: {
-            accept: "application/json",
-            "Content-Type": "application/json",
-            "Content-Length": Buffer.byteLength(data)
-        }
-    };
-    
-    var externalRequest = http.request(options, function(res) {
-        externalRequest.on("data", function(chunk) {
-            console.log("body: " + chunk);
-        });
-    });
-    externalRequest.write(data);
-    externalRequest.end();
-});
+
 
 
 module.exports = app;
