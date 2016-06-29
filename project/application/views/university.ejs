@@ -97,7 +97,7 @@
     
     <div class="input-group ctrbtn">
         <input class="form-control" type="button" id="submitbtn" value="Registrieren"/>
-        <input class="form-control" type="reset" form="userform" value="Eingaben löschen" onClick="clear();">
+        <input class="form-control" type="reset" form="uniReg" value="Eingaben löschen" onClick="clear();">
     </div>
 
 </form>
@@ -123,7 +123,7 @@
             $.ajax({
                 url: 'http://localhost:3001/university', // url where to submit the request
                 type: "POST", // type of action POST || GET
-                data: $("#userform").serialize(),
+                data: $("#uniReg").serialize(),
                 success: function (result) {
                     $('#message').html(result);
                 },
