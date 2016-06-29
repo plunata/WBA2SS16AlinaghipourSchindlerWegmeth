@@ -5,7 +5,7 @@
     <div class = "input-group">
         <label for = "name">Name der Hochschule:</label>
         <br>
-        <input class="form-control" maxlength="50" name="uniName" size="45" type="text" required />
+        <input class="form-control" maxlength="50" name="name" size="45" type="text" required />
     </div>
     <br>
 
@@ -13,14 +13,14 @@
    <div class = "input-group">
         <label for = "motto">Motto:</label>
         <br>
-        <input class = "form-control" maxlength="50" name="uniSlog" size="45" type="text" required />
+        <input class = "form-control" maxlength="50" name="motto" size="45" type="text" required />
     </div>
     <br>
 
      <div class = "input-group">
         <label for = "year">Gründungsjahr:</label>
         <br>
-        <select name="uniEst" class = "form-control" required />
+        <select name="gruendungsjahr" class = "form-control" required />
             <script>
                 var myDate = new Date();
                 var year = myDate.getFullYear();
@@ -35,14 +35,14 @@
     <div class = "input-group">
         <label for = "hq">Hauptsitz:</label>
         <br>
-        <input class = "form-control" maxlength="50" name="uniHO" size="45" type="text" required />
+        <input class = "form-control" maxlength="50" name="hauptsitzDerUniversitaet" size="45" type="text" required />
     </div>
     <br>
 
     <div class = "input-group">
         <label for = "country">Land:</label>
         <br>
-        <select class = "form-control" name="uniState" required>
+        <select class = "form-control" name="land" required>
             <option value="0">Bitte wählen:</option>
             <option value="1">Deutschland</option>
             <option value="2">Schweiz</option>
@@ -54,7 +54,7 @@
     <div class = "input-group">
         <label for = "state">Bundesland:</label>
         <br>
-        <select class = "form-control" name="uniFedState" required>
+        <select class = "form-control" name="bundesland" required>
             <option value="0">Bitte wählen</option>
             <option value="1">Baden-Württemberg</option>
             <option value="2">Bayern</option>
@@ -79,7 +79,7 @@
     <div class = "input-group">
         <label for = "town">Stadt:</label>
         <br>
-        <select class = "form-control" name="uniCity" required>
+        <select class = "form-control" name="stadt" required>
             <option value="0">Bitte wählen:</option>
             <option value="1">Köln</option>
             <option value="2">Gummersbach</option>
@@ -92,7 +92,7 @@
     <div class = "input-group">
         <label for = "site">Website:</label>
         <br>
-        <input class = "form-control" maxlength="50" name="uniWeb" size="45" type="url" required />
+        <input class = "form-control" maxlength="50" name="webseite" size="45" type="url" required />
     </div>
     
     <div class="input-group ctrbtn">
