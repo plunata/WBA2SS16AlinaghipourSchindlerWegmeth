@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var http = require('http');
 
 var routes = require('./routes/index');
 var users = require('./routes/registration');
@@ -63,9 +64,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
-// Kann gelöscht werden, wenn alternative Lösung gefunden wurde
-
-
 
 module.exports = app;
