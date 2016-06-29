@@ -1,41 +1,49 @@
 <% include standards/header %>
 
 <form id="userform" enctype="application/json">
+    <div class="input-group">
+        <label for="name">Geschlecht</label><br>
+        <select name="geschlecht" class="form-control">
+            <option value="0">Bitte wählen</option>
+            <option value="m">Herr</option>
+            <option value="f">Frau</option>
+        </select><br>
+    </div>
+    <div class="input-group">
+        <label for="firstname">Vorname</label> <br>
+        <input  class="form-control" maxlength="50" name="firstname" size="45" type="text" required/><br>
+    </div>
+    <div class="input-group">
+        <label for="lastname">Nachname</label> <br>
+        <input class="form-control" maxlength="50" name="lastname" size="45" type="text" required/><br>
+    </div>
+    <div class="input-group">
+        <label for="password">Passwort</label> <br>
+        <input class="form-control" id="pass1" maxlength="50" name="password" size="45" type="password" required/><br>
+    </div>
+    <div class="input-group">
+        <label for="email">E-mail</label> <br>
+        <input class="form-control" name="email" type="email" size="45" type="email" required/><br>
+    </div>
 
-    <label>Geschlecht</label><br>
-
-    <select name="geschlecht">
-        <option value="0">Bitte wählen</option>
-        <option value="m">Herr</option>
-        <option value="f">Frau</option>
-    </select><br>
-
-    <label>Vorname</label> <br>
-    <input maxlength="50" name="firstname" size="45" type="text"/><br>
-
-    <label>Nachname</label> <br>
-    <input maxlength="50" name="lastname" size="45" type="text"/><br>
-
-    <label>Passwort</label> <br>
-    <input maxlength="50" name="password" size="45" type="text"/><br>
-
-    <label>E-mail</label> <br>
-    <input name="email" type="email" size="45" type="text"/><br>
-
-    <label>Repository</label> <br>
-    <input name="repository" size="45" type="text" value="http://github.com/"/><br>
-
-    <label>Rolle</label> <br>
-    <select name="rule">
-        <option value="0">Bitte wählen</option>
-        <option value="1">Programmierer</option>
-        <option value="2">Dokumentierer</option>
-        <option value="3">Leiter</option>
-        <option value="4">Designer</option>
-    </select><br>
-
-    <input type="button" id="submitbtn" value="Registrieren"/>
-    <input type="reset" form="userform" value="Eingaben löschen" onClick="clear();">
+    <div class="input-group">
+        <label for="repository">Repository</label> <br>
+        <input class="form-control" name="repository" size="45" type="text" value="http://github.com/" required/><br>
+    </div>
+    <div class="input-group">
+        <label>Rolle</label><br>
+        <select class="form-control" name="rule">
+            <option value="0">Bitte wählen</option>
+            <option value="1">Programmierer</option>
+            <option value="2">Dokumentierer</option>
+            <option value="3">Leiter</option>
+            <option value="4">Designer</option>
+        </select>
+    </div>
+    <div class="input-group ctrbtn">
+        <input class="form-control" type="button" id="submitbtn" value="Registrieren"/>
+        <input class="form-control" type="reset" form="userform" value="Eingaben löschen" onClick="clear();">
+    </div>
 
 </form>
 
@@ -44,15 +52,29 @@
 
 <script>
     $(document).ready(function () {
-        // click on button submit
         $("#submitbtn").on('click', function () {
-            // send ajax
+            $("label").css("color", "black");
+            var failed = 0;
+            $('input, select').filter('[required]:visible').each(function () {
+                if ($(this).val() == '') {
+                    var label = $(this).attr('name');
+                    $("label[for='" + label + "']").css("color", "red");
+                    failed = 1;
+                }
+            });
+
+            if (failed) {
+                $('#message').html("<span class='error'>Bitte Pflichfelder ausfüllen!");
+                return;
+            }
+
             $.ajax({
                 url: 'http://localhost:3001/registration', // url where to submit the request
                 type: "POST", // type of action POST || GET
                 data: $("#userform").serialize(),
                 success: function (result) {
                     $('#message').html(result);
+                    window.location = "http://localhost:3001/";
                 },
                 error: function (xhr, resp, text) {
                     $('#message').html(text);

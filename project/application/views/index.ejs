@@ -1,4 +1,54 @@
-<% include header %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-<% include footer %>
+<% include standards/header %>
+
+<div class="container">
+    <div class="col-md-12">
+        <form id="frmLogin" enctype="application/json">
+            <div class="input-group ctrbtn">
+                <label>E-Mail</label><br/>
+                <input class="form-control" type="text" name="email"/><br/>
+            </div>
+            <div class="input-group ctrbtn">
+                <label>Passwort</label><br/>
+                <input class="form-control" type="password" name="password"/><br/>
+            </div>
+            <div class="input-group ctrbtn">
+                <input class="form-control" type="button" id="submitbtn" value="Login"/>
+            </div>
+        </form>
+        <div id="message"></div>
+        <p>Kein Login?
+            <a href="http://localhost:3001/registration">Regirstration</a>
+        </p>
+
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        // click on button submit
+        $("#submitbtn").on('click', function () {
+            // send ajax
+            $.ajax({
+                url: 'http://localhost:3001/login', // url where to submit the request
+                type: "POST", // type of action POST || GET
+                data: $("#frmLogin").serialize(),
+                success: function (result) {
+                    if (result.redirect) {
+                        window.location.href = data.redirect;
+                    }else{
+                        $ ('#message').html (result);
+                    }
+                },
+                error: function (xhr, resp, text) {
+                    $('#message').html(text);
+                    console.log(text);
+                }
+            })
+        });
+    });
+
+</script>
+
+
+<% include standards/footer %>

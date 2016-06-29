@@ -9,6 +9,9 @@ var http = require('http');
 var routes = require('./routes/index');
 var users = require('./routes/registration');
 var universities = require('./routes/university');
+var login = require('./routes/login');
+var dashboard = require('./routes/dashboard');
+
 /* var faculties = require('./routes/faculties');
 var courses = require('./routes/courses');
 var subjects = require('./routes/subjects');
@@ -32,6 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/registration', users);
 app.use('/university', universities);
+app.use('/login', login);
+app.use('/dashboard', dashboard);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
