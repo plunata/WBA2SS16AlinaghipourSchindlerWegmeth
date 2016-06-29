@@ -11,14 +11,14 @@ router.post ('/', function (req, res, next) {
         users.forEach(function (user) {
             if(user.email== reqData.email){
                 if(user.password == reqData.password){
-
+                    req.userData.user = JSON.stringify(user);
+                    res.redirect('/dashboard');
+                    res.end();
                 }
             }
         })
     }
     service.sendGet('/user',callback);
-    res.redirect('http://localhost:3001/dashboard');
-    res.send(302);
 });
 
 module.exports = router;
