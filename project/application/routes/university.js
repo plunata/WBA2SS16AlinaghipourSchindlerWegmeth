@@ -9,8 +9,16 @@ router.get('/', function (req, res, next) {
 });
 
 
+router.post('/', function (req, res, next) {
+    callback = function (data) {
+        res.send("University erfolgreich angelegt");
+    }
 
-router.post('/', function (req, res) {
+    service.sendPost('/user', JSON.stringify(req.body), callback);
+});
+
+
+/*router.post('/', function (req, res) {
     var data = JSON.stringify(req.body);
 
 router.post("/", function(req, res) {
@@ -37,7 +45,7 @@ router.post("/", function(req, res) {
     console.log("Universität erfolgreich angelegt");
 });
 
-});
+});*/
 
     
 
