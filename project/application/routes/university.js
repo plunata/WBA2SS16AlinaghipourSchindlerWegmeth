@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var service = require('../bin/serviceConnector');
 var router = express.Router();
 
 
@@ -14,7 +15,7 @@ router.post('/', function (req, res, next) {
         res.send("University erfolgreich angelegt");
     }
 
-    service.sendPost('/user', JSON.stringify(req.body), callback);
+    service.sendPost('/university', JSON.stringify(req.body), callback);
 });
 
 
