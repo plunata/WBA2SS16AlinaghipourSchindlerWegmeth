@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var service = require('../bin/serviceConnector');
 var router = express.Router();
 var service = require('../bin/serviceConnector');
 
