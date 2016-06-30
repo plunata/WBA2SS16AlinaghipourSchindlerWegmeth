@@ -1,6 +1,7 @@
 var express = require('express');
 var http = require('http');
 var router = express.Router();
+var service = require('../bin/serviceConnector');
 
 
 /* GET home page. */
@@ -14,7 +15,7 @@ router.post('/', function (req, res, next) {
         res.send("University erfolgreich angelegt");
     }
 
-    service.sendPost('/user', JSON.stringify(req.body), callback);
+    service.sendPost('/university', JSON.stringify(req.body), callback);
 });
 
 
@@ -47,7 +48,7 @@ router.post("/", function(req, res) {
 
 });*/
 
-    
+
 
 
 module.exports = router;

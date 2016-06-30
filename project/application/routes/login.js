@@ -1,24 +1,22 @@
 var express = require ('express');
+var cookieParser = require('cookie-parser');
+var request = require('request');
 var router = express.Router ();
-var http = require ('http');
-var service = require('../bin/serviceConnector');
-/* GET home page. */
-router.post ('/', function (req, res, next) {
-    var reqData = req.body;
 
-    callback = function (data) {
-        var users = JSON.parse(data);
-        users.forEach(function (user) {
-            if(user.email== reqData.email){
-                if(user.password == reqData.password){
-                    req.userData.user = JSON.stringify(user);
-                    res.redirect('/dashboard');
-                    res.end();
-                }
-            }
-        })
-    }
-    service.sendGet('/user',callback);
+var app = express ();
+var http = require ('http');
+var service = require ('../bin/serviceConnector');
+
+router.get ('/', function (req, res, next) {
+    res.render ('login', {title:  "login"});
+    res.end();
+});
+
+router.post ('/', function (req, res) {
+    var reqData = req.body;
+    var users = [];
+    res.redirect("/dashboard");
+
 });
 
 module.exports = router;

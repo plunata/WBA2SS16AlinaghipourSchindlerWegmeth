@@ -28,27 +28,20 @@
     $(document).ready(function () {
         // click on button submit
         $("#submitbtn").on('click', function () {
-            // send ajax
             $.ajax({
-                url: 'http://localhost:3001/login', // url where to submit the request
-                type: "POST", // type of action POST || GET
-                data: $("#frmLogin").serialize(),
+                url: 'http://localhost:3001/login',
+                    type: "POST",
+                    data: $("#frmLogin").serialize(),
                 success: function (result) {
-                    if (result.redirect) {
-                        window.location.href = data.redirect;
-                    }else{
-                        $ ('#message').html (result);
-                    }
+                    window.location = "http://localhost:3001/dashboard";
                 },
                 error: function (xhr, resp, text) {
-                    $('#message').html(text);
-                    console.log(text);
+                    $('#message').html(xhr.responseText);
                 }
             })
         });
     });
 
 </script>
-
 
 <% include standards/footer %>
