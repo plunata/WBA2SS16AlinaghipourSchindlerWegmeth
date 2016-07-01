@@ -130,7 +130,29 @@ entweder als offen oder erledigt markiert werden können.
 
 | | | 
 | ------------- | ------------- | ------------- |
-| **USE CASE # 4** | Hinzufügen eines Tasks zur Taskliste. | 
+| **USE CASE # 4** | Login eines Users | 
+| Goal in Context | Login eines Users als Interaktionsobjekt mit dem Server |  
+| Scope & Level | User-Login |
+| Preconditions | <ul><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li><li>User ist bereits registriert</li></ul>|
+| Success End Condition | Ein User hat sich erfolgreich eingeloggt |
+| Failed End Condition | User konnte sich nicht einloggen |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer gibt seine Login-Daten, also <ul><li>E-Mail und</li><li>Passwort</li></ul>im entsprechenden Feld ein | 
+|  | 2 | Benutzer aktiviert den Login-Button und schickt seine Daten an die Server-Datenbank | 
+|  | 3 | Benutzer wird auf sein Dashboard weitergeleitet |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User hat keine gültigen Eingaben (z. B. E-Mail Format) gemacht. |
+|  | 2a.1 | User wird benachrichtigt, dass die Falscheingaben korrigiert werden müssen. |
+
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 5** | Hinzufügen eines Tasks zur Taskliste. | 
 | Goal in Context | Erfolgreiche Bearbeitung sowie asynchrone Benachrichtigungen zu Tasks |  
 | Scope & Level | Taskmanipulation |
 | Preconditions | <ul><li>Es wurden bereits Tasks vom Benutzer angelegt</li><li>Optional für asynchrone Operationen wurde einem Task eine Deadline beigefügt </li></ul>|
@@ -154,7 +176,7 @@ entweder als offen oder erledigt markiert werden können.
 
 | | | 
 | ------------- | ------------- | ------------- |
-| **USE CASE # 5** | Auswahl einer Gruppe | 
+| **USE CASE # 6** | Auswahl einer Gruppe | 
 | Goal in Context | Ein User ist erfolgreich einer Gruppe beigetreten |  
 | Scope & Level | User Goal Gruppenbeitritt |
 | Preconditions | <ul><li></li></ul>|
@@ -178,9 +200,9 @@ entweder als offen oder erledigt markiert werden können.
 
 | | | 
 | ------------- | ------------- | ------------- |
-| **USE CASE # 6** | Anzeigen von Tasks im Dashboard | 
+| **USE CASE # 7** | Anzeigen von Tasks im Dashboard | 
 | Goal in Context | Ein User hat eine Task-Übersicht |  
-| Scope & Level |  |
+| Scope & Level | Dashboard-View |
 | Preconditions | <ul><li>Der User ist eingeloggt</li><li>Es wurden bereits Tasks vom Benutzer angelegt</li><li>Optional für asynchrone Operationen wurde einem Task eine Deadline beigefügt </li></ul>|
 | Success End Condition | Benutzer hat eine Übersicht von seinen Tasks. |
 | Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
@@ -246,13 +268,16 @@ entweder als offen oder erledigt markiert werden können.
 | | PUT | Aktualisiert Informationen eines bestimmten Gruppen-Tasks | application/json | application/json |
 | | DELETE | Löscht einen bestimmten Gruppen-Task | application/json | application/json |
 
+###Ressourcen und Parameter
+
+
 ##Dienstnutzer
 Nachdem der Dienstnutzer sich eingeloggt hat, kann er die Ressource http://localhost:3001/dashboard nutzen. Aus Zeitgründen konnten wir kein ausgearbeitetes Login-System implementieren, das Sicherheit und Privatsphäre garantiert, deshalb sind ebenso andere, nicht öffentliche Ressourcen, wie http://localhost:3001/tasks und http://localhost:3001/gruppen, durch explizite Suche einsehbar.
 
-##Zu Use Case 1 & 2
+##Zu Use Case 1, 2 und 3
 Zunächst muss eine Universität angelegt werden, um die dazugehörigen Ressourcen Fakultät, Studiengänge (courses) und Module (subjects) erstellen zu können. 
 
-Alle Felder des HTML-Formulars sind Pflichteingabefelder. Ob ein Feld ausgefüllt wurde, wird durch das required-Attribut im input-Tag überprüft:
+Alle Felder der HTML-Formulare sind Pflichteingabefelder. Ob ein Feld ausgefüllt wurde, wird durch das required-Attribut im input-Tag überprüft (Auszug aus *university.ejs*):
 ```html
 <div class = "input-group">
     <label for = "site">Website:</label>
@@ -260,7 +285,7 @@ Alle Felder des HTML-Formulars sind Pflichteingabefelder. Ob ein Feld ausgefüll
     <input class = "form-control" maxlength="50" name="webseite" size="45" type="url" required />
 </div>
 ```
-Sobald der "Registrieren"-Button aktiviert wird, wird die Überprüfung via JavaScript durchgeführt. Im Fehlerfall erscheint unter den Buttons eine Fehlermeldung in roter Schriftfarbe:
+Sobald der "Registrieren"-Button aktiviert wird, wird die Überprüfung via JavaScript durchgeführt. Im Fehlerfall erscheint unter den Buttons eine Fehlermeldung in roter Schriftfarbe (Auszug aus *university.ejs*):
 ```javascript
  $(document).ready(function () {
         $("#submitbtn").on('click', function () {
@@ -278,8 +303,35 @@ Sobald der "Registrieren"-Button aktiviert wird, wird die Überprüfung via Java
                 return;
             }
 ```
+Weil Interaktionen zwischen dem Browser und dem Server beeinflusst wird von HTTP-Protokollen, müssen die Daten eines Formulars durch einen standardisierten HTTP-Request an den Server geschickt werden (Auszug aus *university.ejs*):
+```ajax
+$.ajax({
+                url: 'http://localhost:3001/university', // url where to submit the request
+                type: "POST", // type of action POST || GET
+                data: $("#uniReg").serialize(),
+                success: function (result) {
+                    $('#message').html(result);
+                },
+                error: function (xhr, resp, text) {
+                    $('#message').html(text);
+                    console.log(text);
+                }
+            })
+```
 
-##Zu Use Case 3
+##Zu Use Case 4
+...
+
+##Zu Use Case 5
+...
+
+##Zu Use Case 6
+...
+
+##Zu Use Case 7
+...
+
+##Unvollständiges, Irrwege, Probleme oder Lösungsansätze bei der Umsetzung
 
 
 
