@@ -2,16 +2,19 @@
 
 <form id="facReg" enctype="application/json">
     
-    <div class = "input-group">
+     <div class = "input-group">
         <label for = "zugehoerigeUniversitaet">Zugehörige Universität:</label>
         <br>
         <select name="zugehoerigeUniversitaet" class = "form-control">
             <option value="0">Bitte wählen</option>
-            <option value="1">xxx</option>
-            <option value="2">xxx</option>
-            <option value="3">xxx</option>
-        </select>
+            
+            <% for(var i=0; i<uni.length; i++) { %>
+            <option value="<%  uni.id  %>"><% uni.name  %></option>
+            <% } %>
+
+         </select>
     </div>
+    
 <br>        
            
     <div class = "input-group">
