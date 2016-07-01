@@ -46,8 +46,10 @@ Kennwort, eine eMail-Addresse und weitere Pflichtangaben (s. Use Case Nr. ?) not
 die Startseite in Form eines Dashboards. 
 
 Es stehen folgende Funktionalitäten zur Auswahl:
+-	Dashboard
 -	thematische, modulbezogene Newsfeeds
 -	Gruppen
+-	Tasks
 
 **Thematische, modulbezogene Newsfeeds:**<br>
 Mithilfe dieser Funktion hat der User die Möglichkeit, Neuigkeiten zu den Modulen zu erhalten, die er abonniert hat. 
@@ -99,6 +101,95 @@ entweder als offen oder erledigt markiert werden können.
 | ------------- | ------------- | ------------- |
 |  | 2a | Fakultät kann keiner Universität zugeordnet werden, weil keine zugehörige Universität vorhanden ist. |
 |  | 2a.1 | Benutzer kann die zugehörige Ressource Universität anlegen. |
+
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 3** | Registration eines Users | 
+| Goal in Context | Erstellen eines Users als Interaktionsobjekt mit dem Server |  
+| Scope & Level | Userregistration |
+| Preconditions | <ul><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li></ul>|
+| Success End Condition | Ein neuer User wird in der Datenbank angelegt |
+| Failed End Condition | User konnte sich nicht registrieren |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer gibt<ul><li>das Geschlecht,</li><li>den Vornamen,</li><li>den Nachnamen,</li><li>sein persönliches Passwort,</li><li>sein Github-Repository und </li><li>seine Expertise</li></ul>im entsprechenden Feld ein | 
+|  | 2 | Benutzer aktiviert den Registrieren-Button und schickt seine Daten an die Server-Datenbank | 
+|  | 2a | Benutzer aktiviert den Eingabe löschen-Button, um den Inhalt aller Felder zu löschen (zurück zu Step 1) | 
+|  | 3 | Benutzer wird auf der weitergeleiteten Seite über den Erfolg seiner Erstellung benachrichtigt |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User hat keine gültigen Eingaben (z. B. E-Mail Format) eingegeben. |
+|  | 2a.1 | User wird benachrichtigt das er Falscheingaben korrigieren soll. |
+
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 4** | Hinzufügen eines Tasks zur Taskliste. | 
+| Goal in Context | Erfolgreiche Bearbeitung sowie asynchrone Benachrichtigungen zu Tasks |  
+| Scope & Level | Taskmanipulation |
+| Preconditions | <ul><li>Es wurden bereits Tasks vom Benutzer angelegt</li><li>Optional für asynchrone Operationen wurde einem Task eine Deadline beigefügt </li></ul>|
+| Success End Condition | Benutzer hat eine Übersicht von seinen Tasks. |
+| Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer erstellt einen Task. | 
+|  | 1a | Benutzer fügt dem Task eine Deadline bei und wird benachrichtigt, sobald sich diese nähert (Asynchrone Operation). | 
+|  | 2 | Benutzer speichert seinen Task ab. | 
+|  | 3 | Benutzer wird auf der weitergeleiteten Seite über seine erstellten Tasks benachrichtigt. |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User lässt das Eingabefeld frei. |
+|  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
+
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 5** | Auswahl einer Gruppe | 
+| Goal in Context | Ein User ist erfolgreich einer Gruppe beigetreten |  
+| Scope & Level | User Goal Gruppenbeitritt |
+| Preconditions | <ul><li></li></ul>|
+| Success End Condition | Benutzer hat einen Übersicht über seine Tasks. |
+| Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer erstellt einen Task. | 
+|  | 1a | Benutzer fügt dem Task eine Deadline bei und wird benachrichtigt, sobald sich diese nähert (Asynchrone Operation). | 
+|  | 2 | Benutzer speichert seinen Task ab. | 
+|  | 3 | Benutzer wird auf der weitergeleiteten Seite über seine erstellten Tasks benachrichtigt. |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User lässt das Eingabefeld frei. |
+|  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
+
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 6** | Anzeigen von Tasks im Dashboard | 
+| Goal in Context | Ein User hat eine Task-Übersicht |  
+| Scope & Level |  |
+| Preconditions | <ul><li>Der User ist eingeloggt</li><li>Es wurden bereits Tasks vom Benutzer angelegt</li><li>Optional für asynchrone Operationen wurde einem Task eine Deadline beigefügt </li></ul>|
+| Success End Condition | Benutzer hat eine Übersicht von seinen Tasks. |
+| Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | ... | 
+
 
 ##Dienstanbieter
 ###REST-Spezifikation (Routes)
@@ -154,3 +245,9 @@ entweder als offen oder erledigt markiert werden können.
 | | POST | Fügt einen neuen Task in einer bestimmten Gruppe hinzu | application/json | application/json |
 | | PUT | Aktualisiert Informationen eines bestimmten Gruppen-Tasks | application/json | application/json |
 | | DELETE | Löscht einen bestimmten Gruppen-Task | application/json | application/json |
+
+##Dienstnutzer
+Nachdem der Dienstnutzer sich eingeloggt hat, kann er die Ressource http://localhost:3001/dashboard nutzen. Aus Zeitgründen konnten wir kein ausgearbeitetes Login-System implementieren, das Sicherheit und Privatsphäre garantiert, deshalb sind ebenso andere, nicht öffentliche Ressourcen, wie http://localhost:3001/tasks und http://localhost:3001/gruppen, durch explizite Suche einsehbar.
+
+##Zu Use Case 1 & 2
+Der 
