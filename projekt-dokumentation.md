@@ -240,18 +240,18 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 ##Dienstanbieter
 ###Ressourcen, Parameter und deren Umsetzung
-<ul>
-- [x]<li>User</li>
-- [x]<li>Login</li>
-- [x]<li>Fakultäten</li>
-- [ ]<li>Studiengänge</li>
-- [ ]<li>Semester</li>
-- [ ]<li>Module</li>
-- [x]<li>Gruppen</li>
-- [x]<li>Tasks</li>
-- [ ]<li>Newsfeeds</li>
-- [x]<li>Dashboard</li>
-</ul>
+
+- [x] User
+- [x] Login
+- [x] Fakultäten
+- [ ] Studiengänge
+- [ ] Semester
+- [ ] Module
+- [x] Gruppen
+- [x] Tasks
+- [ ] Newsfeeds
+- [x] Dashboard
+
 
 ###REST-Spezifikation (Routes)
 | Ressource  | HTTP-Verben | Semantik | Content-type (req) | Content-type (res) |
