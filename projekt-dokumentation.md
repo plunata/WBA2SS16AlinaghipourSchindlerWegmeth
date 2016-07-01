@@ -40,16 +40,22 @@ die Newsfeeds abonniert. So muss er sich nicht mehr über all die Seiten auf dem
 Hat er ein Modul abgeschlossen, kann er die Benachrichtigungen abbestellen.
 <br>
 
-###Konzept 
+###Konzept
 Um die Anwendung nutzen zu können, muss zuerst ein Benutzer-Account erstellt werden. Dafür sind ein persönliches 
-Kennwort, eine eMail-Addresse und weitere Pflichtangaben (s. Use Case Nr. ?) notwendig. Nach dem Log-In erscheint 
+Kennwort, eine eMail-Addresse und weitere Pflichtangaben (s. Use Case 3) notwendig. Nach dem Log-In erscheint 
 die Startseite in Form eines Dashboards. 
 
 Es stehen folgende Funktionalitäten zur Auswahl:
+-	Universitätsverwaltung
+-	Fakultätsverwaltung
+-	User-Registrierung
+-	User-Login
 -	Dashboard
 -	thematische, modulbezogene Newsfeeds
 -	Gruppen
--	Tasks
+-	Taskmanipulation
+
+**Dashboard:**<br>
 
 **Thematische, modulbezogene Newsfeeds:**<br>
 Mithilfe dieser Funktion hat der User die Möglichkeit, Neuigkeiten zu den Modulen zu erhalten, die er abonniert hat. 
@@ -58,6 +64,8 @@ Mithilfe dieser Funktion hat der User die Möglichkeit, Neuigkeiten zu den Modul
 Für jedes Modul ist es möglich, Gruppen zu bilden. Benutzer können nach den gewünschten Gruppen suchen und eine
 Beitrittsanfrage senden. Jedes Gruppenmitglied kann Tasks erstellen, die zu einem bestimmten Zeitpunkt erledigt sein sollen und 
 entweder als offen oder erledigt markiert werden können. 
+
+**Tasks:**<br>
 
 ##Use Cases
 
@@ -149,6 +157,7 @@ entweder als offen oder erledigt markiert werden können.
 |  | 2a | User hat keine gültigen Eingaben (z. B. E-Mail Format) gemacht. |
 |  | 2a.1 | User wird benachrichtigt, dass die Falscheingaben korrigiert werden müssen. |
 
+<br>
 
 | | | 
 | ------------- | ------------- | ------------- |
@@ -214,6 +223,20 @@ entweder als offen oder erledigt markiert werden können.
 
 
 ##Dienstanbieter
+###Ressourcen und Parameter
+<ul>
+<li>User</li>
+<li>Login</li>
+<li>Fakultäten</li>
+<li>Studiengänge</li>
+<li>Semester</li>
+<li>Module</li>
+<li>Gruppen</li>
+<li>Tasks</li>
+<li>Newsfeeds</li>
+<li>Dashboard</li>
+</ul>
+
 ###REST-Spezifikation (Routes)
 | Ressource  | HTTP-Verben | Semantik | Content-type (req) | Content-type (res) |
 | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -268,13 +291,15 @@ entweder als offen oder erledigt markiert werden können.
 | | PUT | Aktualisiert Informationen eines bestimmten Gruppen-Tasks | application/json | application/json |
 | | DELETE | Löscht einen bestimmten Gruppen-Task | application/json | application/json |
 
-###Ressourcen und Parameter
+##Datenhaltung
+Bei der Entscheidung, welches Austauschformat wir verwenden sollen, fiel die Wahl auf JSON (**JavaScript Object Notation**). Im Gegensatz zum komplexen XML-Format hat JSON-Format eine kompaktere, besser strukturierte Syntax und dadurch eine geringere Dateigröße. Erst nach Erzeugung eines DOM-Baums aus einem XML-Dokument ist der Zugriff auf die Knoten gegeben und diese müssen meist mehrmals verwendet werden, was zusätzlich zu unnötigem Schreibaufwand führt. JSON stellt Daten in einer überschaubaren Liste dar, die sich geschickter verwalten lässt, auch weil man auf einfache Weise auf dessen Attribute zugreifen kann. Das Parsen von JSON-Daten mithilfe der AJAX-Technologie geht außerdem um einiges schneller. Ein Grund mehr ist, dass sich JSON mittlerweile in vielen weiteren Programmiersprachen etabliert hat.
 
+Die Datenspeicherung erfolgt über Redis (REmote DIctionary Server), weil sie als In-Memory-Datenbank den Arbeitsspeicher eines Computers nutzt und somit wesentlich schneller arbeiten kann. Die Key-Value-Speicherung sorgt in unserem Fall für eine einfachere Handhabung, da die Struktur unserer Daten nicht besonders komplex ist.
 
 ##Dienstnutzer
 Nachdem der Dienstnutzer sich eingeloggt hat, kann er die Ressource http://localhost:3001/dashboard nutzen. Aus Zeitgründen konnten wir kein ausgearbeitetes Login-System implementieren, das Sicherheit und Privatsphäre garantiert, deshalb sind ebenso andere, nicht öffentliche Ressourcen, wie http://localhost:3001/tasks und http://localhost:3001/gruppen, durch explizite Suche einsehbar.
 
-##Zu Use Case 1, 2 und 3
+###Zu Use Case 1, 2 und 3
 Zunächst muss eine Universität angelegt werden, um die dazugehörigen Ressourcen Fakultät, Studiengänge (courses) und Module (subjects) erstellen zu können. 
 
 Alle Felder der HTML-Formulare sind Pflichteingabefelder. Ob ein Feld ausgefüllt wurde, wird durch das required-Attribut im input-Tag überprüft (Auszug aus *university.ejs*):
@@ -319,16 +344,16 @@ $.ajax({
             })
 ```
 
-##Zu Use Case 4
+###Zu Use Case 4
 ...
 
-##Zu Use Case 5
+###Zu Use Case 5
 ...
 
-##Zu Use Case 6
+###Zu Use Case 6
 ...
 
-##Zu Use Case 7
+###Zu Use Case 7
 ...
 
 ##Unvollständiges, Irrwege, Probleme oder Lösungsansätze bei der Umsetzung
