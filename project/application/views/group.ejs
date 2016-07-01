@@ -1,0 +1,51 @@
+<% include standards/header %>
+
+<div class="container">
+    <div class="col-md-12">
+        <h2>Meine Aufgaben</h2>
+        <table class="table table-striped">
+            <thead>
+                <th>Name</th>
+                <th>Beschreibung</th>
+                <th>Deadline</th>
+                <th>User</th>
+                <th>Erledigt</th>
+            </thead>
+            <tbody>
+            <% for(var i = 0; i < personalTasks.length; i++) { %>
+            <tr>
+                <td><%= personalTasks[i].name %></td>
+                <td><%= personalTasks[i].description %></td>
+                <td><%= personalTasks[i].deadline %></td>
+                <td><%= personalTasks[i].editor %></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+        <h2>Alle Aufgaben</h2>
+        <table class="table table-striped">
+            <thead>
+                <th>Name</th>
+                <th>Beschreibung</th>
+                <th>Deadline</th>
+                <th>User</th>
+                <th>Erledigt</th>
+            </thead>
+            <tbody>
+            <% for(var i = 0; i < tasks.length; i++) { %>
+            <tr>
+                <td><%= tasks[i].name %></td>
+                <td><%= tasks[i].description %></td>
+                <td><%= tasks[i].deadline %></td>
+                <td><%= tasks[i].editor %></td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket = io();
+</script>
+<% include standards/footer %>

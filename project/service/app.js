@@ -23,7 +23,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use('/', index);
 app.use('/course', course);
 app.use('/faculty', faculty);
 app.use('/group', group);

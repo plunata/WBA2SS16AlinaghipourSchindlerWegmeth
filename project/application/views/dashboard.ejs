@@ -1,2 +1,16 @@
 <% include standards/header %>
+
+<div class="container">
+    <div class="col-md-12">
+        <h2>Mein Gruppen:</h2>
+        <ul>
+            <% for(var i=0; i<groups.length; i++) { %>
+            <li>
+                <a href="http://localhost:3001/dashboard/group/<%= groups[i].id %>"><%= groups[i].name %></a>
+            </li>
+            <% } %>
+        </ul>
+    </div>
+</div>
+
 <% include standards/footer %>

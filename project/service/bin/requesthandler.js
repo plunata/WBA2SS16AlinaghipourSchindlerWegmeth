@@ -5,7 +5,7 @@ module.exports = {
     // findet alle einträge zu einem Key. Benötigt wird ein key (university, faculty,groups ect) und ein Child (university -> faculty) ...
     findAll: function(req, res, key, child) {
         //welche HOST ruft mich auf
-        var host = req.headers.host;
+        var host = "http://"+req.headers.host;
 
         //gibt mir alle Einträge zu einem Key
         client.keys(key + ':*', function (err, rep) {
@@ -39,7 +39,7 @@ module.exports = {
     
     //Finde einen Eintragn anhand einer ID
     findById: function(req, res, key, child) {
-        var host = req.headers.host;
+        var host = "http://" + req.headers.host;
         client.get(key + ':' + req.params.id, function(err,rep) {
             if (rep) {
                 var object = JSON.parse(rep);

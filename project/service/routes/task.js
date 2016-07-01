@@ -18,6 +18,10 @@ router.post('/', function(req, res) {
     requesthandler.postParentCallback(req, res, key, parentKey);
 });
 
+router.get('/', function(req, res){
+    requesthandler.findAll(req,res,key,'');
+});
+
 router.get('/:id', function(req, res){
     requesthandler.findById(req,res,key,'');
 });

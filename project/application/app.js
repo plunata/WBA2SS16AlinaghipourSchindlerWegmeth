@@ -33,8 +33,8 @@ app.use (session ({
 }));
 
 
-app.post('/login', function (req, res, next) {
-    var loginData =  req.body;
+app.post ('/login', function (req, res, next) {
+    var loginData = req.body;
 
     var options = {
         host: "http://localhost:3000/user",
@@ -50,7 +50,7 @@ app.post('/login', function (req, res, next) {
                 if (user.email == loginData.email) {
                     if (user.password == loginData.password) {
                         req.userData.user = JSON.stringify (user);
-                        next();
+                        next ();
                         return true;
                     }
                 }
@@ -59,11 +59,11 @@ app.post('/login', function (req, res, next) {
     });
 });
 
-app.get('/', function (req, res, next) {
-    if(req.userData.user)
-     res.redirect("/dashboard");
+app.get ('/', function (req, res, next) {
+    if (req.userData.user)
+        res.redirect ("/dashboard");
     else
-        res.redirect("/login");
+        res.redirect ("/login");
 });
 
 app.use ('/registration', users);
@@ -74,7 +74,6 @@ app.use ('/dashboard', dashboard);
 
 // catch 404 and forward to error handler
 app.use (function (req, res, next) {
-    console.log ("sdf");
     var err = new Error ('Not Found');
     err.status = 404;
     next (err);
