@@ -42,7 +42,7 @@ Hat er ein Modul abgeschlossen, kann er die Benachrichtigungen abbestellen.
 
 ###Konzept
 Um die Anwendung nutzen zu können, muss zuerst ein Benutzer-Account erstellt werden. Dafür sind ein persönliches 
-Kennwort, eine eMail-Addresse und weitere Pflichtangaben (s. Use Case 3) notwendig. Nach dem Log-In erscheint 
+Kennwort, eine E-Mail-Adresse und weitere Pflichtangaben (s. Use Case 3) notwendig. Nach dem Log-In erscheint 
 die Startseite in Form eines Dashboards. 
 
 Es stehen folgende Funktionalitäten zur Auswahl:
@@ -82,6 +82,7 @@ entweder als offen oder erledigt markiert werden können.
 Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zugeteilt werden können. Bei der Task-Erstellung kann ein Titel, eine Task-Beschreibung und eine Deadline angegeben werden. Tasks können markiert werden, ob sie "In Arbeit" oder "Erledigt" sind.
 
 ##Use Cases
+**Implementierte Use-Cases:**<br>
 
 | | | 
 | ------------- | ------------- | ------------- |
@@ -104,31 +105,7 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | | | 
 | ------------- | ------------- | ------------- |
-| **USE CASE # 2** | Fakultät erstellen | 
-| Goal in Context | Erstellen einer Fakultät für den Webdienst |  
-| Scope & Level | Fakultätsverwaltung |
-| Preconditions | <ul><li>Zugehörige Universität vorhanden</li><li>Fakultät als Ressource noch nicht vorhanden</li><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li></ul>|
-| Success End Condition | Ressource Fakultät wurde neu angelegt |
-| Failed End Condition | Anlegen der Ressource Fakultät fehlgeschlagen |
-| Primary Actor | Student |
-
-| Description  | Step | Action | 
-| ------------- | ------------- | ------------- |
-|  | 1 | Benutzer gibt<ul><li>den Namen,</li><li>den Standort,</li><li>die Stadt und</li><li>die Website</li></ul>der Fakultät im entsprechenden Feld ein | 
-|  | 2 | Benutzer aktiviert den Speichern-Button und schickt seine Daten an die Server-Datenbank | 
-|  | 2a | Benutzer aktiviert den Zurücksetzen-Button, um den Inhalt aller Felder zu löschen (zurück zu Step 1) | 
-|  | 3 | Benutzer wird auf der weitergeleiteten Seite über den Erfolg seiner Erstellung benachrichtigt |
-
-| Extensions  | Step | Branching Action | 
-| ------------- | ------------- | ------------- |
-|  | 1a | Fakultät kann keiner Universität zugeordnet werden, weil keine zugehörige Universität vorhanden ist. |
-|  | 1a.1 | Benutzer kann die zugehörige Ressource Universität anlegen. |
-
-<br>
-
-| | | 
-| ------------- | ------------- | ------------- |
-| **USE CASE # 3** | Registration eines Users | 
+| **USE CASE # 2** | Registration eines Users | 
 | Goal in Context | Erstellen eines Users als Interaktionsobjekt mit dem Server |  
 | Scope & Level | Userregistration |
 | Preconditions | <ul><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li></ul>|
@@ -152,7 +129,7 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | | | 
 | ------------- | ------------- | ------------- |
-| **USE CASE # 4** | Login eines Users | 
+| **USE CASE # 3** | Login eines Users | 
 | Goal in Context | Login eines Users als Interaktionsobjekt mit dem Server |  
 | Scope & Level | User-Login |
 | Preconditions | <ul><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li><li>User ist bereits registriert</li></ul>|
@@ -172,6 +149,34 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 |  | 1a.1 | User wird benachrichtigt, dass die Falscheingaben korrigiert werden müssen. |
 
 <br>
+
+**Teils-implementierte Use-Cases:**<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 4** | Fakultät erstellen | 
+| Goal in Context | Erstellen einer Fakultät für den Webdienst |  
+| Scope & Level | Fakultätsverwaltung |
+| Preconditions | <ul><li>Zugehörige Universität vorhanden</li><li>Fakultät als Ressource noch nicht vorhanden</li><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li></ul>|
+| Success End Condition | Ressource Fakultät wurde neu angelegt |
+| Failed End Condition | Anlegen der Ressource Fakultät fehlgeschlagen |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer gibt<ul><li>den Namen,</li><li>den Standort,</li><li>die Stadt und</li><li>die Website</li></ul>der Fakultät im entsprechenden Feld ein | 
+|  | 2 | Benutzer aktiviert den Speichern-Button und schickt seine Daten an die Server-Datenbank | 
+|  | 2a | Benutzer aktiviert den Zurücksetzen-Button, um den Inhalt aller Felder zu löschen (zurück zu Step 1) | 
+|  | 3 | Benutzer wird auf der weitergeleiteten Seite über den Erfolg seiner Erstellung benachrichtigt |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 1a | Fakultät kann keiner Universität zugeordnet werden, weil keine zugehörige Universität vorhanden ist. |
+|  | 1a.1 | Benutzer kann die zugehörige Ressource Universität anlegen. |
+
+<br>
+
+**Noch zu implementierende Use-Cases:**<br>
 
 | | | 
 | ------------- | ------------- | ------------- |
@@ -308,14 +313,14 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 | | DELETE | Löscht einen bestimmten Gruppen-Task | application/json | application/json |
 
 ##Datenhaltung
-Bei der Entscheidung, welches Austauschformat wir verwenden sollen, fiel die Wahl auf JSON (*JavaScript Object Notation*). Im Gegensatz zum komplexen XML-Format hat JSON-Format eine kompaktere, besser strukturierte Syntax und dadurch eine geringere Dateigröße. Erst nach Erzeugung eines DOM-Baums aus einem XML-Dokument ist der Zugriff auf die Knoten gegeben und diese müssen meist mehrmals verwendet werden, was zusätzlich zu unnötigem Schreibaufwand führt. JSON stellt Daten in einer überschaubaren Liste dar, die sich geschickter verwalten lässt, auch weil man auf einfache Weise auf dessen Attribute zugreifen kann. Das Parsen von JSON-Daten mithilfe der AJAX-Technologie geht außerdem um einiges schneller. Ein Grund mehr ist, dass sich JSON mittlerweile in vielen weiteren Programmiersprachen etabliert hat.
+Bei der Entscheidung, welches Austauschformat verwendet werden soll, fiel die Wahl auf JSON (*JavaScript Object Notation*). Im Gegensatz zum komplexen XML-Format hat JSON-Format eine kompaktere, besser strukturierte Syntax und dadurch eine geringere Dateigröße. Erst nach Erzeugung eines DOM-Baums aus einem XML-Dokument ist der Zugriff auf die Knoten gegeben und diese müssen meist mehrmals verwendet werden, was zusätzlich zu unnötigem Schreibaufwand führt. JSON stellt Daten in einer überschaubaren Liste dar, die sich geschickter verwalten lässt, auch weil man auf einfache Weise auf dessen Attribute zugreifen kann. Das Parsen von JSON-Daten mithilfe der AJAX-Technologie geht außerdem um einiges schneller. Ein Grund mehr ist, dass sich JSON mittlerweile in vielen weiteren Programmiersprachen etabliert hat.
 
-Die Datenspeicherung erfolgt über Redis (*REmote DIctionary Server*), weil sie als In-Memory-Datenbank den Arbeitsspeicher eines Computers nutzt und somit wesentlich schneller arbeiten kann. Die Key-Value-Speicherung sorgt in unserem Fall für eine einfachere Handhabung, da die Struktur unserer Daten nicht besonders komplex ist.
+Die Datenspeicherung erfolgt über Redis (*REmote DIctionary Server*), weil sie als In-Memory-Datenbank den Arbeitsspeicher eines Computers nutzt und somit wesentlich schneller arbeiten kann. Die Key-Value-Speicherung sorgt in diesem Fall für eine einfachere Handhabung, da die Struktur der Daten nicht besonders komplex ist.
 
 ##Dienstnutzer
-Nachdem der Dienstnutzer sich eingeloggt hat, kann er die Ressource http://localhost:3001/dashboard nutzen. Aus Zeitgründen konnten wir kein ausgearbeitetes Login-System implementieren, das Sicherheit und Privatsphäre garantiert, deshalb sind ebenso andere, nicht öffentliche Ressourcen, wie http://localhost:3001/tasks und http://localhost:3001/gruppen, durch explizite Suche einsehbar.
+Nachdem der Dienstnutzer sich eingeloggt hat, kann er die Ressource http://localhost:3001/dashboard nutzen. Aus Zeitgründen konnte kein ausgearbeitetes Login-System implementiert werden, dass Sicherheit und Privatsphäre garantiert, deshalb sind ebenso andere, nicht öffentliche Ressourcen, wie http://localhost:3001/tasks und http://localhost:3001/gruppen, durch explizite Suche einsehbar.
 
-###Zu Use Case 1, 2 und 3
+###Zu Use Case 1, 2 und 4
 Zunächst muss eine Universität angelegt werden, um die dazugehörigen Ressourcen Fakultät, Studiengänge (courses) und Module (subjects) erstellen zu können. 
 
 Alle Felder der HTML-Formulare sind Pflichteingabefelder. Ob ein Feld ausgefüllt wurde, wird durch das required-Attribut im input-Tag überprüft (Auszug aus *university.ejs*):
@@ -360,7 +365,7 @@ $.ajax({
             })
 ```
 
-###Zu Use Case 4
+###Zu Use Case 3
 ...
 
 ###Zu Use Case 5
