@@ -11,7 +11,6 @@ var users = require ('./routes/registration');
 var universities = require ('./routes/university');
 var login = require ('./routes/login');
 var dashboard = require ('./routes/dashboard');
-var faculty = require ('./routes/faculty');
 var session = require ('client-sessions');
 var app = express ();
 
