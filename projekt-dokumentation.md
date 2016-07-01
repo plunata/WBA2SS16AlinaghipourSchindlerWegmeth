@@ -55,7 +55,20 @@ Es stehen folgende Funktionalitäten zur Auswahl:
 -	Gruppen
 -	Taskmanipulation
 
+**Universitätsverwaltung**<br>
+Es können Universitäten angelegt werden, um dazugehörige Fakultäten hinzuzufügen.
+
+**Fakultätsverwaltung**<br>
+Nachdem Universitäten angelegt wurden, können die Fakultäten der Universitäten gespeichert werden.
+
+**User-Registrierung**<br>
+Durch Eingabe der persönlichen Daten kann ein neuer User sich registrieren und fortan unseren Service nutzen.
+
+**User-Login**<br>
+Sobald ein User mit seinen Nutzerdaten eingeloggt ist, kann er alle nachfolgenden Funktionalitäten nutzen.
+
 **Dashboard:**<br>
+Nach dem Login des Users wird dieser auf sein personalisiertes Dashboard weitergeleitet, welches eine Übersicht über seine (Gruppen-)Tasks darstellt.
 
 **Thematische, modulbezogene Newsfeeds:**<br>
 Mithilfe dieser Funktion hat der User die Möglichkeit, Neuigkeiten zu den Modulen zu erhalten, die er abonniert hat. 
@@ -66,6 +79,7 @@ Beitrittsanfrage senden. Jedes Gruppenmitglied kann Tasks erstellen, die zu eine
 entweder als offen oder erledigt markiert werden können. 
 
 **Tasks:**<br>
+Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zugeteilt werden können. Bei der Task-Erstellung kann ein Titel, eine Task-Beschreibung und eine Deadline angegeben werden. Tasks können markiert werden, ob sie "In Arbeit" oder "Erledigt" sind.
 
 ##Use Cases
 
@@ -223,18 +237,18 @@ entweder als offen oder erledigt markiert werden können.
 
 
 ##Dienstanbieter
-###Ressourcen und Parameter
+###Ressourcen, Parameter und deren Umsetzung
 <ul>
-<li>User</li>
-<li>Login</li>
-<li>Fakultäten</li>
-<li>Studiengänge</li>
-<li>Semester</li>
-<li>Module</li>
-<li>Gruppen</li>
-<li>Tasks</li>
-<li>Newsfeeds</li>
-<li>Dashboard</li>
+- [x]<li>User</li>
+- [x]<li>Login</li>
+- [x]<li>Fakultäten</li>
+- [ ]<li>Studiengänge</li>
+- [ ]<li>Semester</li>
+- [ ]<li>Module</li>
+- [x]<li>Gruppen</li>
+- [x]<li>Tasks</li>
+- [ ]<li>Newsfeeds</li>
+- [x]<li>Dashboard</li>
 </ul>
 
 ###REST-Spezifikation (Routes)
@@ -292,9 +306,9 @@ entweder als offen oder erledigt markiert werden können.
 | | DELETE | Löscht einen bestimmten Gruppen-Task | application/json | application/json |
 
 ##Datenhaltung
-Bei der Entscheidung, welches Austauschformat wir verwenden sollen, fiel die Wahl auf JSON (**JavaScript Object Notation**). Im Gegensatz zum komplexen XML-Format hat JSON-Format eine kompaktere, besser strukturierte Syntax und dadurch eine geringere Dateigröße. Erst nach Erzeugung eines DOM-Baums aus einem XML-Dokument ist der Zugriff auf die Knoten gegeben und diese müssen meist mehrmals verwendet werden, was zusätzlich zu unnötigem Schreibaufwand führt. JSON stellt Daten in einer überschaubaren Liste dar, die sich geschickter verwalten lässt, auch weil man auf einfache Weise auf dessen Attribute zugreifen kann. Das Parsen von JSON-Daten mithilfe der AJAX-Technologie geht außerdem um einiges schneller. Ein Grund mehr ist, dass sich JSON mittlerweile in vielen weiteren Programmiersprachen etabliert hat.
+Bei der Entscheidung, welches Austauschformat wir verwenden sollen, fiel die Wahl auf JSON (*JavaScript Object Notation*). Im Gegensatz zum komplexen XML-Format hat JSON-Format eine kompaktere, besser strukturierte Syntax und dadurch eine geringere Dateigröße. Erst nach Erzeugung eines DOM-Baums aus einem XML-Dokument ist der Zugriff auf die Knoten gegeben und diese müssen meist mehrmals verwendet werden, was zusätzlich zu unnötigem Schreibaufwand führt. JSON stellt Daten in einer überschaubaren Liste dar, die sich geschickter verwalten lässt, auch weil man auf einfache Weise auf dessen Attribute zugreifen kann. Das Parsen von JSON-Daten mithilfe der AJAX-Technologie geht außerdem um einiges schneller. Ein Grund mehr ist, dass sich JSON mittlerweile in vielen weiteren Programmiersprachen etabliert hat.
 
-Die Datenspeicherung erfolgt über Redis (REmote DIctionary Server), weil sie als In-Memory-Datenbank den Arbeitsspeicher eines Computers nutzt und somit wesentlich schneller arbeiten kann. Die Key-Value-Speicherung sorgt in unserem Fall für eine einfachere Handhabung, da die Struktur unserer Daten nicht besonders komplex ist.
+Die Datenspeicherung erfolgt über Redis (*REmote DIctionary Server*), weil sie als In-Memory-Datenbank den Arbeitsspeicher eines Computers nutzt und somit wesentlich schneller arbeiten kann. Die Key-Value-Speicherung sorgt in unserem Fall für eine einfachere Handhabung, da die Struktur unserer Daten nicht besonders komplex ist.
 
 ##Dienstnutzer
 Nachdem der Dienstnutzer sich eingeloggt hat, kann er die Ressource http://localhost:3001/dashboard nutzen. Aus Zeitgründen konnten wir kein ausgearbeitetes Login-System implementieren, das Sicherheit und Privatsphäre garantiert, deshalb sind ebenso andere, nicht öffentliche Ressourcen, wie http://localhost:3001/tasks und http://localhost:3001/gruppen, durch explizite Suche einsehbar.
@@ -355,6 +369,13 @@ $.ajax({
 
 ###Zu Use Case 7
 ...
+
+###Weiteres Vorgehen
+Folgende Eigenschaften unserer Anwendung werden in der nächsten Bearbeitungsphase implementiert:
+<ul>
+<li>Query-Parameter: Gruppensuche</li>
+<li>Listenressource: Newsfeeds</li>
+</ul>
 
 ##Unvollständiges, Irrwege, Probleme oder Lösungsansätze bei der Umsetzung
 
