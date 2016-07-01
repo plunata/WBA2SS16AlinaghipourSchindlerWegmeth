@@ -250,4 +250,53 @@ entweder als offen oder erledigt markiert werden können.
 Nachdem der Dienstnutzer sich eingeloggt hat, kann er die Ressource http://localhost:3001/dashboard nutzen. Aus Zeitgründen konnten wir kein ausgearbeitetes Login-System implementieren, das Sicherheit und Privatsphäre garantiert, deshalb sind ebenso andere, nicht öffentliche Ressourcen, wie http://localhost:3001/tasks und http://localhost:3001/gruppen, durch explizite Suche einsehbar.
 
 ##Zu Use Case 1 & 2
-Der 
+Zunächst muss eine Universität angelegt werden, um die dazugehörigen Ressourcen Fakultät, Studiengänge (courses) und Module (subjects) erstellen zu können. 
+
+Alle Felder des HTML-Formulars sind Pflichteingabefelder. Ob ein Feld ausgefüllt wurde, wird durch das required-Attribut im input-Tag überprüft:
+```html
+<div class = "input-group">
+    <label for = "site">Website:</label>
+    <br>
+    <input class = "form-control" maxlength="50" name="webseite" size="45" type="url" required />
+</div>
+```
+Sobald der "Registrieren"-Button aktiviert wird, wird die Überprüfung via JavaScript durchgeführt. Im Fehlerfall erscheint unter den Buttons eine Fehlermeldung in roter Schriftfarbe:
+```javascript
+ $(document).ready(function () {
+        $("#submitbtn").on('click', function () {
+            $("label").css("color", "black");
+            var failed = 0;
+            $('input, select').filter('[required]:visible').each(function () {
+                if ($(this).val() == '') {
+                    var label = $(this).attr('name');
+                    $("label[for='" + label + "']").css("color", "red");
+                    failed = 1;
+                }
+            });
+            if (failed) {
+                $('#message').html("<span class='error'>Bitte Pflichfelder ausfüllen!");
+                return;
+            }
+```
+
+##Zu Use Case 3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
