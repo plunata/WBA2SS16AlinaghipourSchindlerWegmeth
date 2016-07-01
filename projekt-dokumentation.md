@@ -46,8 +46,10 @@ Kennwort, eine eMail-Addresse und weitere Pflichtangaben (s. Use Case Nr. ?) not
 die Startseite in Form eines Dashboards. 
 
 Es stehen folgende Funktionalitäten zur Auswahl:
+-	Dashboard
 -	thematische, modulbezogene Newsfeeds
 -	Gruppen
+-	Tasks
 
 **Thematische, modulbezogene Newsfeeds:**<br>
 Mithilfe dieser Funktion hat der User die Möglichkeit, Neuigkeiten zu den Modulen zu erhalten, die er abonniert hat. 
@@ -99,6 +101,117 @@ entweder als offen oder erledigt markiert werden können.
 | ------------- | ------------- | ------------- |
 |  | 2a | Fakultät kann keiner Universität zugeordnet werden, weil keine zugehörige Universität vorhanden ist. |
 |  | 2a.1 | Benutzer kann die zugehörige Ressource Universität anlegen. |
+
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 3** | Registration eines Users | 
+| Goal in Context | Erstellen eines Users als Interaktionsobjekt mit dem Server |  
+| Scope & Level | Userregistration |
+| Preconditions | <ul><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li></ul>|
+| Success End Condition | Ein neuer User wird in der Datenbank angelegt |
+| Failed End Condition | User konnte sich nicht registrieren |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer gibt<ul><li>das Geschlecht,</li><li>den Vornamen,</li><li>den Nachnamen,</li><li>sein persönliches Passwort,</li><li>sein Github-Repository und </li><li>seine Expertise</li></ul>im entsprechenden Feld ein | 
+|  | 2 | Benutzer aktiviert den Registrieren-Button und schickt seine Daten an die Server-Datenbank | 
+|  | 2a | Benutzer aktiviert den Eingabe löschen-Button, um den Inhalt aller Felder zu löschen (zurück zu Step 1) | 
+|  | 3 | Benutzer wird auf der weitergeleiteten Seite über den Erfolg seiner Erstellung benachrichtigt |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User hat keine gültigen Eingaben (z. B. E-Mail Format) eingegeben. |
+|  | 2a.1 | User wird benachrichtigt das er Falscheingaben korrigieren soll. |
+
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 4** | Login eines Users | 
+| Goal in Context | Login eines Users als Interaktionsobjekt mit dem Server |  
+| Scope & Level | User-Login |
+| Preconditions | <ul><li>Nutzer befindet sich mithilfe eines internetfähigen Webbrowsers in der Webanwendung</li><li>User ist bereits registriert</li></ul>|
+| Success End Condition | Ein User hat sich erfolgreich eingeloggt |
+| Failed End Condition | User konnte sich nicht einloggen |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer gibt seine Login-Daten, also <ul><li>E-Mail und</li><li>Passwort</li></ul>im entsprechenden Feld ein | 
+|  | 2 | Benutzer aktiviert den Login-Button und schickt seine Daten an die Server-Datenbank | 
+|  | 3 | Benutzer wird auf sein Dashboard weitergeleitet |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User hat keine gültigen Eingaben (z. B. E-Mail Format) gemacht. |
+|  | 2a.1 | User wird benachrichtigt, dass die Falscheingaben korrigiert werden müssen. |
+
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 5** | Hinzufügen eines Tasks zur Taskliste. | 
+| Goal in Context | Erfolgreiche Bearbeitung sowie asynchrone Benachrichtigungen zu Tasks |  
+| Scope & Level | Taskmanipulation |
+| Preconditions | <ul><li>Es wurden bereits Tasks vom Benutzer angelegt</li><li>Optional für asynchrone Operationen wurde einem Task eine Deadline beigefügt </li></ul>|
+| Success End Condition | Benutzer hat eine Übersicht von seinen Tasks. |
+| Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer erstellt einen Task. | 
+|  | 1a | Benutzer fügt dem Task eine Deadline bei und wird benachrichtigt, sobald sich diese nähert (Asynchrone Operation). | 
+|  | 2 | Benutzer speichert seinen Task ab. | 
+|  | 3 | Benutzer wird auf der weitergeleiteten Seite über seine erstellten Tasks benachrichtigt. |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User lässt das Eingabefeld frei. |
+|  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
+
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 6** | Auswahl einer Gruppe | 
+| Goal in Context | Ein User ist erfolgreich einer Gruppe beigetreten |  
+| Scope & Level | User Goal Gruppenbeitritt |
+| Preconditions | <ul><li></li></ul>|
+| Success End Condition | Benutzer hat einen Übersicht über seine Tasks. |
+| Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | Benutzer erstellt einen Task. | 
+|  | 1a | Benutzer fügt dem Task eine Deadline bei und wird benachrichtigt, sobald sich diese nähert (Asynchrone Operation). | 
+|  | 2 | Benutzer speichert seinen Task ab. | 
+|  | 3 | Benutzer wird auf der weitergeleiteten Seite über seine erstellten Tasks benachrichtigt. |
+
+| Extensions  | Step | Branching Action | 
+| ------------- | ------------- | ------------- |
+|  | 2a | User lässt das Eingabefeld frei. |
+|  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
+
+<br>
+
+| | | 
+| ------------- | ------------- | ------------- |
+| **USE CASE # 7** | Anzeigen von Tasks im Dashboard | 
+| Goal in Context | Ein User hat eine Task-Übersicht |  
+| Scope & Level | Dashboard-View |
+| Preconditions | <ul><li>Der User ist eingeloggt</li><li>Es wurden bereits Tasks vom Benutzer angelegt</li><li>Optional für asynchrone Operationen wurde einem Task eine Deadline beigefügt </li></ul>|
+| Success End Condition | Benutzer hat eine Übersicht von seinen Tasks. |
+| Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
+| Primary Actor | Student |
+
+| Description  | Step | Action | 
+| ------------- | ------------- | ------------- |
+|  | 1 | ... | 
+
 
 ##Dienstanbieter
 ###REST-Spezifikation (Routes)
@@ -154,3 +267,88 @@ entweder als offen oder erledigt markiert werden können.
 | | POST | Fügt einen neuen Task in einer bestimmten Gruppe hinzu | application/json | application/json |
 | | PUT | Aktualisiert Informationen eines bestimmten Gruppen-Tasks | application/json | application/json |
 | | DELETE | Löscht einen bestimmten Gruppen-Task | application/json | application/json |
+
+###Ressourcen und Parameter
+
+
+##Dienstnutzer
+Nachdem der Dienstnutzer sich eingeloggt hat, kann er die Ressource http://localhost:3001/dashboard nutzen. Aus Zeitgründen konnten wir kein ausgearbeitetes Login-System implementieren, das Sicherheit und Privatsphäre garantiert, deshalb sind ebenso andere, nicht öffentliche Ressourcen, wie http://localhost:3001/tasks und http://localhost:3001/gruppen, durch explizite Suche einsehbar.
+
+##Zu Use Case 1, 2 und 3
+Zunächst muss eine Universität angelegt werden, um die dazugehörigen Ressourcen Fakultät, Studiengänge (courses) und Module (subjects) erstellen zu können. 
+
+Alle Felder der HTML-Formulare sind Pflichteingabefelder. Ob ein Feld ausgefüllt wurde, wird durch das required-Attribut im input-Tag überprüft (Auszug aus *university.ejs*):
+```html
+<div class = "input-group">
+    <label for = "site">Website:</label>
+    <br>
+    <input class = "form-control" maxlength="50" name="webseite" size="45" type="url" required />
+</div>
+```
+Sobald der "Registrieren"-Button aktiviert wird, wird die Überprüfung via JavaScript durchgeführt. Im Fehlerfall erscheint unter den Buttons eine Fehlermeldung in roter Schriftfarbe (Auszug aus *university.ejs*):
+```javascript
+ $(document).ready(function () {
+        $("#submitbtn").on('click', function () {
+            $("label").css("color", "black");
+            var failed = 0;
+            $('input, select').filter('[required]:visible').each(function () {
+                if ($(this).val() == '') {
+                    var label = $(this).attr('name');
+                    $("label[for='" + label + "']").css("color", "red");
+                    failed = 1;
+                }
+            });
+            if (failed) {
+                $('#message').html("<span class='error'>Bitte Pflichfelder ausfüllen!");
+                return;
+            }
+```
+Weil Interaktionen zwischen dem Browser und dem Server beeinflusst wird von HTTP-Protokollen, müssen die Daten eines Formulars durch einen standardisierten HTTP-Request an den Server geschickt werden (Auszug aus *university.ejs*):
+```ajax
+$.ajax({
+                url: 'http://localhost:3001/university', // url where to submit the request
+                type: "POST", // type of action POST || GET
+                data: $("#uniReg").serialize(),
+                success: function (result) {
+                    $('#message').html(result);
+                },
+                error: function (xhr, resp, text) {
+                    $('#message').html(text);
+                    console.log(text);
+                }
+            })
+```
+
+##Zu Use Case 4
+...
+
+##Zu Use Case 5
+...
+
+##Zu Use Case 6
+...
+
+##Zu Use Case 7
+...
+
+##Unvollständiges, Irrwege, Probleme oder Lösungsansätze bei der Umsetzung
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
