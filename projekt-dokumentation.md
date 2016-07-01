@@ -121,8 +121,8 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | Extensions  | Step | Branching Action | 
 | ------------- | ------------- | ------------- |
-|  | 2a | Fakultät kann keiner Universität zugeordnet werden, weil keine zugehörige Universität vorhanden ist. |
-|  | 2a.1 | Benutzer kann die zugehörige Ressource Universität anlegen. |
+|  | 1a | Fakultät kann keiner Universität zugeordnet werden, weil keine zugehörige Universität vorhanden ist. |
+|  | 1a.1 | Benutzer kann die zugehörige Ressource Universität anlegen. |
 
 <br>
 
@@ -145,8 +145,8 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | Extensions  | Step | Branching Action | 
 | ------------- | ------------- | ------------- |
-|  | 2a | User hat keine gültigen Eingaben (z. B. E-Mail Format) eingegeben. |
-|  | 2a.1 | User wird benachrichtigt das er Falscheingaben korrigieren soll. |
+|  | 1a | User hat keine gültigen Eingaben (z. B. E-Mail Format) eingegeben. |
+|  | 1a.1 | User wird benachrichtigt das er Falscheingaben korrigieren soll. |
 
 <br>
 
@@ -168,8 +168,8 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | Extensions  | Step | Branching Action | 
 | ------------- | ------------- | ------------- |
-|  | 2a | User hat keine gültigen Eingaben (z. B. E-Mail Format) gemacht. |
-|  | 2a.1 | User wird benachrichtigt, dass die Falscheingaben korrigiert werden müssen. |
+|  | 1a | User hat keine gültigen Eingaben (z. B. E-Mail Format) gemacht. |
+|  | 1a.1 | User wird benachrichtigt, dass die Falscheingaben korrigiert werden müssen. |
 
 <br>
 
@@ -192,32 +192,34 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | Extensions  | Step | Branching Action | 
 | ------------- | ------------- | ------------- |
-|  | 2a | User lässt das Eingabefeld frei. |
-|  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
+|  | 1a | User lässt das Eingabefeld frei. |
+|  | 1a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
 
 <br>
 
 | | | 
 | ------------- | ------------- | ------------- |
-| **USE CASE # 6** | Auswahl einer Gruppe | 
+| **USE CASE # 6** | Beitritt einer Gruppe | 
 | Goal in Context | Ein User ist erfolgreich einer Gruppe beigetreten |  
 | Scope & Level | User Goal Gruppenbeitritt |
-| Preconditions | <ul><li></li></ul>|
-| Success End Condition | Benutzer hat einen Übersicht über seine Tasks. |
-| Failed End Condition | Es sind keine Tasks vorhanden oder alle Tasks wurden abgearbeitet und sind als "erledigt" markiert. |
+| Preconditions | <ul><li>User ist eingeloggt</li><li>User hat eine Liste von Gruppen</li><li>User hat eine Gruppenbeitritts-Anfrage gesendet</li><li>Gruppenbeitritts-Anfrage ging an eine Gruppe, die dem Studiengang und den vorgegebenen Modulen des Users entspricht</li></ul>|
+| Success End Condition | Gruppenbeitritt ist erfolgt |
+| Failed End Condition | Die Gruppenbeitritts-Anfrage wurde an eine Gruppe eines Moduls geschickt, die nicht passend zum Studiengang des Users ist |
 | Primary Actor | Student |
 
 | Description  | Step | Action | 
 | ------------- | ------------- | ------------- |
-|  | 1 | Benutzer erstellt einen Task. | 
-|  | 1a | Benutzer fügt dem Task eine Deadline bei und wird benachrichtigt, sobald sich diese nähert (Asynchrone Operation). | 
-|  | 2 | Benutzer speichert seinen Task ab. | 
-|  | 3 | Benutzer wird auf der weitergeleiteten Seite über seine erstellten Tasks benachrichtigt. |
+|  | 1 | User gibt ein Modul im Suchfeld ein | 
+|  | 2 | User schickt die Suchanfrage ab durch Aktivierung des Submit-Buttons |
+|  | 3 | User wählt eine Gruppe aus der Liste und Aktiviert den "Gruppenbeitritts-Anfrage senden"-Button |
+|  | 4 | Nach Bestätigung der Gruppenbeitritts-Anfrage des Gruppen-Admins ist User ein Mitglied der Gruppe |
 
 | Extensions  | Step | Branching Action | 
 | ------------- | ------------- | ------------- |
-|  | 2a | User lässt das Eingabefeld frei. |
-|  | 2a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
+|  | 1a | User lässt das Eingabefeld frei. |
+|  | 1a.1 | User wird benachrichtigt, dass er das Eingabefeld befüllen muss. |
+|  | 2a | User stellt eine Anfrage an eine Gruppe, die nicht zu seinem Studiengang passt. |
+|  | 2a.1 | User wird benachrichtigt, dass er ein anderes Modul bzw. eine andere Gruppe wählen muss. |
 
 <br>
 
