@@ -1,0 +1,79 @@
+<% include standards/header %>
+
+<form id="subReg" enctype="application/json">
+    
+     <div class = "input-group">
+        <label for = "zugehoerigeUniversitaet">Zugehörige Universität:</label>
+        <br>
+        <select name="zugehoerigeUniversitaet" class = "form-control">
+            <option value="0">Bitte wählen</option>
+            
+            <% for(var i=0; i<uni.length; i++) { %>
+            <option value="<%  uni.id  %>"><% uni.name  %></option>
+            <% } %>
+
+         </select>
+    </div>
+    
+         <div class = "input-group">
+        <label for = "zugehoerigeFakultaet">Zugehörige Fakultät:</label>
+        <br>
+        <select name="zugehoerigeFakultaet" class = "form-control">
+            <option value="0">Bitte wählen</option>
+            
+            <% for(var i=0; i<faculty.length; i++) { %>
+            <option value="<%  faculty.id  %>"><% faculty.name  %></option>
+            <% } %>
+
+         </select>
+    </div>
+    
+<br>        
+            
+    <div class = "input-group">
+        <label for = "name">Name:</label>
+        <br>
+        <input class = "form-control" maxlength="50" name="subjectName" size="45" type="text"/>
+    </div>
+    <br>
+
+    <div class="input-group ctrbtn">
+        <input class="form-control" type="button" id="submitbtn" value="Modul anlegen"/>
+        <input class="form-control" type="reset" form="facReg" value="Eingaben löschen" onClick="clear();">
+    </div>
+
+</form>
+
+<script>
+    $(document).ready(function () {
+        $("#submitbtn").on('click', function () {
+            $("label").css("color", "black");
+            var failed = 0;
+            $('input, select').filter('[required]:visible').each(function () {
+                if ($(this).val() == '') {
+                    var label = $(this).attr('name');
+                    $("label[for='" + label + "']").css("color", "red");
+                    failed = 1;
+                }
+            });
+            if (failed) {
+                $('#message').html("<span class='error'>Bitte Pflichfelder ausfüllen!");
+                return;
+            }
+            $.ajax({
+                url: 'http://localhost:3001/subject', // url where to submit the request
+                type: "POST", // type of action POST || GET
+                data: $("#facReg").serialize(),
+                success: function (result) {
+                    $('#message').html(result);
+                },
+                error: function (xhr, resp, text) {
+                    $('#message').html(text);
+                    console.log(text);
+                }
+            })
+        });
+    });
+</script>
+        
+<% include footer %>
