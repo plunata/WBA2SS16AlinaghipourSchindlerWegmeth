@@ -6,12 +6,14 @@ var logger = require ('morgan');
 var cookieParser = require ('cookie-parser');
 var bodyParser = require ('body-parser');
 var http = require ('http');
+var session = require ('client-sessions');
 
 var users = require ('./routes/registration');
 var universities = require ('./routes/university');
 var login = require ('./routes/login');
 var dashboard = require ('./routes/dashboard');
-var session = require ('client-sessions');
+var user = require ('./routes/user');
+
 var app = express ();
 
 // view engine setup
@@ -43,16 +45,14 @@ app.post ('/login', function (req, res, next) {
             "Content-Type": "application/json"
         }
     };
-    request ('http://127.0.0.1:3000/user', function (error, response, body) {
+    request ('http://127.0.0.1:3000/user?email=' + loginData.email, function (error, response, body) {
         if (!error && response.statusCode == 200) {
             var users = JSON.parse (body);
             users.forEach (function (user) {
-                if (user.email == loginData.email) {
-                    if (user.password == loginData.password) {
-                        req.userData.user = JSON.stringify (user);
-                        next ();
-                        return true;
-                    }
+                if (user.password == loginData.password) {
+                    req.userData.user = JSON.stringify (user);
+                    next ();
+                    return true;
                 }
             });
         }
@@ -70,6 +70,7 @@ app.use ('/registration', users);
 app.use ('/university', universities);
 app.use ('/login', login);
 app.use ('/dashboard', dashboard);
+app.use ('/user', user);
 
 
 // catch 404 and forward to error handler
