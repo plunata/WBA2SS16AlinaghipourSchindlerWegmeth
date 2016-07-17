@@ -34,6 +34,7 @@ module.exports = {
                 })
 
                 if (Object.keys (req.query).length == 0) {
+                    res.json (object);
                     return;
                 }
 
