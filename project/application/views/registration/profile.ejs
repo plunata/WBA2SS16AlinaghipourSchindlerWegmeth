@@ -1,0 +1,48 @@
+<h2>Deine Daten</h2>
+
+<form id="profile" enctype="application/json">
+
+    <div class="input-group">
+        <label for="firstname">Vorname</label> <br>
+        <input class="form-control" maxlength="50" name="firstname" size="45" type="text" required/><br>
+    </div>
+
+    <div class="input-group">
+        <label for="lastname">Nachname</label> <br>
+        <input class="form-control" maxlength="50" name="lastname" size="45" type="text" required/><br>
+    </div>
+
+    <div class="input-group">
+        <label for="password">Passwort</label> <br>
+        <input class="form-control" id="pass1" maxlength="50" name="password" size="45" type="password"
+               required/><br>
+    </div>
+
+    <div class="input-group">
+        <label for="email">E-mail</label> <br>
+        <input class="form-control" name="email" type="email" size="45" type="email" required/><br>
+    </div>
+
+    <div class="input-group">
+        <label for="repository">Repository</label> <br>
+        <input class="form-control" name="repository" size="45" type="text" value="http://github.com/"
+               required/><br>
+    </div>
+    <div class="input-group">
+        <label>Rolle</label><br>
+        <select class="form-control" name="rule" required>
+            <option value="">Bitte wählen</option>
+            <option value="developer">Programmierer</option>
+            <option value="author">Dokumentierer</option>
+            <option value="organisator">Leiter</option>
+            <option value="designer">Designer</option>
+        </select>
+    </div>
+
+    <div class="input-group ctrbtn">
+        <input class="form-control" type="button" id="submitProfile" value="weiter"/>
+    </div>
+
+</form>
+
+<div id="message"></div>

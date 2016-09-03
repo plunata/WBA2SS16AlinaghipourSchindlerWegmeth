@@ -1,0 +1,19 @@
+<% include standards/header %>
+<% include standards/navigation.ejs %>
+
+<div class="container">
+    <h1><%= title %></h1>
+    <div class="col-md-12">
+
+        <ul>
+            <% for(var i = 0; i < groups.length; i++) { %>
+            <li>
+                <a href="http://localhost:3001/dashboard/group/<%= groups[i].id %>"><%= groups[i].name %></a>
+            </li>
+            <% } %>
+        </ul>
+
+    </div>
+</div>
+
+<% include standards/footer %>

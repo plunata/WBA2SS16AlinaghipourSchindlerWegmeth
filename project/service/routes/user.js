@@ -28,7 +28,6 @@ router.put('/:id', function(req,res) {
 });
 
 router.delete('/:id', function(req, res) {
-  res.status(501).type('text').send('Das löschen einer Universität ist nicht Möglich. Das löschen einer Universität bringt zu viele Folgen ' +
-      'mit sich (Fakultäten, Kurse, Gruppen, Aufgaben würden verloren gehen');
+  res.status(501).type('text').send('löschen nicht möglich');
 });
 module.exports = router;

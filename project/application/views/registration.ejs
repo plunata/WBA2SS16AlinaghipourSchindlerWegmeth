@@ -1,84 +1,120 @@
 <% include standards/header %>
 
-<form id="userform" enctype="application/json">
-    <div class="input-group">
-        <label for="name">Geschlecht</label><br>
-        <select name="geschlecht" class="form-control">
-            <option value="0">Bitte wählen</option>
-            <option value="m">Herr</option>
-            <option value="f">Frau</option>
-        </select><br>
-    </div>
-    <div class="input-group">
-        <label for="firstname">Vorname</label> <br>
-        <input  class="form-control" maxlength="50" name="firstname" size="45" type="text" required/><br>
-    </div>
-    <div class="input-group">
-        <label for="lastname">Nachname</label> <br>
-        <input class="form-control" maxlength="50" name="lastname" size="45" type="text" required/><br>
-    </div>
-    <div class="input-group">
-        <label for="password">Passwort</label> <br>
-        <input class="form-control" id="pass1" maxlength="50" name="password" size="45" type="password" required/><br>
-    </div>
-    <div class="input-group">
-        <label for="email">E-mail</label> <br>
-        <input class="form-control" name="email" type="email" size="45" type="email" required/><br>
+<div class="container">
+
+    <h1>Registrierung</h1>
+    <hr/>
+
+
+    <div id="view">
+        <% include registration/profile.ejs %>
     </div>
 
-    <div class="input-group">
-        <label for="repository">Repository</label> <br>
-        <input class="form-control" name="repository" size="45" type="text" value="http://github.com/" required/><br>
-    </div>
-    <div class="input-group">
-        <label>Rolle</label><br>
-        <select class="form-control" name="rule">
-            <option value="0">Bitte wählen</option>
-            <option value="1">Programmierer</option>
-            <option value="2">Dokumentierer</option>
-            <option value="3">Leiter</option>
-            <option value="4">Designer</option>
-        </select>
-    </div>
-    <div class="input-group ctrbtn">
-        <input class="form-control" type="button" id="submitbtn" value="Registrieren"/>
-        <input class="form-control" type="reset" form="userform" value="Eingaben löschen" onClick="clear();">
-    </div>
-
-</form>
-
-<div id="message"></div>
+</div>
 
 
 <script>
-    $(document).ready(function () {
-        $("#submitbtn").on('click', function () {
-            $("label").css("color", "black");
-            var failed = 0;
-            $('input, select').filter('[required]:visible').each(function () {
-                if ($(this).val() == '') {
-                    var label = $(this).attr('name');
-                    $("label[for='" + label + "']").css("color", "red");
-                    failed = 1;
-                }
-            });
 
-            if (failed) {
-                $('#message').html("<span class='error'>Bitte Pflichfelder ausfüllen!");
+    var userData = "";
+
+    $ ('#view').on ('click', '#submitUniData', function () {
+
+        if (validateForm ()) {
+            return;
+        }
+
+        userData += "&" + $ ('#uniForm').serialize ();
+
+        $.ajax ({
+
+            url: 'http://localhost:3001/registration', // url where to submit the request
+            type: "POST", // type of action POST || GET
+            data: userData,
+            success: function (result) {
+                $ ('#view').html (result);
+                window.setTimeout('window.location = "http://localhost:3001/login/"',2000);
+            },
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+            }
+        })
+
+    });
+
+    $ ('#submitProfile').click (function () {
+
+        if (validateForm ()) {
+            return;
+        }
+
+        userData = $ ('#profile').serialize ();
+
+        $.ajax ({
+
+
+            url: 'http://localhost:3001/registration/uniData', // url where to submit the request
+            type: "GET",
+            data: userData,
+            success: function (result) {
+                $ ('#view').html (result);
+            },
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+            }
+        })
+
+    });
+
+
+    function validateForm () {
+
+        $ ("label").css ("color", "black");
+        var failed = 0;
+        $ ('input, select').filter ('[required]:visible').each (function () {
+            if ($ (this).val () == '') {
+                var label = $ (this).attr ('name');
+                $ ("label[for='" + label + "']").css ("color", "red");
+                failed = 1;
+            }
+        });
+
+        if (failed) {
+            $ ('#message').html ("<span class='error'>Bitte Pflichfelder ausfüllen!");
+            return 1;
+        }
+
+        return 0;
+
+    }
+
+    function resetChild (name) {
+        $ ("#" + name).hide ();
+
+        if ($ (".form-control[name='" + name + "']").data ("child")) {
+            resetChild ($ (".form-control[name='" + name + "']").data ("child"));
+        }
+    }
+
+    $ (document).ready (function () {
+        $ ("#submitbtn").on ('click', function () {
+
+            if (validateForm ()) {
                 return;
             }
 
-            $.ajax({
+            $.ajax ({
+
+
                 url: 'http://localhost:3001/registration', // url where to submit the request
                 type: "POST", // type of action POST || GET
-                data: $("#userform").serialize(),
+                data: json,
                 success: function (result) {
-                    $('#message').html(result);
+                    $ ('#message').html (result);
                     window.location = "http://localhost:3001/";
                 },
                 error: function (xhr, resp, text) {
-                    $('#message').html(text);
-                    console.log(text);
+                    $ ('#message').html (text);
+                    console.log (text);
                 }
             })
         });

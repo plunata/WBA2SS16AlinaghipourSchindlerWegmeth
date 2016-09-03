@@ -8,14 +8,21 @@ var http = require ('http');
 var service = require ('../bin/serviceConnector');
 
 router.get ('/', function (req, res, next) {
+    if(req.userData.user){
+        res.redirect("/dashboard");
+        res.end;
+        return;
+    }
+
     res.render ('login', {title:  "login"});
     res.end();
 });
 
 router.post ('/', function (req, res) {
-    var reqData = req.body;
-    var users = [];
-    res.redirect("/dashboard");
+    console.log(req.userData.user);
+
+    if(req.userData.user)
+        res.redirect("/dashboard");
 
 });
 

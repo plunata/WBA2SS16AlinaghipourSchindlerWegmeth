@@ -1,0 +1,63 @@
+<% include standards/header %>
+<% include standards/navigation.ejs %>
+
+<div class="container">
+    <h1><%= title %></h1>
+    <div class="col-md-12">
+
+    <form id="group">
+
+        <div class="input-group">
+            <label for="course">Studiengang</label> <br>
+            <input class="form-control" id="course" name="course_id" size="45" type="text" value="<%= subject %>" disabled /> <br>
+        </div>
+
+        <div class="input-group">
+            <input class="form-control" id="course_id" name="course_id" size="45" type="hidden" value="<%= subject_id %>" disabled /> <br>
+        </div>
+
+        <div class="input-group">
+            <label for="name">Gruppen Name</label> <br>
+            <input class="form-control" id="name" maxlength="50" name="name" size="45" type="text"
+                   required/><br>
+        </div>
+
+        <div class="input-group">
+            <label for="size">Max. Teilnehmeranzahl</label> <br>
+            <input class="form-control" id="size" name="size"  type="number"
+                   required/><br>
+        </div>
+
+        <div class="input-group ctrbtn">
+            <input class="form-control" type="button" id="submit" value="Erstellen"/>
+        </div>
+
+    </form>
+
+    </div>
+</div>
+
+<script>
+
+    $( document ).ready(function(){
+        var course_id = $('#course_id').val();
+
+        $.ajax ({
+
+
+            url: 'http://localhost:3001/registration/uniData', // url where to submit the request
+            type: "GET",
+            data: course_id,
+            success: function (result) {
+                $ ('#view').html (result);
+            },
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+            }
+        })
+
+    });
+
+</script>
+
+<% include standards/footer %>

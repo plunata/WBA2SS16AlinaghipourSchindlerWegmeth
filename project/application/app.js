@@ -38,15 +38,10 @@ app.use (session ({
 app.post ('/login', function (req, res, next) {
     var loginData = req.body;
 
-    var options = {
-        host: "http://localhost:3000/user",
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    };
-    request ('http://127.0.0.1:3000/user?email=' + loginData.email, function (error, response, body) {
+    request ('http://localhost:3000/user?email=' + loginData.email, function (error, response, body) {
+
         if (!error && response.statusCode == 200) {
+
             var users = JSON.parse (body);
             users.forEach (function (user) {
                 if (user.password == loginData.password) {
@@ -55,7 +50,9 @@ app.post ('/login', function (req, res, next) {
                     return true;
                 }
             });
+
         }
+
     });
 });
 

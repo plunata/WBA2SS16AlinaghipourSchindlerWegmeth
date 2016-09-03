@@ -1,0 +1,90 @@
+<h2>Angaben zum Studium</h2>
+
+<form id="uniForm" enctype="application/json">
+
+    <div class="input-group">
+        <label>Hochschule</label><br>
+        <select class="form-control" name="university" data-child="faculty" required>
+            <option></option>
+            <% for(var i = 0; i < university.length; i++) { %>
+            <option value="<%= university[i].id %>"><%= university[i].name %></option>
+            <% } %>
+        </select>
+    </div>
+
+    <div class="input-group" id="faculty" style="display: none;">
+        <label>Fakultät</label><br>
+        <select class="form-control" name="faculty" data-child="course" required>
+            <option></option>
+        </select>
+    </div>
+
+    <div class="input-group" id="course" style="display: none;">
+        <label>Studiengang</label><br>
+        <select class="form-control" name="course" data-child="semester" required>
+            <option></option>
+        </select>
+    </div>
+
+    <div class="input-group" id="semester" style="display: none;">
+        <label>Semester</label><br>
+        <select class="form-control" name="semester" data-child="submitUniData" required>
+            <option></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+        </select>
+    </div>
+
+    <div class="input-group ctrbtn">
+        <input class="form-control" type="button" id="submitUniData" value="weiter" style="display: none;" />
+    </div>
+
+</form>
+
+<div id="message"></div>
+<script>
+
+
+    $ ('.form-control').change (function () {
+
+        var id = $ (this).val ();
+        var name = $ (this).attr ("name");
+        var child = $ (this).data ('child');
+
+        resetChild (child);
+
+
+        $ ('#' + child).show ();
+
+        var load = $ (".form-control[name='" + child + "']").data ('child');
+
+        if(!load){
+            return;
+        }
+
+        $.ajax ({
+            url: 'http://localhost:3001/registration/' + name + '/' + child, // url where to submit the request
+            type: "GET", // type of action POST || GET
+            data: {"uniId": id},
+            success: function (result) {
+                $ ('#message').html (result);
+
+
+                $ (".form-control[name='" + child + "']").html ("<option></option>");
+                $.each (result, function (i, l) {
+                    $ (".form-control[name='" + child + "']").append ("<option value='" + l.id + "'>" + l.name + "</option>");
+                });
+            },
+            async: true,
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+                console.log (text);
+            }
+        })
+
+    });
+</script>

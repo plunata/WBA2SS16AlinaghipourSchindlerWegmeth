@@ -2,17 +2,71 @@ var express = require ('express');
 var router = express.Router ();
 var request = require ('request');
 var async = require ('async');
-var app = express();
+var app = express ();
 var http = require ('http');
 
+router.get ('*', function (req, res, next) {
 
-/* GET home page. */
-router.get ('/', function (req, res, next) {
-    request ('http://127.0.0.1:3000/group', function (error, response, body) {
+    if (!req.userData.user) {
+
+        res.redirect ("/login");
+
+    }
+    else {
+
+        next ();
+
+    }
+
+});
+
+router.get ('/group/add', function (req, res, next) {
+
+    var uData = JSON.parse (req.userData.user);
+
+
+    request ('http://localhost:3000/course?id=' + uData.course, function (error, response, body) {
+
         if (!error && response.statusCode == 200) {
+
+            var course = JSON.parse (body);
+            res.render ('group_add', {title: 'Gruppe erstellen', subject : course[0].name , subject_id: course[0].id });
+
+        }
+
+    });
+
+
+});
+
+router.get ('/group/find', function (req, res, next) {
+
+
+    request ('http://127.0.0.1:3000/group', function (error, response, body) {
+
+        if (!error && response.statusCode == 200) {
+
+            var groups = JSON.parse (body);
+            res.render ('group_find', {title: 'Gruppe finden', "groups": groups});
+
+        }
+
+    });
+
+
+});
+
+router.get ('/', function (req, res, next) {
+
+    request ('http://127.0.0.1:3000/group', function (error, response, body) {
+
+        if (!error && response.statusCode == 200) {
+
             var groups = JSON.parse (body);
             res.render ('dashboard', {title: 'Dashboard', "groups": groups});
+
         }
+
     });
 });
 
