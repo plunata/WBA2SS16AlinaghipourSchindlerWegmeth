@@ -4,6 +4,7 @@ var request = require ('request');
 var async = require ('async');
 var app = express ();
 var http = require ('http');
+var service = require ('../bin/serviceConnector');
 
 router.get ('*', function (req, res, next) {
 
@@ -20,7 +21,16 @@ router.get ('*', function (req, res, next) {
 
 });
 
+router.post ('/group/add', function (req, res, next) {
+    callback = function (data) {
+        res.send (data);
+    }
+
+    service.sendPost ('/group', JSON.stringify (req.body), callback);
+});
+
 router.get ('/group/add', function (req, res, next) {
+
 
     var uData = JSON.parse (req.userData.user);
 
@@ -30,7 +40,32 @@ router.get ('/group/add', function (req, res, next) {
         if (!error && response.statusCode == 200) {
 
             var course = JSON.parse (body);
-            res.render ('group_add', {title: 'Gruppe erstellen', subject : course[0].name , subject_id: course[0].id });
+
+            async.map (course[0].subject, function (url, done) {
+
+                request (url, function (err, response, body) {
+
+                    if (err || response.statusCode !== 200) {
+                        return done (err || new Error ());
+                    }
+
+                    return done (null, JSON.parse (body));
+
+                });
+            }, function (err, results) {
+
+                if (err) return res.sendStatus (500);
+
+                var allSubjects = results;
+
+                res.render ('group/group_add', {
+                    title: 'Gruppe erstellen',
+                    course: course[0].name,
+                    course_id: course[0].id,
+                    subject: allSubjects
+                });
+
+            });
 
         }
 
@@ -101,7 +136,7 @@ router.get ('/group/:id', function (req, res, next) {
                 })
 
                 renderVar['personalTasks'] = myTasks;
-                res.render ('group', renderVar);
+                res.render ('group/group_view', renderVar);
             });
         }
     });

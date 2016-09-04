@@ -5,3 +5,13 @@
         <li><a href="/dashboard/group/add" >Grupppe erstellen</a></li>
     </ul>
 </div>
+
+<script>
+
+    $('.nav').height(document.documentElement.clientHeight-100);
+
+    $(window).on('resize', function () {
+        $('.nav').height(document.documentElement.clientHeight-100);
+    });
+
+</script>

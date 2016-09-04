@@ -2,15 +2,18 @@
 <% include ../standards/navigation.ejs %>
 
 <div class="container">
+
+    <h1> <%= title %>%> </h1>
+
     <div class="col-md-12">
         <h2>Meine Aufgaben</h2>
         <table class="table table-striped">
             <thead>
-                <th>Name</th>
-                <th>Beschreibung</th>
-                <th>Deadline</th>
-                <th>User</th>
-                <th>Erledigt</th>
+            <th>Name</th>
+            <th>Beschreibung</th>
+            <th>Deadline</th>
+            <th>User</th>
+            <th>Erledigt</th>
             </thead>
             <tbody>
             <% for(var i = 0; i < personalTasks.length; i++) { %>
@@ -26,11 +29,11 @@
         <h2>Alle Aufgaben</h2>
         <table class="table table-striped">
             <thead>
-                <th>Name</th>
-                <th>Beschreibung</th>
-                <th>Deadline</th>
-                <th>User</th>
-                <th>Erledigt</th>
+            <th>Name</th>
+            <th>Beschreibung</th>
+            <th>Deadline</th>
+            <th>User</th>
+            <th>Erledigt</th>
             </thead>
             <tbody>
             <% for(var i = 0; i < tasks.length; i++) { %>
@@ -49,4 +52,4 @@
 <script>
     var socket = io();
 </script>
-<% include standards/footer %>
+<% include ../standards/footer %>
