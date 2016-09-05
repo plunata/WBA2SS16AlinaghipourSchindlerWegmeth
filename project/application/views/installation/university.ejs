@@ -1,0 +1,53 @@
+<% include standards/header %>
+<div class="container">
+
+    <form id="form"  enctype="application/json">
+
+        <div class="input-group">
+            <label for="repository">Name der Hochschule</label> <br>
+            <input class="form-control" name="name" size="45" type="text"
+                   required/><br>
+        </div>
+
+        <div class="input-group ctrbtn">
+            <input class="form-control" type="button" id="submit" value="Erstellen"/>
+        </div>
+
+    </form>
+
+    <div id="message"></div>
+
+</div>
+
+<script>
+
+    $ ('.container').on ('click', '#submit', function () {
+
+        if (validateForm ()) {
+            return;
+        }
+
+        var data = $ ('#form').serialize ();
+
+        $.ajax ({
+
+            url: 'http://localhost:3001/university',
+            type: "POST",
+            data: data,
+            success: function (result) {
+
+                $ ('#message').html ("Erstelle Universität");
+                window.location = "http://localhost:3001/faculty/";
+
+            },
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+            }
+        })
+
+    });
+
+</script>
+
+
+<% include standards/footer %>
