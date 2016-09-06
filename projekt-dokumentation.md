@@ -274,37 +274,31 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 | | POST | Erstellt einen neuen User | application/json | application/json |
 | | PUT | Aktualisiert Informationen eines bestimmten Users | application/json | application/json |
 | | DELETE | Löscht einen bestimmten User | application/json | application/json |
-
 | /university | GET | Gibt eine Liste von allen angelegten Universitäten aus | text/plain | application/json |
 | /university/:ID | GET | Zeigt die Universitäten mit der :ID an | text/plain | application/json |
 | | POST | Erstellt eine neue Universität| application/json | application/json |
 | | PUT | Aktualisiert Informationen einer bestimmten Universität | application/json | application/json |
 | | DELETE | Löscht ein bestimmt Universität | application/json | application/json |
-
 | /faculty | GET | Gibt eine Liste von allen angelegten Fakultäten aus | text/plain | application/json |
 | /faculty/:ID | GET | Zeigt die Fakultät mit der :ID an | text/plain | application/json |
 | | POST | Erstellt eine neue Fakultät | application/json | application/json |
 | | PUT | Aktualisiert Informationen einer bestimmten Fakultät | application/json | application/json |
 | | DELETE | Löscht ein bestimmt Fakultät | application/json | application/json |
-
 | /subject | GET | Gibt eine Liste von allen angelegten Modulen aus | text/plain | application/json |
 | /subject/:ID | GET | Zeigt das Modulen mit der :ID an | text/plain | application/json |
 | | POST | Erstellt ein neues Modulen| application/json | application/json |
 | | PUT | Aktualisiert Informationen eines bestimmten Moduls | application/json | application/json |
 | | DELETE | Löscht ein bestimmtes Modulen | application/json | application/json |
-
 | /course | GET | Gibt eine Liste von allen angelegten Studiengängen aus | text/plain | application/json |
 | /course/:ID | GET | Zeigt den Studiengang mit der :ID an | text/plain | application/json |
 | | POST | Erstellt eineb neue Studiengang| application/json | application/json |
 | | PUT | Aktualisiert Informationen einen bestimmten UnivStudiengangersität | application/json | application/json |
 | | DELETE | Löscht einen bestimmt Studiengang | application/json | application/json |
-
 | /group | GET | Gibt eine Liste von allen angelegten Gruppen aus | text/plain | application/json |
 | /group/:ID | GET | Zeigt die Gruppe mit der :ID an | text/plain | application/json |
 | | POST | Erstellt eine neue Gruppe| application/json | application/json |
 | | PUT | Aktualisiert Informationen einer bestimmten Gruppe | application/json | application/json |
 | | DELETE | Löscht eine bestimmt Gruppe | application/json | application/json |
-
 | /task | GET | Gibt eine Liste von allen angelegten Tasks aus | text/plain | application/json |
 | /task/:ID | GET | Zeigt den Task mit der :ID an | text/plain | application/json |
 | | POST | Erstellt eineb neuen Task| application/json | application/json |
