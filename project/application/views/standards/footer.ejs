@@ -1,9 +1,23 @@
-<div id="servermessage">
+<div id="logDiv">
+
+    <span class="glyphicon glyphicon-th" id="btnlog"></span>
+
+    <div id="servermessage" style="display: none">
+        <span>Bleib auf dem neusten Stand. <br/>
+            Alle wichtigen Aktivitäten werden dir hier gemeldet</span>
+    </div>
 
 </div>
 
 <script>
 
+    $ ('#logDiv').click (function () {
+        $ ('#servermessage').slideToggle ();
+    });
+
+    function toggleLog () {
+
+    }
 
     function validateForm () {
 
@@ -33,23 +47,76 @@
 <script>
 
     $ (document).ready (function () {
+        showLog ();
 
         if (localStorage.getItem ("id")) {
 
             var socket = io.connect ('http://localhost:3001');
 
             socket.on ('connect', function (data) {
-                socket.emit("join",localStorage.getItem ("id"));
+                socket.emit ("join", localStorage.getItem ("id"));
             });
 
             socket.on ('messages', function (data) {
-                $ ('#servermessage').append ("<span>" + data.message + "</span><br />");
+
+
+                var log = localStorage.getItem ("log");
+                if (!log) {
+                    log = [];
+                }
+                else {
+                    log = JSON.parse (log)
+                }
+
+                log.push (data.message);
+
+                localStorage.setItem ("log", JSON.stringify (log));
+                localStorage.setItem ("readed", 0)
+
+                showLog ();
+
             });
+
         }
 
     })
 
+
+    function showLog () {
+
+        var readed = localStorage.getItem ("readed");
+
+        var log = localStorage.getItem ("log");
+
+        log = JSON.parse (log)
+
+        var logString = "";
+
+        $.each (log, function (index, value) {
+
+            logString += "<span>" + value + "</span><br />"
+
+        });
+
+        if (logString.length > 0)
+            $ ('#servermessage').html (logString);
+
+        if (readed == 0) {
+
+
+            $ ("#servermessage").slideToggle ();
+
+            setTimeout (function () {
+                $ ("#servermessage").slideToggle ();
+                var readed = localStorage.setItem ("readed", 1);
+            }, 2000);
+        }
+    }
+
 </script>
 
+
+
+<script type="text/javascript" src="/javascripts/jquery.tablesorter.js"></script>
 </body>
 </html>

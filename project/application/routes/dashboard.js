@@ -28,6 +28,47 @@ router.get ('*', function (req, res, next) {
 
 });
 
+router.get ('/group/enter/:id', function (req, res, next) {
+
+    request ('http://localhost:3000/group?id=' + req.params.id, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            finish = function (data) {
+                console.log ("group update");
+            }
+
+            var group = JSON.parse (body)[0];
+            var uData = JSON.parse (req.userData.user);
+
+            if (!group.users) {
+                group.users = [];
+            }
+
+            group.users.push ("http://localhost:3000/user/" + uData.id);
+            service.sendPut ('/group/' + group.id, JSON.stringify (group), finish);
+
+            request ('http://localhost:3000/user?id=' + uData.id, function (error, response, body) {
+                if (!error && response.statusCode == 200){
+
+                    finish = function (data) {
+                        console.log ("user update");
+                    }
+
+                    var users = JSON.parse (body);
+                    var user = users[0];
+
+                    if (!user.groups) {
+                        user.groups = [];
+                    }
+                    user.groups.push ("http://localhost:3000/group/" + group.id);
+                    service.sendPut ('/user/' + user.id, JSON.stringify (user), finish);
+                    res.redirect ("/dashboard");
+                }
+            });
+        }
+    });
+
+});
+
 router.post ('/group/add', function (req, res, next) {
     callback = function (data) {
 
@@ -209,10 +250,11 @@ router.get ('/', function (req, res, next) {
 
 });
 
+
 router.get ('/group/:id', function (req, res, next) {
 
     var renderVar = {};
-    request ('http://127.0.0.1:3000/group/' + req.params.id, function (error, response, body) {
+    request ('http://127.0.0.1:3000/group/' + req.params.id+"?done=0", function (error, response, body) {
         if (!(!error && response.statusCode == 200)) {
             console.log (error);
         }

@@ -5,7 +5,6 @@
     <th>Name</th>
     <th>Größe</th>
     <th>Beschreibung</th>
-    <th>Link</th>
     <th>beitreten</th>
     </thead>
     <tbody>
@@ -16,7 +15,6 @@
             <td><%= groups[i].name %></td>
             <td><%= groups[i].size %></td>
             <td><%= groups[i].description %></td>
-            <td><a href="http://localhost:3001/dashboard/group/<%= groups[i].id %>"><%= groups[i].name %></a></td>
             <td><a href="http://localhost:3001/dashboard/group/enter/<%= groups[i].id %>">beitreten</a></td>
         </tr>
     <% } %>

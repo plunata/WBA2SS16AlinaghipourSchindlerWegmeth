@@ -110,6 +110,7 @@ module.exports = {
                 newObject.id = rep;
                 client.set (key + ':' + newObject.id, JSON.stringify (newObject), function (err, rep) {
                     client.get (parentkey + ':' + newObject[parentkey], function (err, rep) {
+
                         //mein Parent als JS Objekt, hat entweder schn eine Liste von Childs oder bekommt eine neue liste angelegt
                         var parent = JSON.parse (rep);
                         if (parent.hasOwnProperty (key)) {
@@ -155,7 +156,7 @@ module.exports = {
                     newObject[children] = objectOld[children];
                 }
                 client.set (key + ':' + req.params.id, JSON.stringify (newObject), function (err, rep) {
-                    res.status (200).type ('text').send (req.params.id + ' updated');
+                    res.status (200).type ('text').send (req.params.id);
                 });
             }
             else {

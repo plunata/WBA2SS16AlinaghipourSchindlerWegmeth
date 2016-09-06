@@ -38,6 +38,10 @@ app.use (session ({
     secret: 'asdwegreg5z5ztrhtzj67k4h345ju5jqw6jw',
 }));
 
+app.get ('/logout', function (req, res, next) {
+    res.clearCookie("userData");
+    res.redirect ("/login");
+});
 
 app.post ('/login', function (req, res, next) {
     var loginData = req.body;
