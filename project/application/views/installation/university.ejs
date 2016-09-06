@@ -28,7 +28,6 @@
         if (validateForm ()) {
             return;
         }
-
         var data = $ ('#form').serialize ();
 
         $.ajax ({
@@ -37,7 +36,6 @@
             type: "POST",
             data: data,
             success: function (result) {
-
                 $ ('#message').html ("Erstelle Universität");
                 window.location = "http://localhost:3001/faculty/";
 
@@ -46,7 +44,6 @@
                 $ ('#message').html (text);
             }
         })
-
     });
 
 </script>

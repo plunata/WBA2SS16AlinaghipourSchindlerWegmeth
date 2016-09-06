@@ -20,7 +20,6 @@
     }
 
     function validateForm () {
-
         $ ("label").css ("color", "black");
         var failed = 0;
         $ ('input, select').filter ('[required]:visible').each (function () {
@@ -35,9 +34,7 @@
             $ ('#message').html ("<span class='error'>Bitte Pflichfelder ausfüllen!</span>");
             return 1;
         }
-
         return 0;
-
     }
 
 </script>
