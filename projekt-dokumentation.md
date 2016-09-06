@@ -377,13 +377,6 @@ Folgende Eigenschaften unserer Anwendung werden in der nächsten Bearbeitungspha
 <li>Listenressource: Newsfeeds</li>
 </ul>
 
-##Unvollständiges, Irrwege, Probleme oder Lösungsansätze bei der Umsetzung
-
-###Probleme
-Leider haben zwei von drei Gruppenmitglieder das Team vorzeitige verlassen. Dadurch wurde das Projekt quasi in einzelarbeit Umgesetzt. Dazu kam es natürlich zu zeitlichen Engpässen. 
-Gründe für das vorzeitgige Verlassen der Mitglieder sind von persönlicher Natur. Ich sehe das Problem in der Motivation der Gruppe und der wahrscheinlich auch teilweise Überforderung der Mitglieder.
-Dadurch, dass die Mitglieder sich nicht im Vorfeld kannten, waren die Arbeitsmethoden untereinander nicht bekannt und haben ebenfalls zu Problemen geführt. Ich bedauer sehr das die Gruppe auseinander gegangen ist und ich nicht in der Lage war meine Gruppenmitglieder ausreichend zu motivieren.
-
 ##Anleitung
 ###Start der Server
 Auszuführende Datein: 
@@ -410,9 +403,16 @@ Alle nutzer haben das Rech Gruppen zu erstellen.
 ####Grupppe betreten
 Wird über das Dashboard eine Gruppe ausgewählt, werden alle Taks der Gruppe aufgelistet. Tasks die dem User zugewiesen sind können als "fertig gestellt" makiert werden. Außerdem können Tasks übernommen werden. Alle Mitglieder der Gruppe, die ebenfalls online das Tool nutzen, werden über Änderungen in der Gruppe informiert.
 
-##Fazit
-Trotz genannter Probleme wurde das Projekt erfolgreich beendet. 
+##Probleme
+Leider haben zwei von drei Gruppenmitglieder das Team vorzeitige verlassen. Dadurch wurde das Projekt quasi in einzelarbeit Umgesetzt. Dazu kam es natürlich zu zeitlichen Engpässen. 
+Gründe für das vorzeitgige Verlassen der Mitglieder sind von persönlicher Natur. Ich sehe das Problem in der Motivation der Gruppe und der wahrscheinlich auch teilweise Überforderung der Mitglieder.
+Dadurch, dass die Mitglieder sich nicht im Vorfeld kannten, waren die Arbeitsmethoden untereinander nicht bekannt und haben ebenfalls zu Problemen geführt. Ich bedauer sehr das die Gruppe auseinander gegangen ist und ich nicht in der Lage war meine Gruppenmitglieder ausreichend zu motivieren.
 
+##Fazit
+Zuallererst, trotz genannter Probleme wurde das Projekt erfolgreich beendet.
+Das arbeiten mit NodeJS zeigte sich als sehr ungewohnt. Zuvor wurde noch nicht mit einer Event basierender Programmiersprache entwickelt. Nach kurzer Einarbeitung konnten jedoch schnell Fortschritte erzielt werden. 
+Die größten Herausforderungen sah ich im Umgang mit SocketIO und Express Routes. Für die Anwendung dieser Pakete musste ich mich genauer mit Middelware und Asynchronen Methoden beschäftigen.
+Eine Service-Application Struktur muss genau durchdacht werden und brauch viel Planung. Die Durchführung und Entwicklung profetiert jedoch sehr dadurch. 
 
 
 
