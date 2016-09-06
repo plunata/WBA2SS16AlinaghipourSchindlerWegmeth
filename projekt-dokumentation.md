@@ -38,7 +38,7 @@ verpasst. Er kennt die relevanten Internetseiten mit den aktuellen Meldungen, ve
 <br>
 <br>
 **Lösungsansatz:** Mit unserem Service kann er die Neuigkeiten zu einzelnen Modulen erhalten, indem er 
-die Newsfeeds abonniert. So muss er sich nicht mehr über all die Seiten auf dem aktuellsten Stand halten. 
+Gruppen beitritt. So muss er sich nicht mehr über all die Seiten auf dem aktuellsten Stand halten. 
 Hat er ein Modul abgeschlossen, kann er die Benachrichtigungen abbestellen.
 <br>
 
@@ -53,7 +53,6 @@ Es stehen folgende Funktionalitäten zur Auswahl:
 -	User-Registrierung
 -	User-Login
 -	Dashboard
--	thematische, modulbezogene Newsfeeds
 -	Gruppen
 -	Taskmanipulation
 
@@ -62,6 +61,12 @@ Es können Universitäten angelegt werden, um dazugehörige Fakultäten hinzuzuf
 
 **Fakultätsverwaltung**<br>
 Nachdem Universitäten angelegt wurden, können die Fakultäten der Universitäten gespeichert werden.
+
+**Verwaltung der Studiengänge**<br>
+Nachdem Fakultäten angelegt wurden, können die Studiengänge der Fakultät gespeichert werden.
+
+**Verwaltung der Module**<br>
+Nachdem Studiengänge angelegt wurden, können die Module der Studiengänge gespeichert werden.
 
 **User-Registrierung**<br>
 Durch Eingabe der persönlichen Daten kann ein neuer User sich registrieren und fortan unseren Service nutzen.
