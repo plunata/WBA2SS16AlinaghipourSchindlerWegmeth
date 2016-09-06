@@ -1,6 +1,8 @@
 # WBA2 - Projekt-Dokumentation
 Ein Projekt von Team 14 / NovaPixels <br><br>
-Team-Mitglieder: <ul><li>Jan Wegmeth</li><li>Krystian Schindler</li><li>Natalie Tork Alinaghipour</li></ul>
+Team-Mitglieder: <ul><li>Jan Wegmeth</li></ul>
+
+Folgende Mitglieder haben das Team vorzeitig verlassen: <ul><li>Krystian Schindler</li><li>Natalie Tork Alinaghipour</li></ul>
 
 ##Über diese Dokumentation
 Diese Dokumentation behandelt das Workshop-Projekt des Moduls "Web-basierte Anwendungen 2" bei Prof. Fischer. 
