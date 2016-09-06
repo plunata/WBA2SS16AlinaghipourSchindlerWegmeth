@@ -2,18 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b3074f41-8c78-405d-84f4-0f9ca36c557d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../application/views/group/group_add.ejs" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../application/views/group/group_view.ejs" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/../application/views/group_add.ejs" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/../application/views/group_find.ejs" afterPath="$PROJECT_DIR$/../application/views/group/group_find.ejs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../application/bin/SocketConnections.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../application/views/error.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../application/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/app.js" afterPath="$PROJECT_DIR$/../application/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/bin/serviceConnector.js" afterPath="$PROJECT_DIR$/../application/bin/serviceConnector.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/bin/www" afterPath="$PROJECT_DIR$/../application/bin/www" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/../application/public/stylesheets/style.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/public/stylesheets/style.less" afterPath="$PROJECT_DIR$/../application/public/stylesheets/style.less" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/routes/course.js" afterPath="$PROJECT_DIR$/../application/routes/course.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/routes/dashboard.js" afterPath="$PROJECT_DIR$/../application/routes/dashboard.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/group.ejs" afterPath="$PROJECT_DIR$/../application/views/group.ejs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/standards/header.ejs" afterPath="$PROJECT_DIR$/../application/views/standards/header.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/routes/faculty.js" afterPath="$PROJECT_DIR$/../application/routes/faculty.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/routes/login.js" afterPath="$PROJECT_DIR$/../application/routes/login.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/routes/subject.js" afterPath="$PROJECT_DIR$/../application/routes/subject.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/routes/task.js" afterPath="$PROJECT_DIR$/../application/routes/task.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/routes/university.js" afterPath="$PROJECT_DIR$/../application/routes/university.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/group/filter.ejs" afterPath="$PROJECT_DIR$/../application/views/group/filter.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/group/group_add.ejs" afterPath="$PROJECT_DIR$/../application/views/group/group_add.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/group/group_find.ejs" afterPath="$PROJECT_DIR$/../application/views/group/group_find.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/group/group_view.ejs" afterPath="$PROJECT_DIR$/../application/views/group/group_view.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/group/task_add.ejs" afterPath="$PROJECT_DIR$/../application/views/group/task_add.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/installation/course.ejs" afterPath="$PROJECT_DIR$/../application/views/installation/course.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/installation/faculty.ejs" afterPath="$PROJECT_DIR$/../application/views/installation/faculty.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/installation/subject.ejs" afterPath="$PROJECT_DIR$/../application/views/installation/subject.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/installation/university.ejs" afterPath="$PROJECT_DIR$/../application/views/installation/university.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/login.ejs" afterPath="$PROJECT_DIR$/../application/views/login.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/registration.ejs" afterPath="$PROJECT_DIR$/../application/views/registration.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/registration/uniData.ejs" afterPath="$PROJECT_DIR$/../application/views/registration/uniData.ejs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/standards/footer.ejs" afterPath="$PROJECT_DIR$/../application/views/standards/footer.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../application/views/standards/navigation.ejs" afterPath="$PROJECT_DIR$/../application/views/standards/navigation.ejs" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/requesthandler.js" afterPath="$PROJECT_DIR$/bin/requesthandler.js" />
     </list>
     <ignored path="Service.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,18 +66,18 @@
       <file leaf-file-name="faculty.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/faculty.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
+            <state relative-caret-position="240">
+              <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="requesthandler.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="requesthandler.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/requesthandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="9">
-              <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+            <state relative-caret-position="366">
+              <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -67,18 +86,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="university.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/university.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="435">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -87,8 +96,38 @@
       <file leaf-file-name="task.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/routes/task.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state relative-caret-position="255">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="www.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/bin/www.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="university.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/university.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="user.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/user.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -99,26 +138,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="newsfeed.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/newsfeed.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="90" selection-start-line="0" selection-start-column="90" selection-end-line="0" selection-end-column="90" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -167,8 +186,8 @@
         <option value="$PROJECT_DIR$/bin/www.js" />
         <option value="$PROJECT_DIR$/routes/task.js" />
         <option value="internal/process/next_tick.js" />
-        <option value="$PROJECT_DIR$/bin/requesthandler.js" />
         <option value="$PROJECT_DIR$/routes/user.js" />
+        <option value="$PROJECT_DIR$/bin/requesthandler.js" />
       </list>
     </option>
   </component>
@@ -179,10 +198,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2038" />
-    <option name="y" value="133" />
-    <option name="width" value="1190" />
-    <option name="height" value="600" />
+    <option name="x" value="1600" />
+    <option name="y" value="24" />
+    <option name="width" value="1920" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -209,6 +228,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -271,7 +291,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -415,7 +434,11 @@
       <workItem from="1472641211388" duration="1447000" />
       <workItem from="1472733139989" duration="2114000" />
       <workItem from="1472929660310" duration="2828000" />
-      <workItem from="1472980408124" duration="2057000" />
+      <workItem from="1472980408124" duration="2654000" />
+      <workItem from="1473000944854" duration="7604000" />
+      <workItem from="1473065183900" duration="107000" />
+      <workItem from="1473107222540" duration="2310000" />
+      <workItem from="1473144510502" duration="1303000" />
     </task>
     <task id="LOCAL-00001" summary="posthandler - abstrakt für alle">
       <created>1465814792086</created>
@@ -428,21 +451,21 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62392000" />
+    <option name="totallyTimeSpent" value="74313000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2038" y="133" width="1190" height="600" extended-state="0" />
-    <editor active="true" />
+    <frame x="1600" y="24" width="1920" height="1056" extended-state="6" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20908312" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2783342" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4022416" sideWeight="0.536875" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.69957983" sideWeight="0.463125" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.54291844" sideWeight="0.463125" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39760637" sideWeight="0.49" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2746781" sideWeight="0.49" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -460,7 +483,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4022416" sideWeight="0.536875" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4401596" sideWeight="0.463125" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5021008" sideWeight="0.463125" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15472417" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -469,7 +492,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39760637" sideWeight="0.49" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2746781" sideWeight="0.49" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -489,19 +512,14 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/bin/requesthandler.js</url>
-          <line>19</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="26" />
+      <option name="time" value="46" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="NodeJSConfigurationType">
         <watch expression="val[query]" />
         <watch expression="req.query[query]" />
+        <watch expression="req.query[query]" />
+        <watch expression=" newObject[parentkey]" />
       </configuration>
     </watches-manager>
   </component>
@@ -685,13 +703,6 @@
     <entry file="file://$PROJECT_DIR$/node_modules/express/lib/router/layer.js" />
     <entry file="file://$PROJECT_DIR$/node_modules/on-headers/index.js" />
     <entry file="file://$PROJECT_DIR$/bin/get-universities.js" />
-    <entry file="file://$PROJECT_DIR$/bin/www.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jsontemplates/uni.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -717,30 +728,43 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/newsfeed.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="90" selection-start-line="0" selection-start-column="90" selection-end-line="0" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/group.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/user.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+        <state relative-caret-position="390">
+          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/university.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/task.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        <state relative-caret-position="120">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -753,30 +777,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/newsfeed.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="90" selection-start-line="0" selection-start-column="90" selection-end-line="0" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/faculty.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="44" selection-start-line="0" selection-start-column="44" selection-end-line="0" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/course.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -785,26 +785,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/faculty.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="11" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
+        <state relative-caret-position="240">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/group.js">
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/task.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bin/requesthandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="79" column="4" selection-start-line="79" selection-start-column="4" selection-end-line="79" selection-end-column="4" />
+        <state relative-caret-position="366">
+          <caret line="115" column="27" selection-start-line="115" selection-start-column="27" selection-end-line="115" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/www.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="19" column="36" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
           <folding />
         </state>
       </provider>

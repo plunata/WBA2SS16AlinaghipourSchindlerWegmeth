@@ -1,4 +1,5 @@
 var express = require ('express');
+
 var request = require ('request');
 var path = require ('path');
 var favicon = require ('serve-favicon');
@@ -10,10 +11,13 @@ var session = require ('client-sessions');
 
 var users = require ('./routes/registration');
 var universities = require ('./routes/university');
+var faculty = require('./routes/faculty');
 var login = require ('./routes/login');
 var dashboard = require ('./routes/dashboard');
 var user = require ('./routes/user');
-
+var course = require ('./routes/course');
+var subject = require('./routes/subject');
+var task = require('./routes/task');
 var app = express ();
 
 // view engine setup
@@ -68,6 +72,10 @@ app.use ('/university', universities);
 app.use ('/login', login);
 app.use ('/dashboard', dashboard);
 app.use ('/user', user);
+app.use ('/faculty', faculty);
+app.use ('/course', course);
+app.use ('/subject', subject);
+app.use ('/task', task);
 
 
 // catch 404 and forward to error handler
@@ -77,23 +85,7 @@ app.use (function (req, res, next) {
     next (err);
 });
 
-// error handlers
 
-// development error handler
-// will print stacktrace
-if (app.get ('env') === 'development') {
-    app.use (function (err, req, res, next) {
-        res.status (err.status || 500);
-        res.render ('standards/error', {
-            message: err.message,
-            error: err
-        });
-
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
 app.use (function (err, req, res, next) {
     res.status (err.status || 500);
     res.render ('error', {

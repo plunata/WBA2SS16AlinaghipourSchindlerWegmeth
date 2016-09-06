@@ -1,19 +1,76 @@
-<% include standards/header %>
+<% include ../standards/header %>
 <% include ../standards/navigation.ejs %>
 
 <div class="container">
+
     <h1><%= title %></h1>
+
     <div class="col-md-12">
 
-        <ul>
-            <% for(var i = 0; i < groups.length; i++) { %>
-            <li>
-                <a href="http://localhost:3001/dashboard/group/<%= groups[i].id %>"><%= groups[i].name %></a>
-            </li>
-            <% } %>
-        </ul>
+        <form id="filter" enctype="application/json">
 
+            <div class="input-group">
+                <label for="course">Studiengang</label>
+                <input class="form-control" id="course" name="course" size="45" type="text" value="<%= course %>"
+                       disabled /> <br>
+            </div>
+
+            <div class="input-group">
+                <label>Fach</label><br>
+                <select class="form-control" name="subject" required>
+                    <option></option>
+                    <% for(var i = 0; i < subject.length; i++) { %>
+                    <option value="<%= subject[i].id %>"><%= subject[i].name %></option>
+                    <% } %>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="name">Name</label>
+                <input class="form-control" id="name" name="name" size="45" type="text"/>
+            </div>
+
+            <div class="input-group">
+                <label for="id">ID</label>
+                <input class="form-control" id="id" name="id" size="45" type="text"/>
+            </div>
+
+            <div class="input-group ctrbtn">
+                <input class="form-control" type="button" id="submit" value="suchen"/>
+            </div>
+
+            <div class="input-group ctrbtn">
+                <input class="form-control" form="filter" value="löschen" type = "reset" />
+            </div>
+
+        </form>
     </div>
+
+    <div id="results"></div>
+
 </div>
 
-<% include standards/footer %>
+<script>
+
+    $ ('#submit').click (function () {
+
+        var data = $ ('#filter').serialize ();
+
+        $.ajax ({
+
+            url: 'http://localhost:3001/dashboard/group/filter', // url where to submit the request
+            type: "GET",
+            data: data,
+            success: function (result) {
+                $ ('#results').html (result);
+            },
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+            }
+        })
+
+    });
+
+</script>
+
+<% include ../standards/footer %>

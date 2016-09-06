@@ -12,7 +12,7 @@ router.get('/', function (req, res, next) {
 
         if (!error && response.statusCode == 200) {
             var uni = JSON.parse (body);
-            res.render ('faculty', {title: 'Studiengang anlegen', university: uni});
+            res.render ('installation/course', {title: 'Studiengang anlegen', university: uni});
         }
 
     });
@@ -23,7 +23,7 @@ router.post('/', function (req, res, next) {
         res.send("Studiengang erfolgreich angelegt");
     }
 
-    service.sendPost('/faculty', JSON.stringify(req.body), callback);
+    service.sendPost('/course', JSON.stringify(req.body), callback);
 });
 
 module.exports = router;

@@ -3,6 +3,20 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+@media (min-width: 1200px){
+  .container{
+    min-width: 900px;
+  }
+
+}
+
+@media (min-width: 992px){
+  .container{
+    width: 600px;
+  }
+}
+
+
 label {
   margin-top: 15px;
 }
@@ -32,6 +46,7 @@ table {
   height: 50%;
   background-color: rgba(119, 204, 0, 0.6);
   padding: 20px;
+  margin: -50px;
 
   ul {
     font-size: 1.2em;
@@ -47,4 +62,30 @@ table {
 
 .input-group{
   width: 100%;
+}
+
+#filter{
+  .input-group{
+    width: 40%;
+    float: left;
+    margin-left:15px;
+  }
+}
+
+
+#servermessage{
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(221,17,102,0.8);
+  padding: 15px;
+  width: 20%;
+  text-align: center;
+
+  span{
+    font-size: 2em;
+    color: #fff;
+  }
+
 }

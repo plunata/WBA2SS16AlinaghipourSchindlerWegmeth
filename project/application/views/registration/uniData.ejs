@@ -49,6 +49,14 @@
 <script>
 
 
+    function resetChild (name) {
+        $ ("#" + name).hide ();
+
+        if ($ (".form-control[name='" + name + "']").data ("child")) {
+            resetChild ($ (".form-control[name='" + name + "']").data ("child"));
+        }
+    }
+
     $ ('.form-control').change (function () {
 
         var id = $ (this).val ();

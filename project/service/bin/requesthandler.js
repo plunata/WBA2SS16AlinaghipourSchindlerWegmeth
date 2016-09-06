@@ -1,7 +1,15 @@
 var redis = require ('redis');
 var client = redis.createClient ();
 
+function remove (arrOriginal, elementToRemove) {
+    return arrOriginal.filter (function (el) {
+        return el !== elementToRemove
+    });
+}
+
 module.exports = {
+
+
     // findet alle einträge zu einem Key. Benötigt wird ein key (university, faculty,groups ect) und ein Child (university -> faculty) ...
     findAll: function (req, res, key, child) {
 
@@ -38,13 +46,19 @@ module.exports = {
                     return;
                 }
 
-                var ret = [];
+                var ret = object;
                 for (var query in req.query) {
-                    object.forEach (function (val, index) {
-                        if (val.hasOwnProperty (query) && val[query] == req.query[query]) {
-                            ret.push (val);
-                        }
-                    })
+
+                    if (req.query[query].length) {
+
+                        object.forEach (function (val, index) {
+
+                            if (!(val.hasOwnProperty (query) && val[query] == req.query[query])) {
+                                ret = remove (ret, val);
+                            }
+
+                        })
+                    }
                 }
                 res.json (ret);
                 return;
@@ -117,14 +131,14 @@ module.exports = {
         });
     },
 
-    //Wenn ich keinen Parent habe, dann ist alles viel einfacher! 
+    //Wenn ich keinen Parent habe, dann ist alles viel einfacher!
     postCallback: function (req, res, key) {
         var object = req.body;
 
         client.incr ('id:' + key, function (err, rep) {
             object.id = rep;
             client.set (key + ':' + object.id, JSON.stringify (object), function (err, rep) {
-                res.status (200).type ('text').send ("created: :" + object.id);
+                res.status ("201").type ("text").send (JSON.stringify (object.id));
             });
         });
     },

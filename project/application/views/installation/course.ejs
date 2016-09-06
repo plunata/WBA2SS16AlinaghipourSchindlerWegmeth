@@ -1,10 +1,18 @@
-<% include standards/header %>
+<% include ../standards/header %>
 
 <div class="container">
 
-    <form id="form"  enctype="application/json">
+    <h1><%= title %></h1>
 
-        <div class="input-group" id="faculty" >
+    <form id="form" enctype="application/json">
+
+        <div class="input-group">
+            <label for="repository">Name des Studiengangs</label> <br>
+            <input class="form-control" name="name" size="45" type="text"
+                   required/><br>
+        </div>
+
+        <div class="input-group" id="university">
 
             <label>Hochschule</label><br>
             <select class="form-control" name="university" data-child="faculty" required>
@@ -16,12 +24,11 @@
 
         </div>
 
-
-
-        <div class="input-group">
-            <label for="repository">Name der Fakultät</label> <br>
-            <input class="form-control" name="name" size="45" type="text"
-                   required/><br>
+        <div class="input-group" id="faculty" style="display: none;">
+            <label>Fakultät</label><br>
+            <select class="form-control" name="faculty" data-child="course" required>
+                <option></option>
+            </select>
         </div>
 
         <div class="input-group ctrbtn">
@@ -46,12 +53,12 @@
 
         $.ajax ({
 
-            url: 'http://localhost:3001/faculty',
+            url: 'http://localhost:3001/course',
             type: "POST",
             data: data,
             success: function (result) {
-                $ ('#message').html ("Erstelle Fakultät");
-                window.setTimeout('window.location = "http://localhost:3001/course"',2000);
+                $ ('#message').html ("Erstelle Studiengang");
+                window.setTimeout ('window.location = "http://localhost:3001/subject"', 2000);
             },
             error: function (xhr, resp, text) {
                 $ ('#message').html (text);
@@ -62,5 +69,56 @@
 
 </script>
 
+<script>
 
-<% include standards/footer %>
+    function resetChild (name) {
+        $ ("#" + name).hide ();
+
+        if ($ (".form-control[name='" + name + "']").data ("child")) {
+            resetChild ($ (".form-control[name='" + name + "']").data ("child"));
+        }
+    }
+
+    $ ('.form-control').change (function () {
+
+        var id = $ (this).val ();
+        var name = $ (this).attr ("name");
+        var child = $ (this).data ('child');
+
+        resetChild (child);
+
+
+        $ ('#' + child).show ();
+
+        var load = $ (".form-control[name='" + child + "']").data ('child');
+
+        if(!load){
+            return;
+        }
+
+        $.ajax ({
+            url: 'http://localhost:3001/registration/' + name + '/' + child, // url where to submit the request
+            type: "GET", // type of action POST || GET
+            data: {"uniId": id},
+            success: function (result) {
+                $ ('#message').html (result);
+
+
+                $ (".form-control[name='" + child + "']").html ("<option></option>");
+                $.each (result, function (i, l) {
+                    $ (".form-control[name='" + child + "']").append ("<option value='" + l.id + "'>" + l.name + "</option>");
+                });
+            },
+            async: true,
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+                console.log (text);
+            }
+        })
+
+    });
+</script>
+
+
+
+<% include ../standards/footer %>

@@ -1,10 +1,18 @@
-<% include standards/header %>
+<% include ../standards/header %>
 
 <div class="container">
 
+    <h1><%= title %></h1>
+
     <form id="form"  enctype="application/json">
 
-        <div class="input-group" id="faculty" >
+        <div class="input-group">
+            <label for="repository">Name der Fakultät</label> <br>
+            <input class="form-control" name="name" size="45" type="text"
+                   required/><br>
+        </div>
+
+        <div class="input-group" id="university" >
 
             <label>Hochschule</label><br>
             <select class="form-control" name="university" data-child="faculty" required>
@@ -14,12 +22,6 @@
                 <% } %>
             </select>
 
-        </div>
-
-        <div class="input-group">
-            <label for="repository">Name der Fakultät</label> <br>
-            <input class="form-control" name="name" size="45" type="text"
-                   required/><br>
         </div>
 
         <div class="input-group ctrbtn">
@@ -61,4 +63,4 @@
 </script>
 
 
-<% include standards/footer %>
+<% include ../standards/footer %>

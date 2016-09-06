@@ -1,79 +1,131 @@
-<% include standards/header %>
+<% include ../standards/header %>
 
-<form id="subReg" enctype="application/json">
-    
-     <div class = "input-group">
-        <label for = "zugehoerigeUniversitaet">Zugehörige Universität:</label>
-        <br>
-        <select name="zugehoerigeUniversitaet" class = "form-control">
-            <option value="0">Bitte wählen</option>
-            
-            <% for(var i=0; i<uni.length; i++) { %>
-            <option value="<%  uni.id  %>"><% uni.name  %></option>
-            <% } %>
+<div class="container">
 
-         </select>
-    </div>
-    
-         <div class = "input-group">
-        <label for = "zugehoerigeFakultaet">Zugehörige Fakultät:</label>
-        <br>
-        <select name="zugehoerigeFakultaet" class = "form-control">
-            <option value="0">Bitte wählen</option>
-            
-            <% for(var i=0; i<faculty.length; i++) { %>
-            <option value="<%  faculty.id  %>"><% faculty.name  %></option>
-            <% } %>
+    <h1><%= title %></h1>
 
-         </select>
-    </div>
-    
-<br>        
-            
-    <div class = "input-group">
-        <label for = "name">Name:</label>
-        <br>
-        <input class = "form-control" maxlength="50" name="subjectName" size="45" type="text"/>
-    </div>
-    <br>
+    <form id="form" enctype="application/json">
 
-    <div class="input-group ctrbtn">
-        <input class="form-control" type="button" id="submitbtn" value="Modul anlegen"/>
-        <input class="form-control" type="reset" form="facReg" value="Eingaben löschen" onClick="clear();">
-    </div>
+        <div class="input-group">
+            <label for="repository">Name des Studiengangs</label> <br>
+            <input class="form-control" name="name" size="45" type="text"
+                   required/><br>
+        </div>
 
-</form>
+        <div class="input-group" id="university">
+
+            <label>Hochschule</label><br>
+            <select class="form-control" name="university" data-child="faculty" required>
+                <option></option>
+                <% for(var i = 0; i < university.length; i++) { %>
+                <option value="<%= university[i].id %>"><%= university[i].name %></option>
+                <% } %>
+            </select>
+
+        </div>
+
+        <div class="input-group" id="faculty" style="display: none;">
+            <label>Fakultät</label><br>
+            <select class="form-control" name="faculty" data-child="course" required>
+                <option></option>
+            </select>
+        </div>
+
+        <div class="input-group" id="course" style="display: none;">
+            <label>Studiengang</label><br>
+            <select class="form-control" name="course" data-child="semester" required>
+                <option></option>
+            </select>
+        </div>
+
+        <div class="input-group ctrbtn">
+            <input class="form-control" type="button" id="submit" value="Erstellen"/>
+        </div>
+
+    </form>
+
+    <div id="message"></div>
+
+</div>
 
 <script>
-    $(document).ready(function () {
-        $("#submitbtn").on('click', function () {
-            $("label").css("color", "black");
-            var failed = 0;
-            $('input, select').filter('[required]:visible').each(function () {
-                if ($(this).val() == '') {
-                    var label = $(this).attr('name');
-                    $("label[for='" + label + "']").css("color", "red");
-                    failed = 1;
-                }
-            });
-            if (failed) {
-                $('#message').html("<span class='error'>Bitte Pflichfelder ausfüllen!");
-                return;
+
+    $ ('.container').on ('click', '#submit', function () {
+
+        if (validateForm ()) {
+            return;
+        }
+
+        var data = $ ('#form').serialize ();
+
+        $.ajax ({
+
+            url: 'http://localhost:3001/subject',
+            type: "POST",
+            data: data,
+            success: function (result) {
+                $ ('#message').html ("Erstelle Studiengang");
+                window.setTimeout ('window.location = "http://localhost:3001/subject"', 2000);
+            },
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
             }
-            $.ajax({
-                url: 'http://localhost:3001/subject', // url where to submit the request
-                type: "POST", // type of action POST || GET
-                data: $("#facReg").serialize(),
-                success: function (result) {
-                    $('#message').html(result);
-                },
-                error: function (xhr, resp, text) {
-                    $('#message').html(text);
-                    console.log(text);
-                }
-            })
-        });
+        })
+
+    });
+
+</script>
+
+<script>
+
+    function resetChild (name) {
+        $ ("#" + name).hide ();
+
+        if ($ (".form-control[name='" + name + "']").data ("child")) {
+            resetChild ($ (".form-control[name='" + name + "']").data ("child"));
+        }
+    }
+
+    $ ('.form-control').change (function () {
+
+        var id = $ (this).val ();
+        var name = $ (this).attr ("name");
+        var child = $ (this).data ('child');
+
+        resetChild (child);
+
+
+        $ ('#' + child).show ();
+
+        var load = $ (".form-control[name='" + child + "']").data ('child');
+
+        if(!load){
+            return;
+        }
+
+        $.ajax ({
+            url: 'http://localhost:3001/registration/' + name + '/' + child, // url where to submit the request
+            type: "GET", // type of action POST || GET
+            data: {"uniId": id},
+            success: function (result) {
+                $ ('#message').html (result);
+
+
+                $ (".form-control[name='" + child + "']").html ("<option></option>");
+                $.each (result, function (i, l) {
+                    $ (".form-control[name='" + child + "']").append ("<option value='" + l.id + "'>" + l.name + "</option>");
+                });
+            },
+            async: true,
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+                console.log (text);
+            }
+        })
+
     });
 </script>
-        
-<% include footer %>
+
+
+
+<% include ../standards/footer %>

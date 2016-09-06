@@ -87,13 +87,7 @@
 
     }
 
-    function resetChild (name) {
-        $ ("#" + name).hide ();
 
-        if ($ (".form-control[name='" + name + "']").data ("child")) {
-            resetChild ($ (".form-control[name='" + name + "']").data ("child"));
-        }
-    }
 
     $ (document).ready (function () {
         $ ("#submitbtn").on ('click', function () {

@@ -35,6 +35,8 @@
                     type: "POST",
                     data: $("#frmLogin").serialize(),
                 success: function (result) {
+                    console.log(result)
+                    localStorage.setItem("id", result);
                     window.location = "http://localhost:3001/dashboard";
                 },
                 error: function (xhr, resp, text) {

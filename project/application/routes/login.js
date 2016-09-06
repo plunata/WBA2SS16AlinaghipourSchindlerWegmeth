@@ -19,10 +19,12 @@ router.get ('/', function (req, res, next) {
 });
 
 router.post ('/', function (req, res) {
-    console.log(req.userData.user);
+    if(req.userData.user){
+        var uData = JSON.parse(req.userData.user);
+        res.status(202);
+        res.send(JSON.stringify(uData.id));
+    }
 
-    if(req.userData.user)
-        res.redirect("/dashboard");
 
 });
 

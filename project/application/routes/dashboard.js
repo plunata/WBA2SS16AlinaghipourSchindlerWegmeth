@@ -5,6 +5,13 @@ var async = require ('async');
 var app = express ();
 var http = require ('http');
 var service = require ('../bin/serviceConnector');
+var connections = require ('../bin/SocketConnections');
+
+function remove (arrOriginal, elementToRemove) {
+    return arrOriginal.filter (function (el) {
+        return el !== elementToRemove
+    });
+}
 
 router.get ('*', function (req, res, next) {
 
@@ -23,10 +30,39 @@ router.get ('*', function (req, res, next) {
 
 router.post ('/group/add', function (req, res, next) {
     callback = function (data) {
-        res.send (data);
+
+        finish = function (data) {
+            console.log ("user update");
+        }
+
+        var groupID = data;
+        var uData = JSON.parse (req.userData.user);
+
+        request ('http://localhost:3000/user?id=' + uData.id, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+
+                var users = JSON.parse (body);
+                var user = users[0];
+
+                if (!user.groups) {
+                    user.groups = [];
+                }
+
+                user.groups.push ("http://localhost:3000/group/" + data);
+                service.sendPut ('/user/' + user.id, JSON.stringify (user), finish);
+                res.send (data);
+            }
+        });
     }
 
+    var uData = JSON.parse (req.userData.user);
+
+    var groupData = req.body;
+    groupData.users = [];
+    groupData.users.push ('http://localhost:3000/user?id=' + uData.id);
+
     service.sendPost ('/group', JSON.stringify (req.body), callback);
+
 });
 
 router.get ('/group/add', function (req, res, next) {
@@ -74,15 +110,68 @@ router.get ('/group/add', function (req, res, next) {
 
 });
 
-router.get ('/group/find', function (req, res, next) {
+router.get ('/group/filter', function (req, res, next) {
 
+    var filters = req.query;
+    var queryString = "http://localhost:3000/group?";
 
-    request ('http://127.0.0.1:3000/group', function (error, response, body) {
+    for (var key in req.query) {
+        queryString += key + "=" + filters[key] + "&";
+    }
+
+    request (queryString, function (error, response, body) {
 
         if (!error && response.statusCode == 200) {
 
             var groups = JSON.parse (body);
-            res.render ('group_find', {title: 'Gruppe finden', "groups": groups});
+
+            res.render ('group/filter', {
+                groups: groups
+            });
+        }
+
+    });
+
+
+});
+
+
+router.get ('/group/find', function (req, res, next) {
+
+    var uData = JSON.parse (req.userData.user);
+
+    request ('http://localhost:3000/course?id=' + uData.course, function (error, response, body) {
+
+        if (!error && response.statusCode == 200) {
+
+            var course = JSON.parse (body);
+
+            async.map (course[0].subject, function (url, done) {
+
+                request (url, function (err, response, body) {
+
+                    if (err || response.statusCode !== 200) {
+                        return done (err || new Error ());
+                    }
+
+                    return done (null, JSON.parse (body));
+
+                });
+            }, function (err, results) {
+
+                if (err) return res.sendStatus (500);
+
+                var allSubjects = results;
+
+                res.render ('group/group_find', {
+                    title: 'Gruppe finden',
+                    course: course[0].name,
+                    course_id: course[0].id,
+                    subject: allSubjects,
+                    groups: ""
+                });
+
+            });
 
         }
 
@@ -93,16 +182,31 @@ router.get ('/group/find', function (req, res, next) {
 
 router.get ('/', function (req, res, next) {
 
-    request ('http://127.0.0.1:3000/group', function (error, response, body) {
+    var uData = JSON.parse (req.userData.user);
 
+    request ('http://localhost:3000/user?id=' + uData.id, function (error, response, body) {
         if (!error && response.statusCode == 200) {
 
-            var groups = JSON.parse (body);
-            res.render ('dashboard', {title: 'Dashboard', "groups": groups});
+            var users = JSON.parse (body);
+            var user = users[0];
+
+            async.map (user.groups, function (url, done) {
+                request (url, function (err, response, body) {
+                    if (err || response.statusCode !== 200) {
+                        return done (err || new Error ());
+                    }
+                    return done (null, JSON.parse (body));
+                });
+            }, function (err, results) {
+                if (err) return res.sendStatus (500);
+
+                var allGroups = results;
+                res.render ('dashboard', {title: 'Dashboard', "groups": allGroups});
+            });
 
         }
-
     });
+
 });
 
 router.get ('/group/:id', function (req, res, next) {
@@ -115,6 +219,7 @@ router.get ('/group/:id', function (req, res, next) {
         else {
             var group = JSON.parse (body);
             renderVar['title'] = 'Gruppe ' + group.name;
+            renderVar['group_id'] = group.id;
 
             async.map (group.task, function (url, done) {
                 request (url, function (err, response, body) {
@@ -128,7 +233,11 @@ router.get ('/group/:id', function (req, res, next) {
                 var allTasks = results;
                 var myTasks = [];
                 renderVar['tasks'] = allTasks;
+
                 var user = JSON.parse (req.userData.user);
+
+                renderVar['user'] = user;
+
                 allTasks.forEach (function (task) {
                     if (task.editor == user.id) {
                         myTasks.push (task);
