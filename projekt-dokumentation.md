@@ -103,7 +103,7 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | Description  | Step | Action | 
 | ------------- | ------------- | ------------- |
-|  | 1 | Benutzer gibt<ul><li>den Namen,</li><li>das Motto,</li><li>das Gründungsjahr,</li><li>den Hauptsitz,</li><li>das Land,</li><li>das Bundesland,</li><li>die Stadt und</li><li>die Website</li></ul>der Universität im entsprechenden Feld ein | 
+|  | 1 | Benutzer gibt<ul><li>den Namen,</li></ul>der Universität im entsprechenden Feld ein | 
 |  | 2 | Benutzer aktiviert den Speichern-Button und schickt seine Daten an die Server-Datenbank | 
 |  | 2a | Benutzer aktiviert den Zurücksetzen-Button, um den Inhalt aller Felder zu löschen (zurück zu Step 1) | 
 |  | 2 | Benutzer wird auf der weitergeleiteten Seite über den Erfolg seiner Erstellung benachrichtigt |
@@ -122,9 +122,10 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | Description  | Step | Action | 
 | ------------- | ------------- | ------------- |
-|  | 1 | Benutzer gibt<ul><li>das Geschlecht,</li><li>den Vornamen,</li><li>den Nachnamen,</li><li>sein persönliches Passwort,</li><li>sein Github-Repository und </li><li>seine Expertise</li></ul>im entsprechenden Feld ein | 
+|  | 1 | Benutzer gibt<ul><li>den Vornamen,</li><li>den Nachnamen,</li><li>sein persönliches Passwort,</li><li>sein Github-Repository und </li><li>seine Expertise</li></ul>im entsprechenden Feld ein | 
 |  | 2 | Benutzer aktiviert den Registrieren-Button und schickt seine Daten an die Server-Datenbank | 
 |  | 2a | Benutzer aktiviert den Eingabe löschen-Button, um den Inhalt aller Felder zu löschen (zurück zu Step 1) | 
+|  | 3 | Benutzer wählt seine <ul><li>Universität</li><Fakultät</li><li>Studiengang</li></ul> |
 |  | 3 | Benutzer wird auf der weitergeleiteten Seite über den Erfolg seiner Erstellung benachrichtigt |
 
 | Extensions  | Step | Branching Action | 
@@ -171,7 +172,7 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 
 | Description  | Step | Action | 
 | ------------- | ------------- | ------------- |
-|  | 1 | Benutzer gibt<ul><li>den Namen,</li><li>den Standort,</li><li>die Stadt und</li><li>die Website</li></ul>der Fakultät im entsprechenden Feld ein | 
+|  | 1 | Benutzer gibt<ul><li>den Namen,</li></ul>der Fakultät im entsprechenden Feld ein | 
 |  | 2 | Benutzer aktiviert den Speichern-Button und schickt seine Daten an die Server-Datenbank | 
 |  | 2a | Benutzer aktiviert den Zurücksetzen-Button, um den Inhalt aller Felder zu löschen (zurück zu Step 1) | 
 |  | 3 | Benutzer wird auf der weitergeleiteten Seite über den Erfolg seiner Erstellung benachrichtigt |
@@ -198,8 +199,8 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 | Description  | Step | Action | 
 | ------------- | ------------- | ------------- |
 |  | 1 | Benutzer erstellt einen Task. | 
-|  | 1a | Benutzer fügt dem Task eine Deadline bei und wird benachrichtigt, sobald sich diese nähert (Asynchrone Operation). | 
 |  | 2 | Benutzer speichert seinen Task ab. | 
+|  | 3 | Alle Mitglieder der Gruppe werden über den  neuen Task informiert. | 
 |  | 3 | Benutzer wird auf der weitergeleiteten Seite über seine erstellten Tasks benachrichtigt. |
 
 | Extensions  | Step | Branching Action | 
@@ -256,9 +257,9 @@ Eine Gruppe hat die Möglichkeit, Tasks zu erstellen, die Gruppenmitgliedern zug
 - [x] User
 - [x] Login
 - [x] Fakultäten
-- [ ] Studiengänge
-- [ ] Semester
-- [ ] Module
+- [x] Studiengänge
+- [x] Semester
+- [x] Module
 - [x] Gruppen
 - [x] Tasks
 - [ ] Newsfeeds
@@ -332,57 +333,56 @@ Zunächst muss eine Universität angelegt werden, um die dazugehörigen Ressourc
 
 Alle Felder der HTML-Formulare sind Pflichteingabefelder. Ob ein Feld ausgefüllt wurde, wird durch das required-Attribut im input-Tag überprüft (Auszug aus *university.ejs*):
 ```html
-<div class = "input-group">
-    <label for = "site">Website:</label>
-    <br>
-    <input class = "form-control" maxlength="50" name="webseite" size="45" type="url" required />
-</div>
+		<div class="input-group">
+			<label for="repository">Name der Hochschule</label> <br>
+         <input class="form-control" name="name" type="text"
+         	required/><br>
+        </div>
 ```
 Sobald der "Registrieren"-Button aktiviert wird, wird die Überprüfung via JavaScript durchgeführt. Im Fehlerfall erscheint unter den Buttons eine Fehlermeldung in roter Schriftfarbe (Auszug aus *university.ejs*):
 ```javascript
- $(document).ready(function () {
-        $("#submitbtn").on('click', function () {
-            $("label").css("color", "black");
-            var failed = 0;
-            $('input, select').filter('[required]:visible').each(function () {
-                if ($(this).val() == '') {
-                    var label = $(this).attr('name');
-                    $("label[for='" + label + "']").css("color", "red");
-                    failed = 1;
-                }
-            });
-            if (failed) {
-                $('#message').html("<span class='error'>Bitte Pflichfelder ausfüllen!");
-                return;
+    function validateForm () {
+        $ ("label").css ("color", "black");
+        var failed = 0;
+        $ ('input, select').filter ('[required]:visible').each (function () {
+            if ($ (this).val () == '') {
+                var label = $ (this).attr ('name');
+                $ ("label[for='" + label + "']").css ("color", "red");
+                failed = 1;
             }
+        });
+
+        if (failed) {
+            $ ('#message').html ("<span class='error'>Bitte Pflichfelder ausfüllen!</span>");
+            return 1;
+        }
+        return 0;
+    }
 ```
 Weil Interaktionen zwischen dem Browser und dem Server beeinflusst wird von HTTP-Protokollen, müssen die Daten eines Formulars durch einen standardisierten HTTP-Request an den Server geschickt werden (Auszug aus *university.ejs*):
 ```ajax
-$.ajax({
-                url: 'http://localhost:3001/university', // url where to submit the request
-                type: "POST", // type of action POST || GET
-                data: $("#uniReg").serialize(),
-                success: function (result) {
-                    $('#message').html(result);
-                },
-                error: function (xhr, resp, text) {
-                    $('#message').html(text);
-                    console.log(text);
-                }
-            })
+    $ ('.container').on ('click', '#submit', function () {
+        if (validateForm ()) {
+            return;
+        }
+        var data = $ ('#form').serialize ();
+
+        $.ajax ({
+
+            url: 'http://localhost:3001/university',
+            type: "POST",
+            data: data,
+            success: function (result) {
+                $ ('#message').html ("Erstelle Universität");
+                window.location = "http://localhost:3001/faculty/";
+
+            },
+            error: function (xhr, resp, text) {
+                $ ('#message').html (text);
+            }
+        })
+    });
 ```
-
-###Zu Use Case 3
-...
-
-###Zu Use Case 5
-...
-
-###Zu Use Case 6
-...
-
-###Zu Use Case 7
-...
 
 ###Weiteres Vorgehen
 Folgende Eigenschaften unserer Anwendung werden in der nächsten Bearbeitungsphase implementiert:
@@ -393,11 +393,36 @@ Folgende Eigenschaften unserer Anwendung werden in der nächsten Bearbeitungspha
 
 ##Unvollständiges, Irrwege, Probleme oder Lösungsansätze bei der Umsetzung
 
+###Probleme
+Leider haben zwei von drei Gruppenmitglieder das Team vorzeitig verlassen. Dadurch wurde das Projekt quasi in einzelarbeit Umgesetzt. Dazu kam es natürlich zu zeitlichen Engpässen. 
+Gründe für das vorzeitgige Verlassen der Mitglieder sind von persönlicher Natur. Ich sehe das Problem in der Motivation der Gruppe und der wahrscheinlich auch teilweise Überforderung der Mitglieder.
+Dadurch das die Mitglieder sich nicht im Vorfeld kannten, waren die Arbeitsmethoden untereinander nicht bekannt und haben ebenfalls zu Problemen geführt. Ich bedauer sehr das die Gruppe auseinander gegangen ist und ich nicht in der Lage war meine Gruppenmitglieder ausreichend zu motivieren.
 
+##Anleitung
+###Start der Server
+Auszuführende Datein: 
+<ul>
+	<li>project/application/bin/www</li>
+	<li>project/service/bin/www.js</li>
+</ul>
 
+Nach der Ausführen startet die hört die Application auf Port 3001 und ist unter http://localhost:3001/ erreichbar. Der Service hört auf Port 3000 und ist über die URL http://localhost:3000/ erreichbar.
 
+###Anlegen der Strukturen
+Über die URL http://localhost:3001/university wird ein Setup aufgerufen. Hier können die Strukturen über eine simple Oberfläche erstellt werden.
+Angefangen mit einer Universität -> Fakultät -> Studiengangs -> Modul wird die Struktur erstellt.
 
+###Registration
+Um die Applikation nutzen zu können ist eine Registrierung notwendig, diese ist unter http://localhost:3001/registration zu finden. Nach erfolgreichem Login unter http://localhost:3001/login können folgende Aktionen über die linke Navigation erreicht und ausgeführt werden.
 
+####Grupppe finden
+Die hier zu findenen Felder dienen zu Filterung von Gruppen. Über die Schaltfläche "betrete" wird der User Mitglied der Gruppe. Er sieht nun einen Link zur Gruppe auf seinem Dashboard und wird über Änderungen in Gruppe informiert. 
+
+####Grupppe erstellen
+Alle nutzer haben das Rech Gruppen zu erstellen.
+
+####Grupppe betreten
+Wird über das Dashboard eine Gruppe ausgewählt, werden alle Taks der Gruppe aufgelistet. Tasks die dem User zugewiesen sind können als "fertig gestellt" makiert werden. Außerdem können Tasks übernommen werden. Alle Mitglieder der Gruppe, die ebenfalls online das Tool nutzen, werden über Änderungen in der Gruppe informiert.
 
 
 
