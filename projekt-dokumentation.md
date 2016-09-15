@@ -414,9 +414,13 @@ Das arbeiten mit NodeJS zeigte sich als sehr ungewohnt. Zuvor wurde noch nicht m
 Die größten Herausforderungen sah ich im Umgang mit SocketIO und Express Routes. Für die Anwendung dieser Pakete musste ich mich genauer mit Middelware und Asynchronen Methoden beschäftigen.
 Eine Service-Application Struktur muss genau durchdacht werden und brauch viel Planung. Die Durchführung und Entwicklung profetiert jedoch sehr dadurch. 
 
-
-
-
+##Arbeitsmatrix
+|               | Jan Wegmeth | Krystian Schindler | Natalie Tork Alinaghipour | 
+|--------------:|------------ |:------------------:| -------------------------:|
+| Konzeption    | 60%         | 20%                |20%                        |
+| Dokumentation | 60%         | 30%                |10%                        |
+| Dienstgebener | 100%        | 0%                 |0%                         |
+| Dienstnutzer  | 100%        | 0%                 |0%                         |
 
 
 
