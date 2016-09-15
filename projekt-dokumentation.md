@@ -415,7 +415,7 @@ Die größten Herausforderungen sah ich im Umgang mit SocketIO und Express Route
 Eine Service-Application Struktur muss genau durchdacht werden und brauch viel Planung. Die Durchführung und Entwicklung profetiert jedoch sehr dadurch. 
 
 ##Arbeitsmatrix
-|               | Jan Wegmeth | Krystian Schindler | Natalie Tork Alinaghipour | 
+|               | Jan Wegmeth | Natalie Tork Alinaghipour| Krystian Schindler  | 
 |--------------:|------------ |:------------------:| -------------------------:|
 | Konzeption    | 60%         | 20%                |20%                        |
 | Dokumentation | 60%         | 30%                |10%                        |
