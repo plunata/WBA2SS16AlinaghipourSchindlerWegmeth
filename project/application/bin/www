@@ -38,6 +38,7 @@ io.on ('connection', function (socket) {
             if (!error && response.statusCode == 200) {
 
                 var user = JSON.parse (body)[0];
+                if(!user) return;
 
                 async.map (user.groups, function (url, done) {
                     request (url, function (err, response, body) {

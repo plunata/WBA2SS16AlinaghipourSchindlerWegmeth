@@ -34,7 +34,7 @@ router.put ('/:id', function (req, res, next) {
                 });
             }
             var task = JSON.parse (body);
-            task.editor = 1;
+            task.done = 1;
 
             service.sendPut ('/task/' + task.id, JSON.stringify (task), finish);
         }
